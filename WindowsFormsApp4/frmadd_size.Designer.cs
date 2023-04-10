@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp4
+namespace IMS
 {
     partial class frmadd_size
     {
@@ -33,26 +33,37 @@ namespace WindowsFormsApp4
             this.btnok = new System.Windows.Forms.Button();
             this.lblSearch = new System.Windows.Forms.Label();
             this.txt1 = new System.Windows.Forms.TextBox();
+            this.txt2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnclose
             // 
+            this.btnclose.BackColor = System.Drawing.Color.Red;
+            this.btnclose.FlatAppearance.BorderSize = 0;
+            this.btnclose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnclose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnclose.ForeColor = System.Drawing.Color.White;
             this.btnclose.Location = new System.Drawing.Point(277, 83);
             this.btnclose.Name = "btnclose";
             this.btnclose.Size = new System.Drawing.Size(75, 23);
             this.btnclose.TabIndex = 52;
             this.btnclose.Text = "&CLOSE";
-            this.btnclose.UseVisualStyleBackColor = true;
+            this.btnclose.UseVisualStyleBackColor = false;
             this.btnclose.Click += new System.EventHandler(this.btnclose_Click);
             // 
             // btnok
             // 
-            this.btnok.Location = new System.Drawing.Point(140, 83);
+            this.btnok.BackColor = System.Drawing.Color.Green;
+            this.btnok.FlatAppearance.BorderSize = 0;
+            this.btnok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnok.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnok.ForeColor = System.Drawing.Color.White;
+            this.btnok.Location = new System.Drawing.Point(174, 83);
             this.btnok.Name = "btnok";
             this.btnok.Size = new System.Drawing.Size(75, 23);
             this.btnok.TabIndex = 51;
-            this.btnok.Text = "&SAVE";
-            this.btnok.UseVisualStyleBackColor = true;
+            this.btnok.Text = "SAVE";
+            this.btnok.UseVisualStyleBackColor = false;
             this.btnok.Click += new System.EventHandler(this.btnok_Click);
             // 
             // lblSearch
@@ -67,24 +78,40 @@ namespace WindowsFormsApp4
             // 
             // txt1
             // 
+            this.txt1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txt1.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt1.Location = new System.Drawing.Point(94, 26);
             this.txt1.Name = "txt1";
             this.txt1.Size = new System.Drawing.Size(267, 25);
             this.txt1.TabIndex = 49;
             // 
+            // txt2
+            // 
+            this.txt2.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt2.Location = new System.Drawing.Point(4, 83);
+            this.txt2.Name = "txt2";
+            this.txt2.Size = new System.Drawing.Size(10, 25);
+            this.txt2.TabIndex = 53;
+            this.txt2.Visible = false;
+            // 
             // frmadd_size
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(208)))), ((int)(((byte)(63)))));
             this.ClientSize = new System.Drawing.Size(380, 115);
+            this.Controls.Add(this.txt2);
             this.Controls.Add(this.btnclose);
             this.Controls.Add(this.btnok);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txt1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.KeyPreview = true;
             this.Name = "frmadd_size";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmadd_size";
             this.Load += new System.EventHandler(this.frmadd_size_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmadd_size_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,5 +123,6 @@ namespace WindowsFormsApp4
         private System.Windows.Forms.Button btnok;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.TextBox txt1;
+        private System.Windows.Forms.TextBox txt2;
     }
 }

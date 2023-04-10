@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-namespace WindowsFormsApp4
+namespace IMS
 {
     public partial class frmyearselection : Form
     {
@@ -18,7 +18,7 @@ namespace WindowsFormsApp4
         {
             InitializeComponent();
         }
-
+        public static string user_name { get; set; }
         private void btnclose_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -32,7 +32,7 @@ namespace WindowsFormsApp4
         {
             String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
             // String str = "Select * from T_QUOTATION_ITEM";
-            String SQLQuery = " SELECT FY_YEAR_ID, COMPANY FROM M_FY_YEAR WHERE ACTIVE =1 ";
+            String SQLQuery = " SELECT COMPANY_ID, COMPANY_NAME FROM M_COMPANY WHERE ACTIVE =1 ";
             try
             {
                 using (SqlConnection conn = new SqlConnection(ConnString))
@@ -43,8 +43,10 @@ namespace WindowsFormsApp4
                     conn.Open();
                     DataTable dt = new DataTable();
                     DataSet ds = new DataSet();
-                    da.Fill(ds, "DOWN");
-
+                    da.Fill(dt);
+                    DataRow row = dt.NewRow();
+                    row[1] = "";
+                    dt.Rows.InsertAt(row, 0);
                     //SqlDataReader dr = comm.ExecuteReader();
                     //while (dr.Read())
                     //{
@@ -53,9 +55,9 @@ namespace WindowsFormsApp4
 
                     //dr.Close();
                     //DataTable dt = ds.Tables[0];
-                    cmboname.DataSource = ds.Tables["DOWN"].DefaultView;
-                    cmboname.DisplayMember = "COMPANY";
-                    //cmboname.ValueMember = "COMPANY_ID";
+                    cmboname.DataSource = dt;
+                    cmboname.DisplayMember = "COMPANY_NAME";
+                    cmboname.ValueMember = "COMPANY_ID";
                 }
             }
             catch (Exception ex)
@@ -78,8 +80,10 @@ namespace WindowsFormsApp4
                 conn.Open();
                 DataTable dt = new DataTable();
                 DataSet ds = new DataSet();
-                da.Fill(ds, "drop");
-
+                da.Fill(dt);
+                DataRow row = dt.NewRow();
+                row[1] = "";
+                dt.Rows.InsertAt(row, 0);
                 //SqlDataReader dr = comm.ExecuteReader();
                 //while (dr.Read())
                 //{
@@ -88,7 +92,7 @@ namespace WindowsFormsApp4
 
                 //dr.Close();
                 //DataTable dt = ds.Tables[0];
-                cmboyear.DataSource = ds.Tables["drop"].DefaultView;
+                cmboyear.DataSource = dt;
                 cmboyear.DisplayMember = "FY_YEAR";
                 cmboyear.ValueMember = "FY_YEAR_ID";
             }
@@ -107,6 +111,7 @@ namespace WindowsFormsApp4
           );
         private void frmyearselection_Load(object sender, EventArgs e)
         {
+           
             btnsubmit.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnsubmit.Width, btnsubmit.Height, 20, 20));
             btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
             this.Region = Region.FromHrgn(CreateRoundRectRgn(3, 3, this.Width, this.Height, 20, 20));
@@ -116,6 +121,7 @@ namespace WindowsFormsApp4
 
         private void btnsubmit_Click(object sender, EventArgs e)
         {
+            user_name = frm_login.USER_NAME;
             String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
             String Query;
 
@@ -148,14 +154,28 @@ namespace WindowsFormsApp4
                 conn.Open();
                 comm.ExecuteNonQuery();
             }
-            //frm_mid mdi = new frm_mid();
-            //setcompanyname = cmboname.Text;
-            //company_year = cmboyear.Text;
-            ////mdi.ShowDialog();
-            //mdi.Show();
-            //this.Hide();
+            frm_mid mdi = new frm_mid();
+            setcompanyname = cmboname.Text;
+            company_year = cmboyear.Text;
+            //mdi.ShowDialog();
+            mdi.Show();
+            this.Hide();
 
             cleartxt();
+        }
+        public static int item1 { get; set; }
+        public static int item2 { get; set; }
+        private void cmboname_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          item1 = cmboname.SelectedIndex;
+            cmboname.Tag = item1;
+
+        }
+
+        private void cmboyear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          item2 = cmboyear.SelectedIndex;
+            cmboyear.Tag = item2;
         }
     }
 }

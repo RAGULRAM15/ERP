@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-namespace WindowsFormsApp4
+using System.Runtime.InteropServices;
+
+namespace IMS
 {
     public partial class frmadd_district : Form
     {
@@ -16,10 +18,21 @@ namespace WindowsFormsApp4
         {
             InitializeComponent();
         }
-
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+         (int nTop,
+          int nLeft,
+          int nRight,
+          int nBottum,
+          int nWidthEllipse,
+          int nHeightEllipse
+         );
+        public string MODE { get; set; }
         private void frmadd_district_Load(object sender, EventArgs e)
         {
-
+            this.Text = MODE;
+            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
+            txt3.Text = frm_district.value2;
             txt1.Text = frm_district.value;
             txt2.Text = frm_district.value1;
             String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
@@ -66,7 +79,7 @@ namespace WindowsFormsApp4
 
         private void btnok_Click(object sender, EventArgs e)
         {
-            if (txt1.Text != "" && txt2.Text != "")
+            if (txt1.Text != "" && txt2.Text != "" && txt3.Text=="")
             {
                 String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
                 string qurey = "INSERT INTO [M_DISTRICT](DISTRICT,STATE_ID,ACTIVE) VALUES('" + txt1.Text + "'," + txt2.Tag + ",'" + "1" + "')";
@@ -80,6 +93,23 @@ namespace WindowsFormsApp4
                 MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
                 txt1.Text = "";
                 txt2.Text = "";
+                txt3.Text = "";
+            }
+            else if (txt3.Text!="")
+            {
+                String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+                string qurey = "UPDATE M_DISTRICT SET DISTRICT ='" + txt1.Text + "', STATE_ID =" + txt2.Tag + " WHERE DISTRICT_ID ="+txt3.Text+"";
+                SqlConnection CONN = new SqlConnection(ConnString);
+                CONN.Open();
+                SqlCommand COMM = new SqlCommand(qurey, CONN);
+                COMM.ExecuteNonQuery();
+                CONN.Close();
+
+
+                MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
+                txt1.Text = "";
+                txt2.Text = "";
+                txt3.Text = "";
             }
             else
             {
@@ -90,6 +120,14 @@ namespace WindowsFormsApp4
         private void btnclose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmadd_district_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.X && e.Alt)
+            {
+                this.Close();
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-namespace WindowsFormsApp4
+namespace IMS
 {
     public partial class frmf2 : Form
     {
@@ -51,17 +51,12 @@ namespace WindowsFormsApp4
         {
             btnok.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnok.Width, btnok.Height, 20, 20));
             btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
+            //dgvHelp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dgvHelp.Width, dgvHelp.Height, 20, 20));
         }
 
         private void dgvHelp_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvHelp.Rows.Count > 0)
-            {
-                int selectedrowindex = dgvHelp.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = dgvHelp.Rows[selectedrowindex];
-                txtDataload.Tag = Convert.ToString(selectedRow.Cells["ID"].Value);
-                txtDataload.Text = Convert.ToString(selectedRow.Cells[lblSearch.Text].Value);
-            }
+            
         }
 
         private void btnclose_Click(object sender, EventArgs e)
@@ -85,15 +80,15 @@ namespace WindowsFormsApp4
             dgvHelp.DataSource = ds.Tables[0];
 
             con.Close(); //database connection close
-
+            dgvHelp.Columns["ID"].Visible = false;
             this.Show();
         }
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             // Grid fillter
-            DataView dv = ds.Tables[0].DefaultView;
-            dv.RowFilter = lblSearch.Text + " LIKE '" + txtSearch.Text.ToString() + "%'";
-            dgvHelp.DataSource = dv;
+           //// DataView dv = ds.Tables[0].DefaultView;
+           // dv.RowFilter = lblSearch.Text + " LIKE '" + txtSearch.Text.ToString() + "%'";
+           // dgvHelp.DataSource = dv;
         }
 
         private void btnok_Click(object sender, EventArgs e)
@@ -102,6 +97,40 @@ namespace WindowsFormsApp4
             ((TextBox)_ct).Tag = txtDataload.Tag;
             ((TextBox)_ct).Text = txtDataload.Text;
             this.Close();
+        }
+
+        private void dgvHelp_SelectionChanged(object sender, EventArgs e)
+        {
+            //if (dgvHelp.Rows.Count > 0)
+            //{
+            //    int selectedrowindex = ;//dgvHelp.SelectedCells[0].RowIndex;
+            //    DataGridViewRow selectedRow = dgvHelp.Rows[selectedrowindex];
+            //    txtDataload.Tag = Convert.ToString(selectedRow.Cells["ID"].Value);
+            //    txtDataload.Text = Convert.ToString(selectedRow.Cells[lblSearch.Text].Value);
+            //}
+        }
+
+        private void dgvHelp_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvHelp.Rows.Count > 0 && e.RowIndex >= 0)
+            {
+                int selectedrowindex = e.RowIndex;
+                DataGridViewRow selectedRow = dgvHelp.Rows[selectedrowindex];
+                txtDataload.Tag = Convert.ToString(selectedRow.Cells["ID"].Value);
+                txtDataload.Text = Convert.ToString(selectedRow.Cells[lblSearch.Text].Value);
+            }
+
+        }
+
+        private void dgvHelp_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvHelp.Rows.Count > 0 && e.RowIndex >= 0)
+            {
+                int selectedrowindex = e.RowIndex;
+                DataGridViewRow selectedRow = dgvHelp.Rows[selectedrowindex];
+                txtDataload.Tag = Convert.ToString(selectedRow.Cells["ID"].Value);
+                txtDataload.Text = Convert.ToString(selectedRow.Cells[lblSearch.Text].Value);
+            }
         }
     }
 }

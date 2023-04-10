@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-namespace WindowsFormsApp4
+using System.Runtime.InteropServices;
+
+namespace IMS
 {
     public partial class frmcustomer : Form
     {
@@ -20,7 +22,8 @@ namespace WindowsFormsApp4
         private void btn_add_Click(object sender, EventArgs e)
         {
              frmadd_customer newMDIChild = new frmadd_customer();
-           // newMDIChild.MdiParent = frm_mid.ActiveForm;
+            newMDIChild.MdiParent = frm_mid.ActiveForm;
+            newMDIChild.MODE = "ADD CUSTOMER";
             newMDIChild.Show();
 
             this.Hide();
@@ -30,12 +33,12 @@ namespace WindowsFormsApp4
         private void btn_edit_Click(object sender, EventArgs e)
         {
             frmadd_customer detialform = new frmadd_customer();
-            // detialform.MdiParent = frm_mid.ActiveForm;
-
+            detialform.MdiParent = frm_mid.ActiveForm;
+            detialform.MODE = "EDIT CUSTOMER";
             int rowIndex = dtgF4.CurrentCell.RowIndex;
             DataGridViewRow edit_row = dtgF4.Rows[rowIndex];
             value1 = edit_row.Cells["CUSTOMER_NAME"].Value.ToString();
-            value2 = edit_row.Cells["ID"].Value.ToString();
+            value2 = edit_row.Cells[0].Value.ToString();
             //value2 = edit_row.Cells["CUSTOMER_NAME"].Value.ToString();
             detialform.edit_form();
             detialform.Show();
@@ -85,8 +88,8 @@ namespace WindowsFormsApp4
         private void btn_view_Click(object sender, EventArgs e)
         {
             frmadd_customer detialform = new frmadd_customer();
-            // detialform.MdiParent = frm_mid.ActiveForm;
-
+            detialform.MdiParent = frm_mid.ActiveForm;
+            detialform.MODE = "VIEW CUSTOMER";
             int rowIndex = dtgF4.CurrentCell.RowIndex;
             DataGridViewRow edit_row = dtgF4.Rows[rowIndex];
             value1 = edit_row.Cells["CUSTOMER_NAME"].Value.ToString();
@@ -114,8 +117,8 @@ namespace WindowsFormsApp4
         private void dtgF4_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             frmadd_customer detialform = new frmadd_customer();
-            // detialform.MdiParent = frm_mid.ActiveForm;
-
+            detialform.MdiParent = frm_mid.ActiveForm;
+            detialform.MODE = "EDIT CUSTOMER";
             int rowIndex = dtgF4.CurrentCell.RowIndex;
             DataGridViewRow edit_row = dtgF4.Rows[rowIndex];
             value1 = edit_row.Cells["CUSTOMER_NAME"].Value.ToString();
@@ -124,11 +127,42 @@ namespace WindowsFormsApp4
             detialform.Show();
             this.Hide();
         }
-
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+       (int nTop,
+        int nLeft,
+        int nRight,
+        int nBottum,
+        int nWidthEllipse,
+        int nHeightEllipse
+       );
         private void frmcustomer_Load(object sender, EventArgs e)
         {
-
+            dtgF4.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dtgF4.Width, dtgF4.Height, 20, 20));
             refresh();
         }
+
+        private void txtcustomer_TextChanged(object sender, EventArgs e)
+        {
+            String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+            String str = "SELECT CUSTOMER_ID AS [ID], CUSTOMER_NAME FROM M_CUSTOMER WHERE ACTIVE = 1";
+
+            SqlConnection conn = new SqlConnection(ConnString);
+            
+                conn.Open();
+                //SqlCommand comm = new SqlCommand(str, conn);
+                //comm.Connection = conn;
+                //comm.CommandText = str;
+                SqlDataAdapter DA = new SqlDataAdapter(str, conn);
+                DataSet DT = new DataSet();
+                DA.Fill(DT);
+                dtgF4.DataSource = DT.Tables[0];
+                conn.Close();
+            DataView dv = DT.Tables[0].DefaultView;
+            dv.RowFilter=" CUSTOMER_NAME LIKE'"+txtcustomer.Text+"%'";
+            dtgF4.DataSource = dv;
+        }
+
+      
     }
 }

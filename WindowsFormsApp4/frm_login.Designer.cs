@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp4
+namespace IMS
 {
     partial class frm_login
     {
@@ -34,13 +34,13 @@ namespace WindowsFormsApp4
             this.picuser = new System.Windows.Forms.PictureBox();
             this.btnshow = new System.Windows.Forms.Button();
             this.txtpassword = new System.Windows.Forms.TextBox();
-            this.txtuser = new System.Windows.Forms.TextBox();
             this.btnclose = new System.Windows.Forms.Button();
             this.btnlogin = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.picBox = new System.Windows.Forms.PictureBox();
+            this.txtuser = new System.Windows.Forms.TextBox();
             this.panel_login.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picuser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -51,10 +51,10 @@ namespace WindowsFormsApp4
             // panel_login
             // 
             this.panel_login.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(232)))), ((int)(((byte)(237)))));
+            this.panel_login.Controls.Add(this.txtuser);
             this.panel_login.Controls.Add(this.picuser);
             this.panel_login.Controls.Add(this.btnshow);
             this.panel_login.Controls.Add(this.txtpassword);
-            this.panel_login.Controls.Add(this.txtuser);
             this.panel_login.Controls.Add(this.btnclose);
             this.panel_login.Controls.Add(this.btnlogin);
             this.panel_login.Controls.Add(this.pictureBox5);
@@ -86,7 +86,7 @@ namespace WindowsFormsApp4
             this.btnshow.Location = new System.Drawing.Point(270, 190);
             this.btnshow.Name = "btnshow";
             this.btnshow.Size = new System.Drawing.Size(28, 26);
-            this.btnshow.TabIndex = 27;
+            this.btnshow.TabIndex = 3;
             this.btnshow.UseVisualStyleBackColor = false;
             this.btnshow.Click += new System.EventHandler(this.btnshow_Click);
             // 
@@ -100,20 +100,8 @@ namespace WindowsFormsApp4
             this.txtpassword.Name = "txtpassword";
             this.txtpassword.PasswordChar = '*';
             this.txtpassword.Size = new System.Drawing.Size(182, 24);
-            this.txtpassword.TabIndex = 24;
-            // 
-            // txtuser
-            // 
-            this.txtuser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtuser.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtuser.ForeColor = System.Drawing.Color.DimGray;
-            this.txtuser.Location = new System.Drawing.Point(82, 155);
-            this.txtuser.Multiline = true;
-            this.txtuser.Name = "txtuser";
-            this.txtuser.Size = new System.Drawing.Size(182, 24);
-            this.txtuser.TabIndex = 23;
-            this.txtuser.UseSystemPasswordChar = true;
-            this.txtuser.UseWaitCursor = true;
+            this.txtpassword.TabIndex = 2;
+            this.txtpassword.TextChanged += new System.EventHandler(this.txt_password_TextChanged);
             // 
             // btnclose
             // 
@@ -124,7 +112,7 @@ namespace WindowsFormsApp4
             this.btnclose.Location = new System.Drawing.Point(335, 12);
             this.btnclose.Name = "btnclose";
             this.btnclose.Size = new System.Drawing.Size(23, 23);
-            this.btnclose.TabIndex = 22;
+            this.btnclose.TabIndex = 0;
             this.btnclose.Text = "X";
             this.btnclose.UseVisualStyleBackColor = false;
             this.btnclose.Click += new System.EventHandler(this.btnclose_Click);
@@ -139,7 +127,7 @@ namespace WindowsFormsApp4
             this.btnlogin.Location = new System.Drawing.Point(82, 231);
             this.btnlogin.Name = "btnlogin";
             this.btnlogin.Size = new System.Drawing.Size(216, 33);
-            this.btnlogin.TabIndex = 21;
+            this.btnlogin.TabIndex = 4;
             this.btnlogin.Text = "LOG IN";
             this.btnlogin.UseVisualStyleBackColor = false;
             this.btnlogin.Click += new System.EventHandler(this.btnlogin_Click);
@@ -184,6 +172,15 @@ namespace WindowsFormsApp4
             this.picBox.TabIndex = 17;
             this.picBox.TabStop = false;
             // 
+            // txtuser
+            // 
+            this.txtuser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtuser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtuser.Location = new System.Drawing.Point(82, 155);
+            this.txtuser.Name = "txtuser";
+            this.txtuser.Size = new System.Drawing.Size(182, 22);
+            this.txtuser.TabIndex = 1;
+            // 
             // frm_login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,6 +189,7 @@ namespace WindowsFormsApp4
             this.Controls.Add(this.panel_login);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frm_login";
             this.Load += new System.EventHandler(this.frm_login_Load);
             this.panel_login.ResumeLayout(false);
@@ -210,12 +208,12 @@ namespace WindowsFormsApp4
         private System.Windows.Forms.PictureBox picuser;
         private System.Windows.Forms.Button btnshow;
         private System.Windows.Forms.TextBox txtpassword;
-        private System.Windows.Forms.TextBox txtuser;
         private System.Windows.Forms.Button btnclose;
         private System.Windows.Forms.Button btnlogin;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox picBox;
+        private System.Windows.Forms.TextBox txtuser;
     }
 }

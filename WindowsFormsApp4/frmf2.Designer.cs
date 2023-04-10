@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp4
+namespace IMS
 {
     partial class frmf2
     {
@@ -67,11 +67,10 @@ namespace WindowsFormsApp4
             // txtDataload
             // 
             this.txtDataload.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataload.Location = new System.Drawing.Point(328, 18);
+            this.txtDataload.Location = new System.Drawing.Point(171, 18);
             this.txtDataload.Name = "txtDataload";
-            this.txtDataload.Size = new System.Drawing.Size(164, 25);
+            this.txtDataload.Size = new System.Drawing.Size(301, 25);
             this.txtDataload.TabIndex = 9;
-            this.txtDataload.Visible = false;
             // 
             // dgvHelp
             // 
@@ -79,10 +78,15 @@ namespace WindowsFormsApp4
             this.dgvHelp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(230)))), ((int)(((byte)(241)))));
             this.dgvHelp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHelp.Location = new System.Drawing.Point(12, 122);
+            this.dgvHelp.MultiSelect = false;
             this.dgvHelp.Name = "dgvHelp";
+            this.dgvHelp.ReadOnly = true;
+            this.dgvHelp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHelp.Size = new System.Drawing.Size(460, 247);
             this.dgvHelp.TabIndex = 8;
-            this.dgvHelp.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHelp_CellContentClick);
+            this.dgvHelp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHelp_CellClick);
+            this.dgvHelp.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHelp_CellEnter);
+            this.dgvHelp.SelectionChanged += new System.EventHandler(this.dgvHelp_SelectionChanged);
             // 
             // lblSearch
             // 
@@ -107,6 +111,7 @@ namespace WindowsFormsApp4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(517, 450);
             this.Controls.Add(this.btnclose);
             this.Controls.Add(this.btnok);
@@ -115,6 +120,7 @@ namespace WindowsFormsApp4
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txtSearch);
             this.Name = "frmf2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmf2";
             this.Load += new System.EventHandler(this.frmf2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHelp)).EndInit();

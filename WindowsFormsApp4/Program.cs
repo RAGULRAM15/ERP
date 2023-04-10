@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp4
+namespace IMS
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace WindowsFormsApp4
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_qut());
+            Application.Run(new frm_login());
         }
     }
 }

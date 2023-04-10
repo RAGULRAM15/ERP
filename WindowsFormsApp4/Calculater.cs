@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp4
+namespace IMS
 {
     public partial class Calculater : Form
     {
@@ -27,23 +27,7 @@ namespace WindowsFormsApp4
 
         private void Button_click(object sender, EventArgs e)
         {
-            if ((txtbox.Text == "0") || (isoprationperformed))
-            {
-                txtbox.Clear();
-            }
-            isoprationperformed = false;
-            Button button = (Button)sender;
-            //if (button.Text == ".")
-            //{
-            //    if (txtbox.Text.Contains("."))
-            //    {
-            //        txtbox.Text += button.Text;
-            //    }
-            //}
-            //else
-            //{
-            txtbox.Text += button.Text;
-            //}
+           
         }
 
 
@@ -72,7 +56,7 @@ namespace WindowsFormsApp4
            
 
         }
-
+                 
         private void txtequal_Click(object sender, EventArgs e)
         {
            
@@ -119,6 +103,32 @@ namespace WindowsFormsApp4
         }
 
         private void txt0_Click(object sender, EventArgs e)
+        {
+            if ((txtbox.Text == "0") || (isoprationperformed))
+            {
+                txtbox.Clear();
+            }
+            isoprationperformed = false;
+            Button button = (Button)sender;
+            //if (button.Text == ".")
+            //{
+            //    if (txtbox.Text.Contains("."))
+            //    {
+            //        txtbox.Text += button.Text;
+            //    }
+            //}
+            //else
+            //{
+            txtbox.Text += button.Text;
+            //}
+        }
+
+        private void txt5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtsub_Click(object sender, EventArgs e)
         {
 
         }

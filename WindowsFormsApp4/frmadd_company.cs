@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-namespace WindowsFormsApp4
+namespace IMS
 {
     public partial class frmadd_company : Form
     {
@@ -16,9 +16,10 @@ namespace WindowsFormsApp4
         {
             InitializeComponent();
         }
-
+        public string MODE { get; set; }
         private void frmadd_company_Load(object sender, EventArgs e)
         {
+            this.Text = MODE;
             String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
             // String str = "Select * from T_QUOTATION_ITEM";
             String SQLQuery = " SELECT DISTRICT_ID, DISTRICT FROM M_DISTRICT WHERE ACTIVE =1 ";
@@ -105,7 +106,7 @@ namespace WindowsFormsApp4
 
 
                 DataRow row = dt.NewRow();
-                row[1] = "select country";
+                row[1] = "";
                 dt.Rows.InsertAt(row, 0);
                 ////SqlDataReader dr = comm.ExecuteReader();
                 //while (dr.Read())
@@ -163,8 +164,13 @@ namespace WindowsFormsApp4
             String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
             // String str = "Select * from T_QUOTATION_ITEM";
             //String SQLQuery = "SELECT ROW_ID,ITEM_NAME,SIZE,STYLE_NAME,QUANTITY,RATE,DISCOUNT,TOTAL FROM T_QUOTATION_ITEM WHERE QUOTATION_NO = '" + txtquotation.Text + "'";
-            String sqlquery = "SELECT [COMPANY_NAME], [ADDRESS_1], [CITY_ID], [DISTRICT_ID], [STATE_ID], [COUNTRY_ID], [POSTAL_CODE],[PHONE_NO],[MOBILE_NO],[EMAIL],[WEBSITE],[GST_NO]," +
-                " [GST_STATE_CODE],[TIN],[PAN],[CST],[CST_DATE] FROM M_COMPANY WHERE COMPANY_NAME = '" + txt1.Text + "'";
+            String sqlquery = "SELECT[COMPANY_NAME], [ADDRESS], [M_CITY].[CITY], M_DISTRICT.[DISTRICT], M_STATE.[STATE],M_COUNTRY.COUNTRY, [PINCODE],[PHONE],[MOBILE],[E_MAIL],[WEBSITE],[GSTIN]," +
+                "[GST_STATE_CODE],[TIN],[PAN],[CST],[CST_DATE] FROM M_COMPANY " +
+                "INNER JOIN[M_CITY] ON[M_COMPANY].CITY_ID = [M_CITY].CITY_ID " +
+                "INNER JOIN M_DISTRICT ON  M_COMPANY.DISTRICT_ID = M_DISTRICT.DISTRICT_ID " +
+                " INNER JOIN M_STATE ON M_COMPANY.STATE_ID = M_STATE.STATE_ID " +
+                "INNER JOIN M_COUNTRY ON M_COMPANY.COUNTRY_ID = M_COUNTRY.COUNTRY_ID" +
+                "  WHERE COMPANY_NAME = '" + txt1.Text + "'";
             try
             {
 
@@ -179,17 +185,17 @@ namespace WindowsFormsApp4
                     {
 
                         txt1.Text = dr1["COMPANY_NAME"].ToString();
-                        txt2.Text = dr1["ADDRESS_1"].ToString();
-                        txt16.Text = dr1["CITY_ID"].ToString(); /*(DateTime)dr.GetValue(2);*/
-                        txt3.Text = dr1["DISTRICT_ID"].ToString();
-                        txt4.Text = dr1["STATE_ID"].ToString();
-                        txt5.Text = dr1["COUNTRY_ID"].ToString();
-                        textBox1.Text = dr1["POSTAL_CODE"].ToString();
-                        txt6.Text = dr1["PHONE_NO"].ToString();
-                        txt7.Text = dr1["MOBILE_NO"].ToString();
-                        txt8.Text = dr1["EMAIL"].ToString(); /*(DateTime)dr.GetValue(2);*/
+                        txt2.Text = dr1["ADDRESS"].ToString();
+                        txt16.Text = dr1["CITY"].ToString(); /*(DateTime)dr.GetValue(2);*/
+                        txt3.Text = dr1["DISTRICT"].ToString();
+                        txt4.Text = dr1["STATE"].ToString();
+                        txt5.Text = dr1["COUNTRY"].ToString();
+                        textBox1.Text = dr1["PINCODE"].ToString();
+                        txt6.Text = dr1["PHONE"].ToString();
+                        txt7.Text = dr1["MOBILE"].ToString();
+                        txt8.Text = dr1["E_MAIL"].ToString(); /*(DateTime)dr.GetValue(2);*/
                         txt9.Text = dr1["WEBSITE"].ToString();
-                        txt10.Text = dr1["GST_NO"].ToString();
+                        txt10.Text = dr1["GSTIN"].ToString();
                         txt17.Text = dr1["GST_STATE_CODE"].ToString();
                         txt11.Text = dr1["TIN"].ToString();
                         txt12.Text = dr1["PAN"].ToString();
@@ -238,7 +244,7 @@ namespace WindowsFormsApp4
 
                     //comm.Connection = conn;
 
-                    Query = @"INSERT [dbo].[M_COMPANY] (  [COMPANY_NAME], [ADDRESS_1], [CITY_ID], [DISTRICT_ID], [STATE_ID], [COUNTRY_ID], [POSTAL_CODE], [PHONE_NO],[MOBILE_NO],[EMAIL],[WEBSITE] ,[GST_NO], [GST_STATE_CODE],[TIN],[PAN],[CST],[CST_DATE],[ACTIVE]) VALUES ("
+                    Query = @"INSERT [dbo].[M_COMPANY] (  [COMPANY_NAME], [ADDRESS], [CITY_ID], [DISTRICT_ID], [STATE_ID], [COUNTRY_ID], [PINCODE], [PHONE],[MOBILE],[E_MAIL],[WEBSITE] ,[GSTIN], [GST_STATE_CODE],[TIN],[PAN],[CST],[CST_DATE],[ACTIVE]) VALUES ("
                                 + "'" + txt1.Text + "',"
 
                                 + "'" + txt2.Text + "',"
@@ -335,6 +341,15 @@ namespace WindowsFormsApp4
         private void btnclose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmadd_company_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.X && e.Alt)
+            {
+                CLEAR();
+                this.Close();
+            }
         }
     }
 }

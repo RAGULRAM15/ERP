@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp4
+namespace IMS
 {
     partial class frmf5
     {
@@ -31,10 +31,12 @@ namespace WindowsFormsApp4
         {
             this.btnclose = new System.Windows.Forms.Button();
             this.btnok = new System.Windows.Forms.Button();
-            this.txtDataload = new System.Windows.Forms.TextBox();
             this.dgvHelp = new System.Windows.Forms.DataGridView();
             this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.txtDataload = new System.Windows.Forms.TextBox();
+            this.txt_text = new System.Windows.Forms.TextBox();
+            this.lbl_2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHelp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,24 +60,19 @@ namespace WindowsFormsApp4
             this.btnok.UseVisualStyleBackColor = true;
             this.btnok.Click += new System.EventHandler(this.btnok_Click);
             // 
-            // txtDataload
-            // 
-            this.txtDataload.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataload.Location = new System.Drawing.Point(110, 20);
-            this.txtDataload.Name = "txtDataload";
-            this.txtDataload.ReadOnly = true;
-            this.txtDataload.Size = new System.Drawing.Size(362, 25);
-            this.txtDataload.TabIndex = 15;
-            // 
             // dgvHelp
             // 
             this.dgvHelp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvHelp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(214)))), ((int)(((byte)(241)))));
+            this.dgvHelp.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvHelp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHelp.Location = new System.Drawing.Point(12, 94);
             this.dgvHelp.Name = "dgvHelp";
             this.dgvHelp.Size = new System.Drawing.Size(460, 247);
             this.dgvHelp.TabIndex = 14;
+            this.dgvHelp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHelp_CellClick);
             this.dgvHelp.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHelp_CellContentClick);
+            this.dgvHelp.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHelp_CellEnter);
             // 
             // lblSearch
             // 
@@ -96,18 +93,50 @@ namespace WindowsFormsApp4
             this.txtSearch.TabIndex = 12;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
+            // txtDataload
+            // 
+            this.txtDataload.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDataload.Location = new System.Drawing.Point(110, 20);
+            this.txtDataload.Name = "txtDataload";
+            this.txtDataload.ReadOnly = true;
+            this.txtDataload.Size = new System.Drawing.Size(362, 25);
+            this.txtDataload.TabIndex = 15;
+            // 
+            // txt_text
+            // 
+            this.txt_text.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_text.Location = new System.Drawing.Point(-1, 428);
+            this.txt_text.Name = "txt_text";
+            this.txt_text.Size = new System.Drawing.Size(10, 25);
+            this.txt_text.TabIndex = 18;
+            this.txt_text.Visible = false;
+            // 
+            // lbl_2
+            // 
+            this.lbl_2.AutoSize = true;
+            this.lbl_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_2.Location = new System.Drawing.Point(9, 29);
+            this.lbl_2.Name = "lbl_2";
+            this.lbl_2.Size = new System.Drawing.Size(0, 16);
+            this.lbl_2.TabIndex = 19;
+            // 
             // frmf5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(501, 450);
+            this.Controls.Add(this.lbl_2);
+            this.Controls.Add(this.txt_text);
             this.Controls.Add(this.btnclose);
             this.Controls.Add(this.btnok);
             this.Controls.Add(this.txtDataload);
             this.Controls.Add(this.dgvHelp);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txtSearch);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmf5";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmf5";
             this.Load += new System.EventHandler(this.frmf5_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHelp)).EndInit();
@@ -120,9 +149,11 @@ namespace WindowsFormsApp4
 
         private System.Windows.Forms.Button btnclose;
         private System.Windows.Forms.Button btnok;
-        private System.Windows.Forms.TextBox txtDataload;
         private System.Windows.Forms.DataGridView dgvHelp;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.TextBox txtDataload;
+        private System.Windows.Forms.TextBox txt_text;
+        private System.Windows.Forms.Label lbl_2;
     }
 }

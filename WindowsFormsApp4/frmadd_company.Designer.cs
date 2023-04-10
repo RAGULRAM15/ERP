@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp4
+namespace IMS
 {
     partial class frmadd_company
     {
@@ -357,6 +357,9 @@ namespace WindowsFormsApp4
             // 
             // btnclose
             // 
+            this.btnclose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnclose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnclose.ForeColor = System.Drawing.Color.Red;
             this.btnclose.Location = new System.Drawing.Point(647, 369);
             this.btnclose.Name = "btnclose";
             this.btnclose.Size = new System.Drawing.Size(75, 23);
@@ -367,6 +370,9 @@ namespace WindowsFormsApp4
             // 
             // btnok
             // 
+            this.btnok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnok.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnok.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnok.Location = new System.Drawing.Point(533, 369);
             this.btnok.Name = "btnok";
             this.btnok.Size = new System.Drawing.Size(75, 23);
@@ -407,6 +413,7 @@ namespace WindowsFormsApp4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
             this.ClientSize = new System.Drawing.Size(800, 416);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.textBox1);
@@ -444,9 +451,13 @@ namespace WindowsFormsApp4
             this.Controls.Add(this.txt2);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txt1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.KeyPreview = true;
             this.Name = "frmadd_company";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmadd_company";
             this.Load += new System.EventHandler(this.frmadd_company_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmadd_company_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

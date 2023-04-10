@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-namespace WindowsFormsApp4
+using System.Runtime.InteropServices;
+
+namespace IMS
 {
     public partial class frm_state : Form
     {
@@ -20,23 +22,24 @@ namespace WindowsFormsApp4
         private void txt_add_Click(object sender, EventArgs e)
         {
             frmadd_state f4 = new frmadd_state();
-            // f4.MdiParent = frm_mid.ActiveForm;
-
+            f4.MdiParent = frm_mid.ActiveForm;
+            f4.MODE = "ADD STATE";
             f4.Show();
             this.Hide();
         }
         public static string value { get; set; }
         public static string value1 { get; set; }
+        public static string value2 { get; set; }
         private void btn_edit_Click(object sender, EventArgs e)
         {
 
             frmadd_state f4 = new frmadd_state();
-            // f4.MdiParent = frm_mid.ActiveForm;
-
+            f4.MdiParent = frm_mid.ActiveForm;
+            f4.MODE = "EDIT STATE";
             int rowIndex = dtgF4.CurrentCell.RowIndex;
             DataGridViewRow edit_row = dtgF4.Rows[rowIndex];
 
-            // value = edit_row.Cells[0].Value.ToString();
+             value2 = edit_row.Cells[0].Value.ToString();
             value = edit_row.Cells[1].Value.ToString();
             f4.Show();
             this.Hide();
@@ -103,12 +106,12 @@ namespace WindowsFormsApp4
         {
 
             frmadd_state f4 = new frmadd_state();
-            // f4.MdiParent = frm_mid.ActiveForm;
-
+            f4.MdiParent = frm_mid.ActiveForm;
+            f4.MODE = "EDIT STATE";
             int rowIndex = dtgF4.CurrentCell.RowIndex;
             DataGridViewRow edit_row = dtgF4.Rows[rowIndex];
 
-            // value = edit_row.Cells[0].Value.ToString();
+             value2 = edit_row.Cells[0].Value.ToString();
             value = edit_row.Cells[1].Value.ToString();
             f4.Show();
             this.Hide();
@@ -116,7 +119,52 @@ namespace WindowsFormsApp4
 
         private void frm_state_Load(object sender, EventArgs e)
         {
+            dtgF4.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dtgF4.Width, dtgF4.Height, 20, 20));
             refresh();
+        }
+
+        private void txtstate_TextChanged(object sender, EventArgs e)
+        {
+            String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+            String str = "SELECT  STATE_ID AS [ID], STATE, STATE_CODE FROM M_STATE WHERE ACTIVE = 1";
+
+            SqlConnection conn = new SqlConnection(ConnString);
+            
+                conn.Open();
+                //SqlCommand comm = new SqlCommand(str, conn);
+                //comm.Connection = conn;
+                //comm.CommandText = str;
+                SqlDataAdapter DA = new SqlDataAdapter(str, conn);
+                DataSet DT = new DataSet();
+                DA.Fill(DT);
+                dtgF4.DataSource = DT.Tables[0];
+                conn.Close();
+            DataView dv = DT.Tables[0].DefaultView;
+            dv.RowFilter = "STATE LIKE'" + txtstate.Text + "%'";
+            dtgF4.DataSource = dv;
+            
+        }
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+      (int nTop,
+       int nLeft,
+       int nRight,
+       int nBottum,
+       int nWidthEllipse,
+       int nHeightEllipse
+      );
+
+        private void dtgF4_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void frm_state_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.X && e.Alt)
+            {
+                this.Close();
+            }
         }
     }
 }

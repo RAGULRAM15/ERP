@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp4
+namespace IMS
 {
     partial class frmentry_setup
     {
@@ -29,6 +29,7 @@ namespace WindowsFormsApp4
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dtg_entrysetup = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_entrysetup)).BeginInit();
             this.SuspendLayout();
@@ -36,24 +37,40 @@ namespace WindowsFormsApp4
             // dtg_entrysetup
             // 
             this.dtg_entrysetup.AllowUserToAddRows = false;
-            this.dtg_entrysetup.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dtg_entrysetup.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.dtg_entrysetup.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtg_entrysetup.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.dtg_entrysetup.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtg_entrysetup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg_entrysetup.Location = new System.Drawing.Point(12, 74);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtg_entrysetup.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dtg_entrysetup.Location = new System.Drawing.Point(12, 12);
             this.dtg_entrysetup.Name = "dtg_entrysetup";
             this.dtg_entrysetup.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.dtg_entrysetup.Size = new System.Drawing.Size(657, 266);
+            this.dtg_entrysetup.Size = new System.Drawing.Size(657, 347);
             this.dtg_entrysetup.TabIndex = 1;
+            this.dtg_entrysetup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_entrysetup_CellContentClick);
             // 
             // frmentry_setup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.ClientSize = new System.Drawing.Size(690, 450);
             this.Controls.Add(this.dtg_entrysetup);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.KeyPreview = true;
             this.Name = "frmentry_setup";
-            this.Text = "frmentry_setup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Entry Setup";
             this.Load += new System.EventHandler(this.frmentry_setup_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmentry_setup_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmentry_setup_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.dtg_entrysetup)).EndInit();
             this.ResumeLayout(false);
 

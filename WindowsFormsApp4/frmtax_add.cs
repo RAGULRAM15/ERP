@@ -8,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
-namespace WindowsFormsApp4
+namespace IMS
 {
     public partial class frmtax_add : Form
     {
@@ -17,21 +18,37 @@ namespace WindowsFormsApp4
         {
             InitializeComponent();
         }
-
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (int nTop,
+         int nLeft,
+         int nRight,
+         int nBottum,
+         int nWidthEllipse,
+         int nHeightEllipse
+        );
+        public string MODE { get; set; }
         private void frmtax_add_Load(object sender, EventArgs e)
         {
+            this.Text = MODE;
+            btnok.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnok.Width, btnok.Height, 20, 20));
+             btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
+            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
+            txt3.Text = frmtax.value2;
             txt1.Text = frmtax.value;
             txt2.Text = frmtax.value1;
         }
 
         private void btnclose_Click(object sender, EventArgs e)
         {
+            txt1.Text = "";
+            txt2.Text = "";
             this.Close();
         }
 
         private void btnok_Click(object sender, EventArgs e)
         {
-            if (txt1.Text != "" && txt2.Text != "")
+            if (txt1.Text != "" && txt2.Text != ""&&txt3.Text=="")
             {
 
                 String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
@@ -47,10 +64,32 @@ namespace WindowsFormsApp4
                 txt1.Text = "";
                 txt2.Text = "";
             }
+            if (txt3.Text != "")
+            {
+                String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+                string qurey = "UPDATE M_TAX SET TAX='" + txt1.Text + "',PERCENTAGE = " + txt2.Text + " WHERE TAX_ID =" + txt3.Text + "";
+                SqlConnection CONN = new SqlConnection(ConnString);
+                SqlCommand COMM = new SqlCommand(qurey, CONN);
+                CONN.Open();
+                COMM.ExecuteNonQuery();
+                CONN.Close();
+                MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
+                txt1.Text = "";
+                txt2.Text = "";
+            }
             else
             {
                 MessageBox.Show("PLEASE ENTER THE VALUE", "MESSAGE", MessageBoxButtons.OK);
             }
+        }
+
+        private void frmtax_add_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.X && e.Alt)
+            {
+                this.Close();
+            }
+
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp4
+namespace IMS
 {
     partial class frmupdate_company
     {
@@ -83,7 +83,7 @@ namespace WindowsFormsApp4
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(15, 294);
+            this.label17.Location = new System.Drawing.Point(-1, 294);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(113, 16);
             this.label17.TabIndex = 158;
@@ -92,7 +92,7 @@ namespace WindowsFormsApp4
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(134, 285);
+            this.textBox1.Location = new System.Drawing.Point(122, 285);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(267, 25);
             this.textBox1.TabIndex = 157;
@@ -100,10 +100,10 @@ namespace WindowsFormsApp4
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(407, 291);
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(388, 291);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(100, 13);
+            this.label16.Size = new System.Drawing.Size(114, 13);
             this.label16.TabIndex = 156;
             this.label16.Text = "GST STATE CODE";
             // 
@@ -119,7 +119,7 @@ namespace WindowsFormsApp4
             // 
             this.txt16.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt16.FormattingEnabled = true;
-            this.txt16.Location = new System.Drawing.Point(134, 155);
+            this.txt16.Location = new System.Drawing.Point(122, 146);
             this.txt16.Name = "txt16";
             this.txt16.Size = new System.Drawing.Size(267, 25);
             this.txt16.TabIndex = 154;
@@ -129,7 +129,7 @@ namespace WindowsFormsApp4
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(34, 199);
+            this.label15.Location = new System.Drawing.Point(31, 199);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(78, 16);
             this.label15.TabIndex = 153;
@@ -148,7 +148,7 @@ namespace WindowsFormsApp4
             // txt7
             // 
             this.txt7.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt7.Location = new System.Drawing.Point(134, 347);
+            this.txt7.Location = new System.Drawing.Point(122, 347);
             this.txt7.Name = "txt7";
             this.txt7.Size = new System.Drawing.Size(267, 25);
             this.txt7.TabIndex = 151;
@@ -157,7 +157,7 @@ namespace WindowsFormsApp4
             // 
             this.txt5.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt5.FormattingEnabled = true;
-            this.txt5.Location = new System.Drawing.Point(134, 252);
+            this.txt5.Location = new System.Drawing.Point(122, 254);
             this.txt5.Name = "txt5";
             this.txt5.Size = new System.Drawing.Size(267, 25);
             this.txt5.TabIndex = 150;
@@ -167,7 +167,7 @@ namespace WindowsFormsApp4
             // 
             this.txt4.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt4.FormattingEnabled = true;
-            this.txt4.Location = new System.Drawing.Point(134, 221);
+            this.txt4.Location = new System.Drawing.Point(122, 221);
             this.txt4.Name = "txt4";
             this.txt4.Size = new System.Drawing.Size(267, 25);
             this.txt4.TabIndex = 149;
@@ -177,7 +177,7 @@ namespace WindowsFormsApp4
             // 
             this.txt3.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt3.FormattingEnabled = true;
-            this.txt3.Location = new System.Drawing.Point(134, 190);
+            this.txt3.Location = new System.Drawing.Point(122, 190);
             this.txt3.Name = "txt3";
             this.txt3.Size = new System.Drawing.Size(267, 25);
             this.txt3.TabIndex = 148;
@@ -196,7 +196,7 @@ namespace WindowsFormsApp4
             // txt6
             // 
             this.txt6.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt6.Location = new System.Drawing.Point(134, 316);
+            this.txt6.Location = new System.Drawing.Point(122, 316);
             this.txt6.Name = "txt6";
             this.txt6.Size = new System.Drawing.Size(267, 25);
             this.txt6.TabIndex = 146;
@@ -331,7 +331,7 @@ namespace WindowsFormsApp4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(32, 261);
+            this.label4.Location = new System.Drawing.Point(15, 256);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 16);
             this.label4.TabIndex = 131;
@@ -351,7 +351,7 @@ namespace WindowsFormsApp4
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(34, 164);
+            this.label2.Location = new System.Drawing.Point(41, 155);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 16);
             this.label2.TabIndex = 129;
@@ -361,7 +361,7 @@ namespace WindowsFormsApp4
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(29, 94);
+            this.label1.Location = new System.Drawing.Point(31, 82);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 16);
             this.label1.TabIndex = 128;
@@ -369,15 +369,22 @@ namespace WindowsFormsApp4
             // 
             // btnclose
             // 
+            this.btnclose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnclose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnclose.ForeColor = System.Drawing.Color.Red;
             this.btnclose.Location = new System.Drawing.Point(653, 378);
             this.btnclose.Name = "btnclose";
             this.btnclose.Size = new System.Drawing.Size(75, 23);
             this.btnclose.TabIndex = 127;
             this.btnclose.Text = "&CLOSE";
             this.btnclose.UseVisualStyleBackColor = true;
+            this.btnclose.Click += new System.EventHandler(this.btnclose_Click);
             // 
             // btnok
             // 
+            this.btnok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnok.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnok.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnok.Location = new System.Drawing.Point(539, 378);
             this.btnok.Name = "btnok";
             this.btnok.Size = new System.Drawing.Size(75, 23);
@@ -389,7 +396,7 @@ namespace WindowsFormsApp4
             // txt2
             // 
             this.txt2.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt2.Location = new System.Drawing.Point(134, 53);
+            this.txt2.Location = new System.Drawing.Point(122, 46);
             this.txt2.Multiline = true;
             this.txt2.Name = "txt2";
             this.txt2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -400,7 +407,7 @@ namespace WindowsFormsApp4
             // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(32, 31);
+            this.lblSearch.Location = new System.Drawing.Point(32, 22);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(51, 16);
             this.lblSearch.TabIndex = 124;
@@ -409,7 +416,7 @@ namespace WindowsFormsApp4
             // txt1
             // 
             this.txt1.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(134, 22);
+            this.txt1.Location = new System.Drawing.Point(122, 13);
             this.txt1.Name = "txt1";
             this.txt1.Size = new System.Drawing.Size(267, 25);
             this.txt1.TabIndex = 123;
@@ -418,7 +425,8 @@ namespace WindowsFormsApp4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
+            this.ClientSize = new System.Drawing.Size(800, 417);
             this.Controls.Add(this.txt15);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.textBox1);
@@ -456,9 +464,13 @@ namespace WindowsFormsApp4
             this.Controls.Add(this.txt2);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txt1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.KeyPreview = true;
             this.Name = "frmupdate_company";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmupdate_company";
             this.Load += new System.EventHandler(this.frmupdate_company_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmupdate_company_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

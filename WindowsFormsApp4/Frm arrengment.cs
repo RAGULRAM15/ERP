@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp4
+namespace IMS
 {
-    public partial class frm_debit : Form
+    public partial class Frm_arrengment : Form
     {
-        public frm_debit()
+        public Frm_arrengment()
         {
             InitializeComponent();
         }

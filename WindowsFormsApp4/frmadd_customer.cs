@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-namespace WindowsFormsApp4
+namespace IMS
 {
     public partial class frmadd_customer : Form
     {
@@ -16,10 +16,10 @@ namespace WindowsFormsApp4
         {
             InitializeComponent();
         }
-
+        public string MODE { get; set; }
         private void frmadd_customer_Load(object sender, EventArgs e)
         {
-
+            this.Text = MODE;
             String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
             // String str = "Select * from T_QUOTATION_ITEM";
             String SQLQuery = " SELECT DISTRICT_ID, DISTRICT FROM M_DISTRICT WHERE ACTIVE =1 ";
@@ -37,7 +37,7 @@ namespace WindowsFormsApp4
 
 
                 DataRow row = dt.NewRow();
-                row[1] = " ";
+                row[1] = "";
                 dt.Rows.InsertAt(row, 0);
                 ////SqlDataReader dr = comm.ExecuteReader();
                 //while (dr.Read())
@@ -70,7 +70,7 @@ namespace WindowsFormsApp4
 
 
                 DataRow row = dt.NewRow();
-                row[1] = "   ";
+                row[1] = "";
                 dt.Rows.InsertAt(row, 0);
                 ////SqlDataReader dr = comm.ExecuteReader();
                 //while (dr.Read())
@@ -106,7 +106,7 @@ namespace WindowsFormsApp4
 
 
                 DataRow row = dt.NewRow();
-                row[1] = "select country";
+                row[1] = "";
                 dt.Rows.InsertAt(row, 0);
                 ////SqlDataReader dr = comm.ExecuteReader();
                 //while (dr.Read())
@@ -184,13 +184,19 @@ namespace WindowsFormsApp4
         public void edit_form()
         {
             txt1.Text = frmcustomer.value1;
+            txt15.Text = frmcustomer.value2;
             // [M_CUSTOMER] (  [,[ACTIVE
 
             String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
             // String str = "Select * from T_QUOTATION_ITEM";
             //String SQLQuery = "SELECT ROW_ID,ITEM_NAME,SIZE,STYLE_NAME,QUANTITY,RATE,DISCOUNT,TOTAL FROM T_QUOTATION_ITEM WHERE QUOTATION_NO = '" + txtquotation.Text + "'";
-            String sqlquery = "SELECT [CUSTOMER_NAME], [ADDRESS_1], [CITY_ID], [DISTRICT_ID], [STATE_ID], [COUNTRY_ID], [POSTAL_CODE],[PHONE_NO],[MOBILE_NO],[EMAIL],[WEBSITE],[GST_NO]," +
-                " [GST_STATE_CODE],[TIN],[PAN],[CST],[CST_DATE] FROM M_CUSTOMER WHERE CUSTOMER_NAME = '" + txt1.Text + "'";
+            String sqlquery = "SELECT[CUSTOMER_NAME], [ADDRESS_1], [M_CITY].[CITY], M_DISTRICT.[DISTRICT], M_STATE.[STATE],M_COUNTRY.COUNTRY, [POSTAL_CODE],[PHONE_NO],[MOBILE_NO],[EMAIL],[WEBSITE],[GST_NO], " +
+                "[GST_STATE_CODE],[TIN],[PAN],[CST],[CST_DATE] FROM M_CUSTOMER " +
+                "INNER JOIN[M_CITY] ON[M_CUSTOMER].CITY_ID = [M_CITY].CITY_ID " +
+                "INNER JOIN M_DISTRICT ON  M_CUSTOMER.DISTRICT_ID = M_DISTRICT.DISTRICT_ID " +
+                "INNER JOIN M_STATE ON M_CUSTOMER.STATE_ID = M_STATE.STATE_ID " +
+                "INNER JOIN M_COUNTRY ON M_CUSTOMER.COUNTRY_ID = M_COUNTRY.COUNTRY_ID " +
+                "WHERE CUSTOMER_NAME = '" + txt1.Text + "'";
             try
             {
 
@@ -206,10 +212,10 @@ namespace WindowsFormsApp4
 
                         txt1.Text = dr1["CUSTOMER_NAME"].ToString();
                         txt2.Text = dr1["ADDRESS_1"].ToString();
-                        txt16.Text = dr1["CITY_ID"].ToString(); /*(DateTime)dr.GetValue(2);*/
-                        txt3.Text = dr1["DISTRICT_ID"].ToString();
-                        txt4.Text = dr1["STATE_ID"].ToString();
-                        txt5.Text = dr1["COUNTRY_ID"].ToString();
+                        txt16.Text = dr1["CITY"].ToString(); /*(DateTime)dr.GetValue(2);*/
+                        txt3.Text = dr1["DISTRICT"].ToString();
+                        txt4.Text = dr1["STATE"].ToString();
+                        txt5.Text = dr1["COUNTRY"].ToString();
                         textBox1.Text = dr1["POSTAL_CODE"].ToString();
                         txt6.Text = dr1["PHONE_NO"].ToString();
                         txt7.Text = dr1["MOBILE_NO"].ToString();
@@ -236,83 +242,138 @@ namespace WindowsFormsApp4
         private void btnclose_Click(object sender, EventArgs e)
         {
             this.Close();
+            if(mode== "invoice customer")
+            {
+                this.Close();
+                frm_invoice invoice = new frm_invoice();
+                invoice.Show();
+            }
         }
-
+        public string mode { get; set; }
         private void btnok_Click(object sender, EventArgs e)
         {
-            txt19.Text = frmcustomer.value2;
+           // txt15.Text = frmcustomer.value2;
             String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
             String Query;
             try
             {
-                using (SqlConnection conn = new SqlConnection(ConnString))
+                if (txt15.Text == "")
                 {
-                    //INSERT (  ) VALUES ("
-                    //comm.Connection = conn;
+                    using (SqlConnection conn = new SqlConnection(ConnString))
+                    {
+                        //INSERT (  ) VALUES ("
+                        //comm.Connection = conn;
+                        Query = @"INSERT [dbo].[M_CUSTOMER] (  [CUSTOMER_NAME], [ADDRESS_1], [CITY_ID], [DISTRICT_ID], [STATE_ID], [COUNTRY_ID], [POSTAL_CODE], [PHONE_NO],[MOBILE_NO],[EMAIL],[WEBSITE] ,[GST_NO], [GST_STATE_CODE],[TIN],[PAN],[CST],[CST_DATE],[ACTIVE]) VALUES ("
+                                                      + "'" + txt1.Text + "',"
 
-                    Query = @"UPDATE [dbo].[M_CUSTOMER] SET 
-                           [CUSTOMER_NAME] =  + '" + txt1.Text + "'," +
-                        " [ADDRESS_1] = '" + txt2.Text + "', " +
-                        "[CITY_ID]= " + txt16.Tag + "" +
-                        ", [DISTRICT_ID] =" + "" + txt3.Tag + "" +
-                        ", [STATE_ID]=" + "" + txt4.Tag + "" +
-                        ", [COUNTRY_ID] =" + "" + txt5.Tag + "" +
-                        ", [POSTAL_CODE]=" + "'" + textBox1.Text + "'" +
-                        ", [PHONE_NO]=" + "'" + txt6.Text + "'" +
-                        ",[MOBILE_NO]=" + "'" + txt7.Text + "'" +
-                        ", [EMAIL] =" + "'" + txt8.Text + "'" +
-                        ",[WEBSITE] =" + "'" + txt9.Text + "'" +
-                        " ,[GST_NO] =   " + "'" + txt10.Text + "'" +
-                        " , [GST_STATE_CODE]=" + "'" + txt17.Text + "'" +
-                        ",[TIN]=" + "'" + txt11.Text + "'" +
-                        ",[PAN]=" + "'" + txt12.Text + "'" +
-                        ",[CST]=" + "'" + txt13.Text + "'" +
-                        ",[CST_DATE]=" + "'" + txt14.Text + "'" +
-                        ",[ACTIVE]=" + "" + "1" + "  " +
-                        "WHERE CUSTOMER_ID =  '" + txt19.Text + "'";
+                                                      + "'" + txt2.Text + "',"
+                                                       + "" + txt16.Tag + ","
+                                                      + "" + txt3.Tag + ","
+                                                      + "" + txt4.Tag + ","
+                                                      + "" + txt5.Tag + ","
+
+                                                       + "'" + textBox1.Text + "',"
+                                                        + "'" + txt6.Text + "',"
+                                                      + "'" + txt7.Text + "',"
+                                                      + "'" + txt8.Text + "',"
+                                                      + "'" + txt9.Text + "',"
+                                                      + "'" + txt10.Text + "',"
+                                                       + "'" + txt17.Text + "',"
+                                                      + "'" + txt11.Text + "',"
+                                                      + "'" + txt12.Text + "',"
+                                                      + "'" + txt13.Text + "',"
+                                                      + "'" + txt14.Text + "',"
+
+                                                      + "" + "1" + ")";
 
 
+                        //comm.CommandText = StrQuery;
 
-                    //comm.CommandText = StrQuery;
-
-                    SqlCommand comm = new SqlCommand(Query, conn);
-                    conn.Open();
-                    comm.ExecuteNonQuery();
+                        SqlCommand comm = new SqlCommand(Query, conn);
+                        conn.Open();
+                        comm.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
                 }
 
 
-                if (txt15.Text != "")
+                else if (txt15.Text != "")
                 {
                     txt19.Text = frmcustomer.value2;
                     // String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
                     String Query1;
-                   
+
+                    using (SqlConnection conn = new SqlConnection(ConnString))
+                    {
+                        //INSERT (  ) VALUES ("
+                        //comm.Connection = conn;
+
+                        Query1 = @"UPDATE [dbo].[M_CUSTOMER] SET 
+                           [CUSTOMER_NAME] =   '" + txt1.Text + "'," +
+                            " [ADDRESS_1] = '" + txt2.Text + "', " +
+                            "[CITY_ID]= " + txt16.Tag + "" +
+                            ", [DISTRICT_ID] =" + "" + txt3.Tag + "" +
+                            ", [STATE_ID]=" + "" + txt4.Tag + "" +
+                            ", [COUNTRY_ID] =" + "" + txt5.Tag + "" +
+                            ", [POSTAL_CODE]=" + "'" + textBox1.Text + "'" +
+                            ", [PHONE_NO]=" + "'" + txt6.Text + "'" +
+                            ",[MOBILE_NO]=" + "'" + txt7.Text + "'" +
+                            ", [EMAIL] =" + "'" + txt8.Text + "'" +
+                            ",[WEBSITE] =" + "'" + txt9.Text + "'" +
+                            " ,[GST_NO] =   " + "'" + txt10.Text + "'" +
+                            " , [GST_STATE_CODE]=" + "'" + txt17.Text + "'" +
+                            ",[TIN]=" + "'" + txt11.Text + "'" +
+                            ",[PAN]=" + "'" + txt12.Text + "'" +
+                            ",[CST]=" + "'" + txt13.Text + "'" +
+                            ",[CST_DATE]=" + "'" + txt14.Text + "'" +
+                            ",[ACTIVE]=" + "" + "1" + "  " +
+                            "WHERE CUSTOMER_ID =  '" + txt15.Text + "'";
+
+
+
+                        //comm.CommandText = StrQuery;
+
+                        SqlCommand comm = new SqlCommand(Query1, conn);
+                        conn.Open();
+                        comm.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Statement", "Message", MessageBoxButtons.OK);
+                }
+               if(mode == "invoice customer")
+                {
+                    if (txt15.Text == "")
+                    {
                         using (SqlConnection conn = new SqlConnection(ConnString))
                         {
                             //INSERT (  ) VALUES ("
                             //comm.Connection = conn;
+                            Query = @"INSERT [dbo].[M_CUSTOMER] (  [CUSTOMER_NAME], [ADDRESS_1], [CITY_ID], [DISTRICT_ID], [STATE_ID], [COUNTRY_ID], [POSTAL_CODE], [PHONE_NO],[MOBILE_NO],[EMAIL],[WEBSITE] ,[GST_NO], [GST_STATE_CODE],[TIN],[PAN],[CST],[CST_DATE],[ACTIVE]) VALUES ("
+                                                          + "'" + txt1.Text + "',"
 
-                            Query1 = @"UPDATE [dbo].[M_CUSTOMER] SET 
-                           [CUSTOMER_NAME] =  + '" + txt1.Text + "'," +
-                                " [ADDRESS_1] = '" + txt2.Text + "', " +
-                                "[CITY_ID]= " + txt16.Tag + "" +
-                                ", [DISTRICT_ID] =" + "" + txt3.Tag + "" +
-                                ", [STATE_ID]=" + "" + txt4.Tag + "" +
-                                ", [COUNTRY_ID] =" + "" + txt5.Tag + "" +
-                                ", [POSTAL_CODE]=" + "'" + textBox1.Text + "'" +
-                                ", [PHONE_NO]=" + "'" + txt6.Text + "'" +
-                                ",[MOBILE_NO]=" + "'" + txt7.Text + "'" +
-                                ", [EMAIL] =" + "'" + txt8.Text + "'" +
-                                ",[WEBSITE] =" + "'" + txt9.Text + "'" +
-                                " ,[GST_NO] =   " + "'" + txt10.Text + "'" +
-                                " , [GST_STATE_CODE]=" + "'" + txt17.Text + "'" +
-                                ",[TIN]=" + "'" + txt11.Text + "'" +
-                                ",[PAN]=" + "'" + txt12.Text + "'" +
-                                ",[CST]=" + "'" + txt13.Text + "'" +
-                                ",[CST_DATE]=" + "'" + txt14.Text + "'" +
-                                ",[ACTIVE]=" + "" + "1" + "  " +
-                                "WHERE CUSTOMER_ID =  '" + txt19.Text + "'";
+                                                          + "'" + txt2.Text + "',"
+                                                           + "" + txt16.Tag + ","
+                                                          + "" + txt3.Tag + ","
+                                                          + "" + txt4.Tag + ","
+                                                          + "" + txt5.Tag + ","
 
+                                                           + "'" + textBox1.Text + "',"
+                                                            + "'" + txt6.Text + "',"
+                                                          + "'" + txt7.Text + "',"
+                                                          + "'" + txt8.Text + "',"
+                                                          + "'" + txt9.Text + "',"
+                                                          + "'" + txt10.Text + "',"
+                                                           + "'" + txt17.Text + "',"
+                                                          + "'" + txt11.Text + "',"
+                                                          + "'" + txt12.Text + "',"
+                                                          + "'" + txt13.Text + "',"
+                                                          + "'" + txt14.Text + "',"
+
+                                                          + "" + "1" + ")";
 
 
                             //comm.CommandText = StrQuery;
@@ -321,14 +382,15 @@ namespace WindowsFormsApp4
                             conn.Open();
                             comm.ExecuteNonQuery();
                         }
+                        MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
+                        this.Close();
+                        frm_invoice invoice = new frm_invoice();
+                        invoice.Show();
+                    }
+                }
+                // conn.Close();
 
-
-                    }  
-                
-                MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
-                    // conn.Close();
-
-                
+            
             }
             catch (Exception ex)
             {
@@ -366,8 +428,13 @@ namespace WindowsFormsApp4
             String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
             // String str = "Select * from T_QUOTATION_ITEM";
             //String SQLQuery = "SELECT ROW_ID,ITEM_NAME,SIZE,STYLE_NAME,QUANTITY,RATE,DISCOUNT,TOTAL FROM T_QUOTATION_ITEM WHERE QUOTATION_NO = '" + txtquotation.Text + "'";
-            String sqlquery = "SELECT [CUSTOMER_NAME], [ADDRESS_1], [CITY_ID], [DISTRICT_ID], [STATE_ID], [COUNTRY_ID], [POSTAL_CODE],[PHONE_NO],[MOBILE_NO],[EMAIL],[WEBSITE],[GST_NO]," +
-                " [GST_STATE_CODE],[TIN],[PAN],[CST],[CST_DATE] FROM M_CUSTOMER WHERE CUSTOMER_NAME = '" + txt1.Text + "'";
+            String sqlquery = "SELECT[CUSTOMER_NAME], [ADDRESS_1], [M_CITY].[CITY], M_DISTRICT.[DISTRICT], M_STATE.[STATE],M_COUNTRY.COUNTRY, [POSTAL_CODE],[PHONE_NO],[MOBILE_NO],[EMAIL],[WEBSITE],[GST_NO], " +
+                "[GST_STATE_CODE],[TIN],[PAN],[CST],[CST_DATE] FROM M_CUSTOMER " +
+                "INNER JOIN[M_CITY] ON[M_CUSTOMER].CITY_ID = [M_CITY].CITY_ID " +
+                "INNER JOIN M_DISTRICT ON  M_CUSTOMER.DISTRICT_ID = M_DISTRICT.DISTRICT_ID " +
+                "INNER JOIN M_STATE ON M_CUSTOMER.STATE_ID = M_STATE.STATE_ID " +
+                "INNER JOIN M_COUNTRY ON M_CUSTOMER.COUNTRY_ID = M_COUNTRY.COUNTRY_ID " +
+                "WHERE CUSTOMER_NAME = '" + txt1.Text + "'";
             try
             {
 
@@ -431,7 +498,18 @@ namespace WindowsFormsApp4
 
         }
 
+        private void txt17_TextChanged(object sender, EventArgs e)
+        {
 
+        }
 
+        private void frmadd_customer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.X && e.Alt)
+            {
+                CLEAR();
+                this.Close();
+            }
+        }
     }
 }

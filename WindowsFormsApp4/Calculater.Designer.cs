@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp4
+namespace IMS
 {
     partial class Calculater
     {
@@ -80,6 +80,7 @@ namespace WindowsFormsApp4
             this.txtplus.TabIndex = 33;
             this.txtplus.Text = "+";
             this.txtplus.UseVisualStyleBackColor = true;
+            this.txtplus.Click += new System.EventHandler(this.oprater_click);
             // 
             // txtequal
             // 
@@ -101,6 +102,7 @@ namespace WindowsFormsApp4
             this.txtdot.TabIndex = 31;
             this.txtdot.Text = ".";
             this.txtdot.UseVisualStyleBackColor = true;
+            this.txtdot.Click += new System.EventHandler(this.txt0_Click);
             // 
             // txt0
             // 
@@ -122,6 +124,7 @@ namespace WindowsFormsApp4
             this.txtsub.TabIndex = 29;
             this.txtsub.Text = "-";
             this.txtsub.UseVisualStyleBackColor = true;
+            this.txtsub.Click += new System.EventHandler(this.oprater_click);
             // 
             // txtmulti
             // 
@@ -132,6 +135,7 @@ namespace WindowsFormsApp4
             this.txtmulti.TabIndex = 28;
             this.txtmulti.Text = "x";
             this.txtmulti.UseVisualStyleBackColor = true;
+            this.txtmulti.Click += new System.EventHandler(this.oprater_click);
             // 
             // txtdiv
             // 
@@ -142,6 +146,7 @@ namespace WindowsFormsApp4
             this.txtdiv.TabIndex = 27;
             this.txtdiv.Text = "/";
             this.txtdiv.UseVisualStyleBackColor = true;
+            this.txtdiv.Click += new System.EventHandler(this.oprater_click);
             // 
             // txt7
             // 
@@ -152,6 +157,7 @@ namespace WindowsFormsApp4
             this.txt7.TabIndex = 26;
             this.txt7.Text = "7";
             this.txt7.UseVisualStyleBackColor = true;
+            this.txt7.Click += new System.EventHandler(this.txt0_Click);
             // 
             // txt8
             // 
@@ -162,6 +168,7 @@ namespace WindowsFormsApp4
             this.txt8.TabIndex = 25;
             this.txt8.Text = "8";
             this.txt8.UseVisualStyleBackColor = true;
+            this.txt8.Click += new System.EventHandler(this.txt0_Click);
             // 
             // txt9
             // 
@@ -172,6 +179,7 @@ namespace WindowsFormsApp4
             this.txt9.TabIndex = 24;
             this.txt9.Text = "9";
             this.txt9.UseVisualStyleBackColor = true;
+            this.txt9.Click += new System.EventHandler(this.txt0_Click);
             // 
             // txt4
             // 
@@ -182,6 +190,7 @@ namespace WindowsFormsApp4
             this.txt4.TabIndex = 23;
             this.txt4.Text = "4";
             this.txt4.UseVisualStyleBackColor = true;
+            this.txt4.Click += new System.EventHandler(this.txt0_Click);
             // 
             // txt5
             // 
@@ -192,6 +201,7 @@ namespace WindowsFormsApp4
             this.txt5.TabIndex = 22;
             this.txt5.Text = "5";
             this.txt5.UseVisualStyleBackColor = true;
+            this.txt5.Click += new System.EventHandler(this.txt0_Click);
             // 
             // txt6
             // 
@@ -202,6 +212,7 @@ namespace WindowsFormsApp4
             this.txt6.TabIndex = 21;
             this.txt6.Text = "6";
             this.txt6.UseVisualStyleBackColor = true;
+            this.txt6.Click += new System.EventHandler(this.txt0_Click);
             // 
             // txt3
             // 
@@ -212,6 +223,7 @@ namespace WindowsFormsApp4
             this.txt3.TabIndex = 20;
             this.txt3.Text = "3";
             this.txt3.UseVisualStyleBackColor = true;
+            this.txt3.Click += new System.EventHandler(this.txt0_Click);
             // 
             // txt2
             // 
@@ -222,6 +234,7 @@ namespace WindowsFormsApp4
             this.txt2.TabIndex = 19;
             this.txt2.Text = "2";
             this.txt2.UseVisualStyleBackColor = true;
+            this.txt2.Click += new System.EventHandler(this.txt0_Click);
             // 
             // txt1
             // 
@@ -232,6 +245,7 @@ namespace WindowsFormsApp4
             this.txt1.TabIndex = 18;
             this.txt1.Text = "1";
             this.txt1.UseVisualStyleBackColor = true;
+            this.txt1.Click += new System.EventHandler(this.txt0_Click);
             // 
             // lbltxt
             // 
@@ -266,6 +280,7 @@ namespace WindowsFormsApp4
             this.Controls.Add(this.txt2);
             this.Controls.Add(this.txt1);
             this.Name = "Calculater";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculater";
             this.Load += new System.EventHandler(this.Calculater_Load);
             this.ResumeLayout(false);

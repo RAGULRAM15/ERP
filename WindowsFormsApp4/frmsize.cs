@@ -8,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
-namespace WindowsFormsApp4
+namespace IMS
 {
     public partial class frmsize : Form
     {
@@ -21,11 +22,11 @@ namespace WindowsFormsApp4
         private void dgv_item_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             frmadd_size f4 = new frmadd_size();
-            // f4.MdiParent = frm_mid.ActiveForm;
-
+            f4.MdiParent = frm_mid.ActiveForm;
+            f4.MODE = "EDIT SIZE";
             int rowIndex = dgv_item.CurrentCell.RowIndex;
             DataGridViewRow edit_row = dgv_item.Rows[rowIndex];
-
+            value1 = edit_row.Cells[0].Value.ToString();
             value = edit_row.Cells[1].Value.ToString();
             //value1 = edit_row.Cells[2].Value.ToString();
             f4.Show();
@@ -35,8 +36,8 @@ namespace WindowsFormsApp4
         private void txt_add_Click(object sender, EventArgs e)
         {
             frmadd_size f4 = new frmadd_size();
-            // f4.MdiParent = frm_mid.ActiveForm;
-
+            f4.MdiParent = frm_mid.ActiveForm;
+            f4.MODE = "ADD SIZE";
             f4.Show();
             this.Hide();
         }
@@ -45,17 +46,25 @@ namespace WindowsFormsApp4
         private void btn_edit_Click(object sender, EventArgs e)
         {
             frmadd_size f4 = new frmadd_size();
-            // f4.MdiParent = frm_mid.ActiveForm;
-
+            f4.MdiParent = frm_mid.ActiveForm;
+            f4.MODE = "EDIT SIZE";
             int rowIndex = dgv_item.CurrentCell.RowIndex;
             DataGridViewRow edit_row = dgv_item.Rows[rowIndex];
-
+            value1 = edit_row.Cells[0].Value.ToString();
             value = edit_row.Cells[1].Value.ToString();
             //value1 = edit_row.Cells[2].Value.ToString();
             f4.Show();
             this.Hide();
         }
-
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+     (int nTop,
+      int nLeft,
+      int nRight,
+      int nBottum,
+      int nWidthEllipse,
+      int nHeightEllipse
+     );
         private void txt_delete_Click(object sender, EventArgs e)
         {
             int rowIndex = dgv_item.CurrentCell.RowIndex;
@@ -86,6 +95,7 @@ namespace WindowsFormsApp4
 
         private void frmsize_Load(object sender, EventArgs e)
         {
+            dgv_item.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dgv_item.Width, dgv_item.Height, 20, 20));
             refresh();
         }
 
@@ -118,6 +128,35 @@ namespace WindowsFormsApp4
                 dgv_item.DataSource = DT.Tables[0];
                 conn.Close();
             }
+        }
+
+        private void txt_item_TextChanged(object sender, EventArgs e)
+        {
+            String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+            String str = "SELECT SIZE_ID AS [ID], SIZE_NAME FROM M_SIZE WHERE ACTIVE = 1";
+
+            SqlConnection conn = new SqlConnection(ConnString);
+                conn.Open();
+                //SqlCommand comm = new SqlCommand(str, conn);
+                //comm.Connection = conn;
+                //comm.CommandText = str;
+                SqlDataAdapter DA = new SqlDataAdapter(str, conn);
+                DataSet DT = new DataSet();
+                DA.Fill(DT);
+                dgv_item.DataSource = DT.Tables[0];
+                conn.Close();
+            DataView dv = DT.Tables[0].DefaultView;
+             dv.RowFilter = "SIZE_NAME LIKE'" + txt_item.Text + "%'";
+            dgv_item.DataSource = dv;
+        }
+
+        private void frmsize_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.X && e.Alt)
+            {
+                this.Close();
+            }
+
         }
     }
 }

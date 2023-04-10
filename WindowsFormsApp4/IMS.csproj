@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5D085288-B24B-4A5B-A92D-A150A51E0C34}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WindowsFormsApp4</RootNamespace>
-    <AssemblyName>WindowsFormsApp4</AssemblyName>
+    <RootNamespace>IMS</RootNamespace>
+    <AssemblyName>IMS</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -52,6 +52,12 @@
     <Compile Include="Calculater.Designer.cs">
       <DependentUpon>Calculater.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm arrengment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm arrengment.Designer.cs">
+      <DependentUpon>Frm arrengment.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmadd_city.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,12 @@
     </Compile>
     <Compile Include="Frmadd_entry.Designer.cs">
       <DependentUpon>Frmadd_entry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmadd_item.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmadd_item.Designer.cs">
+      <DependentUpon>frmadd_item.cs</DependentUpon>
     </Compile>
     <Compile Include="frmadd_size.cs">
       <SubType>Form</SubType>
@@ -118,17 +130,23 @@
     <Compile Include="frmf2.Designer.cs">
       <DependentUpon>frmf2.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmf3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmf3.Designer.cs">
+      <DependentUpon>frmf3.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmf5.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmf5.Designer.cs">
       <DependentUpon>frmf5.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmQouation.cs">
+    <Compile Include="frmQuotation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmQouation.Designer.cs">
-      <DependentUpon>frmQouation.cs</DependentUpon>
+    <Compile Include="frmQuotation.Designer.cs">
+      <DependentUpon>frmQuotation.cs</DependentUpon>
     </Compile>
     <Compile Include="frmsever_setup.cs">
       <SubType>Form</SubType>
@@ -172,6 +190,12 @@
     <Compile Include="frm_addcountry.Designer.cs">
       <DependentUpon>frm_addcountry.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_approval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_approval.Designer.cs">
+      <DependentUpon>frm_approval.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_bank.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,11 +220,17 @@
     <Compile Include="frm_country.Designer.cs">
       <DependentUpon>frm_country.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_debit.cs">
+    <Compile Include="frm_credit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_debit.Designer.cs">
-      <DependentUpon>frm_debit.cs</DependentUpon>
+    <Compile Include="frm_credit.Designer.cs">
+      <DependentUpon>frm_credit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_credit_list.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_credit_list.Designer.cs">
+      <DependentUpon>frm_credit_list.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_district.cs">
       <SubType>Form</SubType>
@@ -220,11 +250,17 @@
     <Compile Include="frm_invoice.Designer.cs">
       <DependentUpon>frm_invoice.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_invoice_main.cs">
+    <Compile Include="frm_invoice_list.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_invoice_main.Designer.cs">
-      <DependentUpon>frm_invoice_main.cs</DependentUpon>
+    <Compile Include="frm_invoice_list.Designer.cs">
+      <DependentUpon>frm_invoice_list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_invoice_report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_invoice_report.Designer.cs">
+      <DependentUpon>frm_invoice_report.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_item.cs">
       <SubType>Form</SubType>
@@ -238,11 +274,53 @@
     <Compile Include="frm_login.Designer.cs">
       <DependentUpon>frm_login.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_qut.cs">
+    <Compile Include="frm_mid.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_qut.Designer.cs">
-      <DependentUpon>frm_qut.cs</DependentUpon>
+    <Compile Include="frm_mid.Designer.cs">
+      <DependentUpon>frm_mid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Order_list.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Order_list.Designer.cs">
+      <DependentUpon>frm_Order_list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_payment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_payment.Designer.cs">
+      <DependentUpon>frm_payment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_payment_list.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_payment_list.Designer.cs">
+      <DependentUpon>frm_payment_list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_payment_report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_payment_report.Designer.cs">
+      <DependentUpon>Frm_payment_report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quotation_list.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quotation_list.Designer.cs">
+      <DependentUpon>frm_quotation_list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quotation_report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quotation_report.Designer.cs">
+      <DependentUpon>frm_quotation_report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_sales_order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_sales_order.Designer.cs">
+      <DependentUpon>frm_sales_order.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_state.cs">
       <SubType>Form</SubType>
@@ -254,6 +332,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Calculater.resx">
       <DependentUpon>Calculater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm arrengment.resx">
+      <DependentUpon>Frm arrengment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmadd_city.resx">
       <DependentUpon>frmadd_city.cs</DependentUpon>
@@ -269,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frmadd_entry.resx">
       <DependentUpon>Frmadd_entry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmadd_item.resx">
+      <DependentUpon>frmadd_item.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmadd_size.resx">
       <DependentUpon>frmadd_size.cs</DependentUpon>
@@ -288,11 +372,14 @@
     <EmbeddedResource Include="frmf2.resx">
       <DependentUpon>frmf2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmf3.resx">
+      <DependentUpon>frmf3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmf5.resx">
       <DependentUpon>frmf5.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmQouation.resx">
-      <DependentUpon>frmQouation.cs</DependentUpon>
+    <EmbeddedResource Include="frmQuotation.resx">
+      <DependentUpon>frmQuotation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmsever_setup.resx">
       <DependentUpon>frmsever_setup.cs</DependentUpon>
@@ -315,6 +402,9 @@
     <EmbeddedResource Include="frm_addcountry.resx">
       <DependentUpon>frm_addcountry.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_approval.resx">
+      <DependentUpon>frm_approval.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_bank.resx">
       <DependentUpon>frm_bank.cs</DependentUpon>
     </EmbeddedResource>
@@ -327,8 +417,11 @@
     <EmbeddedResource Include="frm_country.resx">
       <DependentUpon>frm_country.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_debit.resx">
-      <DependentUpon>frm_debit.cs</DependentUpon>
+    <EmbeddedResource Include="frm_credit.resx">
+      <DependentUpon>frm_credit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_credit_list.resx">
+      <DependentUpon>frm_credit_list.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_district.resx">
       <DependentUpon>frm_district.cs</DependentUpon>
@@ -339,8 +432,11 @@
     <EmbeddedResource Include="frm_invoice.resx">
       <DependentUpon>frm_invoice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_invoice_main.resx">
-      <DependentUpon>frm_invoice_main.cs</DependentUpon>
+    <EmbeddedResource Include="frm_invoice_list.resx">
+      <DependentUpon>frm_invoice_list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_invoice_report.resx">
+      <DependentUpon>frm_invoice_report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_item.resx">
       <DependentUpon>frm_item.cs</DependentUpon>
@@ -348,8 +444,29 @@
     <EmbeddedResource Include="frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_qut.resx">
-      <DependentUpon>frm_qut.cs</DependentUpon>
+    <EmbeddedResource Include="frm_mid.resx">
+      <DependentUpon>frm_mid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Order_list.resx">
+      <DependentUpon>frm_Order_list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_payment.resx">
+      <DependentUpon>frm_payment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_payment_list.resx">
+      <DependentUpon>frm_payment_list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_payment_report.resx">
+      <DependentUpon>Frm_payment_report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quotation_list.resx">
+      <DependentUpon>frm_quotation_list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quotation_report.resx">
+      <DependentUpon>frm_quotation_report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_sales_order.resx">
+      <DependentUpon>frm_sales_order.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_state.resx">
       <DependentUpon>frm_state.cs</DependentUpon>
@@ -362,6 +479,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

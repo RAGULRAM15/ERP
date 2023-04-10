@@ -8,20 +8,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
-namespace WindowsFormsApp4
+namespace IMS
 {
     public partial class frmbank_add : Form
     {
+        public string MODE { get; internal set; }
+
         public frmbank_add()
         {
             InitializeComponent();
         }
-
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (int nTop,
+         int nLeft,
+         int nRight,
+         int nBottum,
+         int nWidthEllipse,
+         int nHeightEllipse
+        );
         private void frmbank_add_Load(object sender, EventArgs e)
         {
+            this.Text = MODE;
+            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
             txt1.Text = frm_bank.value;
             txt2.Text = frm_bank.value1;
+            txt3.Text = frm_bank.value2;
         }
 
         private void btnok_Click(object sender, EventArgs e)
@@ -41,6 +55,24 @@ namespace WindowsFormsApp4
                 MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
                 txt1.Text = "";
                 txt2.Text = "";
+                txt3.Text = "";
+            }
+            else if (txt3.Text != "")
+            {
+
+                String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+                string qurey = "UPDATE [M_BANK] BANK='" + txt1.Text + "',ACCOUNT_NO =" + txt2.Text + " WHERE BANK = "+txt3.Text+"";
+                SqlConnection CONN = new SqlConnection(ConnString);
+                CONN.Open();
+                SqlCommand COMM = new SqlCommand(qurey, CONN);
+                COMM.ExecuteNonQuery();
+                CONN.Close();
+
+
+                MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
+                txt1.Text = "";
+                txt2.Text = "";
+                txt3.Text = "";
             }
             else
             {
@@ -51,6 +83,14 @@ namespace WindowsFormsApp4
         private void btnclose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmbank_add_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.X && e.Alt)
+            {
+                this.Close();
+            }
         }
     }
 }

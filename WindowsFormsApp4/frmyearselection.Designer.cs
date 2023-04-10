@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp4
+namespace IMS
 {
     partial class frmyearselection
     {
@@ -65,6 +65,7 @@ namespace WindowsFormsApp4
             this.cmboyear.Name = "cmboyear";
             this.cmboyear.Size = new System.Drawing.Size(155, 23);
             this.cmboyear.TabIndex = 18;
+            this.cmboyear.SelectedIndexChanged += new System.EventHandler(this.cmboyear_SelectedIndexChanged);
             // 
             // cmboname
             // 
@@ -75,6 +76,7 @@ namespace WindowsFormsApp4
             this.cmboname.Name = "cmboname";
             this.cmboname.Size = new System.Drawing.Size(155, 23);
             this.cmboname.TabIndex = 17;
+            this.cmboname.SelectedIndexChanged += new System.EventHandler(this.cmboname_SelectedIndexChanged);
             // 
             // btnclose
             // 
@@ -136,6 +138,7 @@ namespace WindowsFormsApp4
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmyearselection";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmyearselection";
             this.Load += new System.EventHandler(this.frmyearselection_Load);
             this.panel1.ResumeLayout(false);

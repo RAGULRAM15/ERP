@@ -8,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
-namespace WindowsFormsApp4
+namespace IMS
 {
     public partial class Frmadd_entry : Form
     {
@@ -17,9 +18,20 @@ namespace WindowsFormsApp4
         {
             InitializeComponent();
         }
-
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (int nTop,
+         int nLeft,
+         int nRight,
+         int nBottum,
+         int nWidthEllipse,
+         int nHeightEllipse
+        );
+        public string MODE { get; set; }
         private void Frmadd_entry_Load(object sender, EventArgs e)
         {
+            this.Text = MODE;
+            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
             txt1.Text = frm_entry.value;
         }
 
@@ -51,6 +63,14 @@ namespace WindowsFormsApp4
         private void btnclose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Frmadd_entry_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.X && e.Alt)
+            {
+                this.Close();
+            }
         }
     }
 }

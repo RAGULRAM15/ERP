@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-namespace WindowsFormsApp4
+namespace IMS
 {
     public partial class frm_login : Form
     {
@@ -27,8 +27,12 @@ namespace WindowsFormsApp4
            int nWidthEllipse,
            int nHeightEllipse
           );
+        public static string USER_NAME { get; set; }
         private void frm_login_Load(object sender, EventArgs e)
+
         {
+           
+
             btnlogin.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnlogin.Width, btnlogin.Height, 20, 20));
             btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
             this.Region = Region.FromHrgn(CreateRoundRectRgn(3, 3, this.Width, this.Height, 20, 20));
@@ -39,6 +43,7 @@ namespace WindowsFormsApp4
         String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
         private void btnlogin_Click(object sender, EventArgs e)
         {
+            USER_NAME = txtuser.Text;
             String Query;
 
             using (SqlConnection conn = new SqlConnection(ConnString))
@@ -147,6 +152,16 @@ namespace WindowsFormsApp4
 
             //btnshow.FlatStyle = FlatStyle.Flat;
             btnshow.FlatAppearance.BorderSize = 0;
+        }
+
+        private void txtuser_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_password_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

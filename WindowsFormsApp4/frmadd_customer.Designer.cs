@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp4
+namespace IMS
 {
     partial class frmadd_customer
     {
@@ -103,7 +103,7 @@ namespace WindowsFormsApp4
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(32, 377);
+            this.label16.Location = new System.Drawing.Point(3, 382);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(139, 16);
             this.label16.TabIndex = 122;
@@ -112,10 +112,11 @@ namespace WindowsFormsApp4
             // txt17
             // 
             this.txt17.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt17.Location = new System.Drawing.Point(177, 373);
+            this.txt17.Location = new System.Drawing.Point(148, 378);
             this.txt17.Name = "txt17";
             this.txt17.Size = new System.Drawing.Size(227, 25);
             this.txt17.TabIndex = 121;
+            this.txt17.TextChanged += new System.EventHandler(this.txt17_TextChanged);
             // 
             // txt16
             // 
@@ -391,7 +392,10 @@ namespace WindowsFormsApp4
             // 
             // btnclose
             // 
-            this.btnclose.Location = new System.Drawing.Point(658, 370);
+            this.btnclose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnclose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnclose.ForeColor = System.Drawing.Color.Red;
+            this.btnclose.Location = new System.Drawing.Point(658, 380);
             this.btnclose.Name = "btnclose";
             this.btnclose.Size = new System.Drawing.Size(75, 23);
             this.btnclose.TabIndex = 91;
@@ -401,7 +405,10 @@ namespace WindowsFormsApp4
             // 
             // btnok
             // 
-            this.btnok.Location = new System.Drawing.Point(544, 370);
+            this.btnok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnok.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnok.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnok.Location = new System.Drawing.Point(537, 378);
             this.btnok.Name = "btnok";
             this.btnok.Size = new System.Drawing.Size(75, 23);
             this.btnok.TabIndex = 90;
@@ -441,7 +448,8 @@ namespace WindowsFormsApp4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(179)))), ((int)(((byte)(157)))));
+            this.ClientSize = new System.Drawing.Size(800, 417);
             this.Controls.Add(this.txt15);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.textBox1);
@@ -481,9 +489,13 @@ namespace WindowsFormsApp4
             this.Controls.Add(this.txt2);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txt1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.KeyPreview = true;
             this.Name = "frmadd_customer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmadd_customer";
             this.Load += new System.EventHandler(this.frmadd_customer_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmadd_customer_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

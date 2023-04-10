@@ -8,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
-namespace WindowsFormsApp4
+namespace IMS
 {
     public partial class frm_entry : Form
     {
@@ -20,9 +21,9 @@ namespace WindowsFormsApp4
 
         private void txt_add_Click(object sender, EventArgs e)
         {
-            frm_entry f4 = new frm_entry();
-            // f4.MdiParent = frm_mid.ActiveForm;
-
+            Frmadd_entry f4 = new Frmadd_entry();
+             f4.MdiParent = frm_mid.ActiveForm;
+            f4.MODE = "ADD ENTRY";
             f4.Show();
             this.Hide();
         }
@@ -31,9 +32,9 @@ namespace WindowsFormsApp4
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            frm_entry f4 = new frm_entry();
-            // f4.MdiParent = frm_mid.ActiveForm;
-
+            Frmadd_entry f4 = new Frmadd_entry();
+            f4.MdiParent = frm_mid.ActiveForm;
+            f4.MODE = "EDIT ENTRY";
             int rowIndex = dtgF4.CurrentCell.RowIndex;
             DataGridViewRow edit_row = dtgF4.Rows[rowIndex];
 
@@ -69,7 +70,7 @@ namespace WindowsFormsApp4
         public void refresh()
         {
             String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
-            String str = "SELECT ENTRY_ID AS [ID],ENTRY_NAME FROM M_ENTRY WHERE ACTIVE = 1";
+            String str = "SELECT ENTRY_ID AS [ID],ENTRY_NAME FROM M_ENTRY WHERE ACTIVE = 1 ORDER BY ID ASC";
 
             using (SqlConnection conn = new SqlConnection(ConnString))
             {
@@ -102,8 +103,8 @@ namespace WindowsFormsApp4
 
         private void dtgF4_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            frm_entry f4 = new frm_entry();
-            // f4.MdiParent = frm_mid.ActiveForm;
+            Frmadd_entry f4 = new Frmadd_entry();
+            f4.MdiParent = frm_mid.ActiveForm;
 
             int rowIndex = dtgF4.CurrentCell.RowIndex;
             DataGridViewRow edit_row = dtgF4.Rows[rowIndex];
@@ -113,11 +114,48 @@ namespace WindowsFormsApp4
             f4.Show();
             this.Hide();
         }
-
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+       (int nTop,
+        int nLeft,
+        int nRight,
+        int nBottum,
+        int nWidthEllipse,
+        int nHeightEllipse
+       );
         private void frm_entry_Load(object sender, EventArgs e)
         {
-        refresh();
+            dtgF4.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dtgF4.Width, dtgF4.Height, 20, 20));
+            refresh();
         }
 
+        private void txtentry_TextChanged(object sender, EventArgs e)
+        {
+            String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+            String str = "SELECT ENTRY_ID AS [ID],ENTRY_NAME FROM M_ENTRY  WHERE ACTIVE = 1  ";
+
+            SqlConnection conn = new SqlConnection(ConnString);
+            
+                conn.Open();
+                //SqlCommand comm = new SqlCommand(str, conn);
+                //comm.Connection = conn;
+                //comm.CommandText = str;
+                SqlDataAdapter DA = new SqlDataAdapter(str, conn);
+                DataSet DT = new DataSet();
+                DA.Fill(DT);
+                dtgF4.DataSource = DT.Tables[0];
+                conn.Close();
+            DataView dv = DT.Tables[0].DefaultView;
+            dv.RowFilter="ENTRY_NAME LIKE'"+txtentry.Text+"%'";
+            dtgF4.DataSource = dv;
+        }
+
+        private void frm_entry_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.X && e.Alt)
+            {
+                this.Close();
+            }
+        }
     }
 }
