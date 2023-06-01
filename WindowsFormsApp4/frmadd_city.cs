@@ -20,9 +20,9 @@ namespace IMS
         }
         public void clear()
         {
-            txt1.Text = string.Empty;
-            txt2.Text = string.Empty;
-            txt3.Text = string.Empty;
+            txt1.Text = "";
+            txt2.Text = "";
+            txt3.Text ="";
 
         }
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -37,7 +37,7 @@ namespace IMS
         public string MODE { get; set; }
         private void frmadd_city_Load(object sender, EventArgs e)
         {
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
+            //this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
             txt1.Text = frm_city.value;
             txt2.Text = frm_city.value1;
             txt3.Text = frm_city.value2;
@@ -121,13 +121,19 @@ namespace IMS
             }
 
             clear();
-            this.Hide();
+            this.Close();
+            frm_city _City = new frm_city();
+            _City.MdiParent = frm_mid.ActiveForm;
+            _City.Show();
         }
 
         private void btnclose_Click(object sender, EventArgs e)
         {
             clear();
             this.Close();
+            frm_city _City = new frm_city();
+            _City.MdiParent = frm_mid.ActiveForm;
+            _City.Show();
         }
 
         private void frmadd_city_KeyDown(object sender, KeyEventArgs e)
@@ -135,6 +141,9 @@ namespace IMS
             if (e.KeyCode == Keys.X && e.Alt)
             {
                 this.Close();
+                frm_city _City = new frm_city();
+                _City.MdiParent = frm_mid.ActiveForm;
+                _City.Show();
             }
         }
     }

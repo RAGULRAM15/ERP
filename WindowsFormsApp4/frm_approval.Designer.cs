@@ -29,12 +29,12 @@ namespace IMS
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_approval));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_unapprove = new System.Windows.Forms.Button();
@@ -98,7 +98,7 @@ namespace IMS
             this.btn_close.Location = new System.Drawing.Point(716, 337);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(99, 23);
-            this.btn_close.TabIndex = 30;
+            this.btn_close.TabIndex = 5;
             this.btn_close.Text = "CLOSE";
             this.btn_close.UseVisualStyleBackColor = false;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
@@ -113,7 +113,7 @@ namespace IMS
             this.btn_approve.Location = new System.Drawing.Point(579, 337);
             this.btn_approve.Name = "btn_approve";
             this.btn_approve.Size = new System.Drawing.Size(104, 23);
-            this.btn_approve.TabIndex = 29;
+            this.btn_approve.TabIndex = 4;
             this.btn_approve.Text = "Approve";
             this.btn_approve.UseVisualStyleBackColor = false;
             this.btn_approve.Click += new System.EventHandler(this.btn_approve_Click);
@@ -123,14 +123,14 @@ namespace IMS
             this.dtg_iapproval.AllowUserToAddRows = false;
             this.dtg_iapproval.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtg_iapproval.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtg_iapproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtg_iapproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dtg_iapproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtg_iapproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.INVOICE_NO,
@@ -149,42 +149,42 @@ namespace IMS
             // INVOICE_NO
             // 
             this.INVOICE_NO.DataPropertyName = "INVOICE_NO";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
-            this.INVOICE_NO.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            this.INVOICE_NO.DefaultCellStyle = dataGridViewCellStyle8;
             this.INVOICE_NO.HeaderText = "ENTRY NO";
             this.INVOICE_NO.Name = "INVOICE_NO";
             // 
             // INVOICE_DATE
             // 
             this.INVOICE_DATE.DataPropertyName = "INVOICE_DATE";
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
-            this.INVOICE_DATE.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            this.INVOICE_DATE.DefaultCellStyle = dataGridViewCellStyle9;
             this.INVOICE_DATE.HeaderText = "ENTRY DATE";
             this.INVOICE_DATE.Name = "INVOICE_DATE";
             // 
             // CUSTOMER_NAME
             // 
             this.CUSTOMER_NAME.DataPropertyName = "CUSTOMER_NAME";
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
-            this.CUSTOMER_NAME.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            this.CUSTOMER_NAME.DefaultCellStyle = dataGridViewCellStyle10;
             this.CUSTOMER_NAME.HeaderText = "CUSTOMER NAME";
             this.CUSTOMER_NAME.Name = "CUSTOMER_NAME";
             // 
             // NET_AMOUNT
             // 
             this.NET_AMOUNT.DataPropertyName = "NET_AMOUNT";
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
-            this.NET_AMOUNT.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            this.NET_AMOUNT.DefaultCellStyle = dataGridViewCellStyle11;
             this.NET_AMOUNT.HeaderText = "AMOUNT";
             this.NET_AMOUNT.Name = "NET_AMOUNT";
             // 
             // APPROVAL_CHECK
             // 
             this.APPROVAL_CHECK.DataPropertyName = "APPROVAL_CHECK";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle6.NullValue = false;
-            this.APPROVAL_CHECK.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle12.NullValue = false;
+            this.APPROVAL_CHECK.DefaultCellStyle = dataGridViewCellStyle12;
             this.APPROVAL_CHECK.HeaderText = "SELECT";
             this.APPROVAL_CHECK.Name = "APPROVAL_CHECK";
             this.APPROVAL_CHECK.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -227,7 +227,7 @@ namespace IMS
             this.rbtn_approve.Location = new System.Drawing.Point(579, 63);
             this.rbtn_approve.Name = "rbtn_approve";
             this.rbtn_approve.Size = new System.Drawing.Size(86, 20);
-            this.rbtn_approve.TabIndex = 26;
+            this.rbtn_approve.TabIndex = 2;
             this.rbtn_approve.TabStop = true;
             this.rbtn_approve.Text = "Approved";
             this.rbtn_approve.UseVisualStyleBackColor = true;
@@ -240,7 +240,7 @@ namespace IMS
             this.rbtn_unapprove.Location = new System.Drawing.Point(470, 61);
             this.rbtn_unapprove.Name = "rbtn_unapprove";
             this.rbtn_unapprove.Size = new System.Drawing.Size(103, 20);
-            this.rbtn_unapprove.TabIndex = 25;
+            this.rbtn_unapprove.TabIndex = 1;
             this.rbtn_unapprove.TabStop = true;
             this.rbtn_unapprove.Text = "UnApproved";
             this.rbtn_unapprove.UseVisualStyleBackColor = true;
@@ -272,6 +272,7 @@ namespace IMS
             this.pnl_top.Name = "pnl_top";
             this.pnl_top.Size = new System.Drawing.Size(840, 118);
             this.pnl_top.TabIndex = 4;
+            this.pnl_top.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_top_Paint);
             // 
             // txtcustomer
             // 
@@ -279,7 +280,8 @@ namespace IMS
             this.txtcustomer.Location = new System.Drawing.Point(124, 62);
             this.txtcustomer.Name = "txtcustomer";
             this.txtcustomer.Size = new System.Drawing.Size(227, 22);
-            this.txtcustomer.TabIndex = 30;
+            this.txtcustomer.TabIndex = 0;
+            this.txtcustomer.TextChanged += new System.EventHandler(this.txtcustomer_TextChanged);
             this.txtcustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtcustomer_KeyDown);
             this.txtcustomer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtcustomer_KeyUp);
             // 
@@ -295,7 +297,7 @@ namespace IMS
             this.btn_load.Location = new System.Drawing.Point(682, 63);
             this.btn_load.Name = "btn_load";
             this.btn_load.Size = new System.Drawing.Size(55, 23);
-            this.btn_load.TabIndex = 29;
+            this.btn_load.TabIndex = 3;
             this.btn_load.Text = "LOAD";
             this.btn_load.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_load.UseVisualStyleBackColor = true;

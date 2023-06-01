@@ -49,8 +49,8 @@ namespace IMS
            );
         private void frmf2_Load(object sender, EventArgs e)
         {
-            btnok.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnok.Width, btnok.Height, 20, 20));
-            btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
+            //btnok.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnok.Width, btnok.Height, 20, 20));
+            //btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
             //dgvHelp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dgvHelp.Width, dgvHelp.Height, 20, 20));
         }
 

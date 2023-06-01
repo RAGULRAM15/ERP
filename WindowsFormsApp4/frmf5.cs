@@ -146,6 +146,9 @@ namespace IMS
                 //frm_invoice.item_tag = txtDataload.Text;
                 frm_invoice.item_text = (string)txtDataload.Tag;
 
+                //frm_payment.item_tag = (string)txtDataload.Tag;
+                frm_invoice.size_text = txt_text.Text;
+                frm_invoice.size_tag = (string)txt_text.Tag;
                 // item_tag = (string)txt_text.Tag;
                 //item_text = txt_text.Text;
                 var instance = Application.OpenForms.OfType<frm_invoice>().FirstOrDefault();
@@ -192,7 +195,7 @@ namespace IMS
                 instance.GST_CALCULATION();
                 frm_payment invoice = new frm_payment();
                 invoice.ITEM_LOAD();
-                invoice.GST_CALCULATION();
+                
                 //invoice.cou
                 // action.Invoke();
                 // //((TextBox)_ct).Tag = txtDataload.Tag;
@@ -220,7 +223,7 @@ namespace IMS
 
         private void dgvHelp_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (item_text == "PAYMENT")
+            if (item_text == "PAYMENT"|| item_text == "INVOICE")
             {
                 if (dgvHelp.Rows.Count > 0 && e.RowIndex >= 0)
                 {

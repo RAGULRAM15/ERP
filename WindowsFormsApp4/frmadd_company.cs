@@ -287,6 +287,11 @@ namespace IMS
                 MessageBox.Show(ex.Message);
             }
             CLEAR();
+            this.Close();
+            frm_company _Company = new frm_company();
+            _Company.MdiParent = frm_mid.ActiveForm;
+            _Company.Show();
+
         }
         public void CLEAR()
         {
@@ -340,7 +345,12 @@ namespace IMS
 
         private void btnclose_Click(object sender, EventArgs e)
         {
+            CLEAR();
             this.Close();
+            
+            frm_company _Company = new frm_company();
+            _Company.MdiParent = frm_mid.ActiveForm;
+            _Company.Show();
         }
 
         private void frmadd_company_KeyDown(object sender, KeyEventArgs e)
@@ -349,6 +359,10 @@ namespace IMS
             {
                 CLEAR();
                 this.Close();
+                this.Close();
+                frm_company _Company = new frm_company();
+                _Company.MdiParent = frm_mid.ActiveForm;
+                _Company.Show();
             }
         }
     }

@@ -106,14 +106,7 @@ namespace IMS
             this.txtdate.Text = DateTime.Now.ToString("hh:mm:sstt");
         }
 
-        private void btn_close_Click(object sender, EventArgs e)
-        {
-            Timer.Stop();
-            pnlclose.Visible = false;
-            pnlright.Enabled = false;
-          
-            pnlright.Visible = false;
-        }
+        
 
         private void btn_create_user_Click(object sender, EventArgs e)
         {
@@ -124,9 +117,7 @@ namespace IMS
 
         private void btn_forgot_Click(object sender, EventArgs e)
         {
-            //frm_reg create = new frm_reg();
-            //create.MdiParent = this;
-            //create.Show();
+            //
         }
         private void mnuitem_REPORT_Click(object sender, EventArgs e)
         {
@@ -220,9 +211,7 @@ namespace IMS
             //txtcompany.Text = Frmyearselection.setcompanyname;
 
 
-            pnlclose.Width = 0;
-            pnlclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlclose.Width, pnlclose.Height, 70, 70));
-            btn_close.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btn_close.Width, btn_close.Height, 70, 70));
+          
         }
         private void btnexit_Click(object sender, EventArgs e)
         {
@@ -261,52 +250,13 @@ namespace IMS
             newMDIChild.Show();
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void txtdate_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txttime_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            if (pnlclose.Width == 58)
-            {
-
-                for (int i = 0; i < 10; i++)
-                    pnlclose.Width = pnlclose.Width - 30;
-                pnltop.Visible = true;
-                pnlright.Visible = false;
-                pnlclose.Visible = true;
-            }
-            else
-            {
-                for (int i = 0; i < 10; i++)
-                    pnlclose.Width = pnlclose.Width + 30;
-
-                //pnlright.Visible = true;
-                pnltop.Visible = false;
-                pnlclose.Visible = true;
-            }
-            Timer.Stop();
-        }
+       
 
         private void btnprofile_Click(object sender, EventArgs e)
         {
-            Timer.Start();
-            pnlprofile_.Visible = true;
-            pnlright.Visible = true;
-            pnlclose.Visible = true;
-            //pnlclose.Visible = true;
-            pnlright.Enabled = false;
+            frm_login login = new frm_login();
+            login.Show();
+            this.Close();
         }
 
         private void tRANSACTIONToolStripMenuItem_Click(object sender, EventArgs e)
@@ -315,7 +265,7 @@ namespace IMS
         }
         private void mnuapproval_Click(object sender, EventArgs e)
         {
-            frm_approval newMDIChild = new frm_approval();
+            frm_invoice_Approval newMDIChild = new frm_invoice_Approval();
             // Set the Parent Form of the Child window.
             newMDIChild.MdiParent = this;
 
@@ -324,12 +274,12 @@ namespace IMS
         }
         private void mnudebit_Click(object sender, EventArgs e)
         {
-            frm_credit_list newMDIChild = new frm_credit_list();
-            // Set the Parent Form of the Child window.
-            newMDIChild.MdiParent = this;
+            //frm_credit_list newMDIChild = new frm_credit_list();
+            //// Set the Parent Form of the Child window.
+            //newMDIChild.MdiParent = this;
 
-            // Display the new form.
-            newMDIChild.Show();
+            //// Display the new form.
+            //newMDIChild.Show();
         }
         private void mnupayment_Click(object sender, EventArgs e)
         {
@@ -379,6 +329,13 @@ namespace IMS
         private void sALESORDERToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cHANGEPASSWORDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_forgot create = new frm_forgot();
+            create.MdiParent = this;
+            create.Show();
         }
     }
 }

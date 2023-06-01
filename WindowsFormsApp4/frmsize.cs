@@ -95,7 +95,7 @@ namespace IMS
 
         private void frmsize_Load(object sender, EventArgs e)
         {
-            dgv_item.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dgv_item.Width, dgv_item.Height, 20, 20));
+            //dgv_item.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dgv_item.Width, dgv_item.Height, 20, 20));
             refresh();
         }
 

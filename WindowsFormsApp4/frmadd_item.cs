@@ -33,69 +33,91 @@ namespace IMS
         {
             clear();
             this.Close();
+            frm_item frm_Item = new frm_item();
+            frm_Item.MdiParent = frm_mid.ActiveForm;
+            frm_Item.Show();
         }
-
+        public void FUNC()
+        {
+            if(txtcgst.Text == "")
+            {
+                txtcgst.Text = "0";
+            }
+            if(txtigst.Text == "")
+            {
+                txtigst.Text = "0";
+            }
+            if(txtsgst.Text == "")
+            {
+                txtsgst.Text = "0";
+            }
+        }
         private void btnok_Click(object sender, EventArgs e)
         {
+            FUNC();
 
-            if (txt1.Text != ""&& txt2.Text=="")
-            {
+           
+                if (MODE == "ADD ITEM")
                 {
+                    {
+                        String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+                        string qurey = "INSERT INTO [M_ITEM](ITEM_NAME,HSN_CODE,CGST,SGST,IGST,SIZE,SIZE_ID,ACTIVE) VALUES('" + txt1.Text + "','" + txthsn.Text + "'," +
+
+                            " '" + txtcgst.Text + "','"
+                            + txtsgst.Text + "','"
+                             + txtigst.Text + "'," +
+                               "'" + txt_right.Text + "'," +
+                                "'" + textBox1.Text + "'," +
+                             "'" + "1" + "')";
+                        SqlConnection CONN = new SqlConnection(ConnString);
+                        CONN.Open();
+                        SqlCommand COMM = new SqlCommand(qurey, CONN);
+                        COMM.ExecuteNonQuery();
+                        CONN.Close();
+                    }
+                    MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
+                }
+               if (this.Text == "EDIT ITEM")
+                {
+                    txt2.Text = frm_item.value1;
+                    String Query;
                     String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
-                    string qurey = "INSERT INTO [M_ITEM](ITEM_NAME,HSN_CODE,CGST,SGST,IGST,SIZE,ACTIVE) VALUES('" + txt1.Text + "','" + txthsn.Text + "'," +
+                    using (SqlConnection conn = new SqlConnection(ConnString))
+                    {
+                        //INSERT (  ) VALUES ("
+                        //comm.Connection = conn;
 
-                        " '" + txtcgst.Text + "','" 
-                        + txtsgst.Text + "','"
-                         + txtigst.Text + "'," +
-                           "'"+txt_right.Text + "'," +
-                         "'" + "1" + "')";
-                    SqlConnection CONN = new SqlConnection(ConnString);
-                    CONN.Open();
-                    SqlCommand COMM = new SqlCommand(qurey, CONN);
-                    COMM.ExecuteNonQuery();
-                    CONN.Close();
-                }
-                MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
-            }
-            else if (txt2.Text != "")
-            {
-                txt2.Text = frm_item.value1;
-                String Query;
-                String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
-                using (SqlConnection conn = new SqlConnection(ConnString))
-                {
-                    //INSERT (  ) VALUES ("
-                    //comm.Connection = conn;
-
-                    Query = @"UPDATE [dbo].[M_ITEM] SET 
+                        Query = @"UPDATE [dbo].[M_ITEM] SET 
                            [ITEM_NAME] =   '" + txt1.Text + "'," +
-                        " [HSN_CODE] = '" + txthsn.Text + "', " +
+                            " [HSN_CODE] = '" + txthsn.Text + "', " +
 
-                        "[CGST]=" + "'" + txtcgst.Text + "'" +
-                        ",[SGST]=" + "'" + txtsgst.Text + "'" +
-                         ",[IGST]=" + "'" + txtigst.Text + "'" +
-                        ",[ACTIVE]=" + "" + "1" + "  " +
-                        "WHERE ITEM_ID =  '" + txt2.Text + "'";
+                            "[CGST]=" + "'" + txtcgst.Text + "'" +
+                            ",[SGST]=" + "'" + txtsgst.Text + "'" +
+                             ",[IGST]=" + "'" + txtigst.Text + "'" +
+                           ",[SIZE]="+  "'" + txt_right.Text + "'," +
+                           "[SIZE_ID]=" + "'" + textBox1.Text + "'," +
+                            "[ACTIVE]=" + "" + "1" + "  " +
+                            "WHERE ITEM_ID =  '" + txt2.Text + "'";
 
 
 
 
 
-                    //comm.CommandText = StrQuery;
+                        //comm.CommandText = StrQuery;
 
-                    SqlCommand comm = new SqlCommand(Query, conn);
-                    conn.Open();
-                    comm.ExecuteNonQuery();
+                        SqlCommand comm = new SqlCommand(Query, conn);
+                        conn.Open();
+                        comm.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
+
                 }
-                MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
-
-            }
-
-            else
-            {
-                MessageBox.Show("PLEASE ENTER THE VALUE", "MESSAGE", MessageBoxButtons.OK);
-            }
+          
             clear();
+            this.Close();
+            frm_item frm_Item = new frm_item();
+            frm_Item.MdiParent = frm_mid.ActiveForm;
+            frm_Item.Show();
         }
 
         private void lblSearch_Click(object sender, EventArgs e)
@@ -108,10 +130,10 @@ namespace IMS
             txt1.Text = frm_item.value;
             // [M_CUSTOMER] (  [,[ACTIVE
 
-            String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+            
             // String str = "Select * from T_QUOTATION_ITEM";
             //String SQLQuery = "SELECT ROW_ID,ITEM_NAME,SIZE,STYLE_NAME,QUANTITY,RATE,DISCOUNT,TOTAL FROM T_QUOTATION_ITEM WHERE QUOTATION_NO = '" + txtquotation.Text + "'";
-            String sqlquery = "SELECT ITEM_NAME,HSN_CODE,CGST,SGST,IGST FROM M_ITEM WHERE ITEM_NAME = '" + txt1.Text + "'";
+            String sqlquery = "SELECT ITEM_NAME,HSN_CODE,CGST,SGST,IGST,SIZE,SIZE_ID FROM M_ITEM WHERE ITEM_NAME = '" + txt1.Text + "'";
             try
             {
 
@@ -130,7 +152,9 @@ namespace IMS
                         txtcgst.Text = dr1["CGST"].ToString(); /*(DateTime)dr.GetValue(2);*/
                         txtsgst.Text = dr1["SGST"].ToString();
                         txtigst.Text = dr1["IGST"].ToString();
-                        
+                        txt_right.Text = dr1["SIZE"].ToString();
+                        textBox1.Text = dr1["SIZE_ID"].ToString();
+
 
 
                     }
@@ -169,13 +193,14 @@ namespace IMS
         {
             this.Text = MODE;
             drop();
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
-            btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
-            btnok.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnok.Width, btnok.Height, 20, 20));
+            //this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
+            //btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
+            //btnok.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnok.Width, btnok.Height, 20, 20));
         }
+        String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
         public void drop()
         {
-            String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+           
             string query = "select size_name from m_size";
             SqlConnection conn = new SqlConnection(ConnString);
             conn.Open();
@@ -213,14 +238,50 @@ namespace IMS
             //}
 
             string[] selectedline = txt_left.SelectedText.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-
-            StringBuilder sb = new StringBuilder(txt_right.Text);
-            foreach(string line in selectedline)
+           
+                StringBuilder sb = new StringBuilder(txt_right.Text);
+            StringBuilder sK = new StringBuilder(textBox1.Text);
+            foreach (string line in selectedline)
             {
-                sb.AppendLine(line);
-               // sb.AppendLine("" + line);
+                if (line != "" )
+                {
+                    sb.AppendLine(line);
+                    // }sb.AppendLine("" + line);
+                }
+               
+              
             }
-            txt_right.Text = sb.ToString();
+                txt_right.Text = sb.ToString();
+           
+            string[] TEXT = txt_left.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            foreach (string Line in TEXT)
+            {
+                if (Line != "")
+                {
+                    SqlConnection conn = new SqlConnection(ConnString);
+                    String StrQuery = "SELECT size_id FROM  [M_size] WHERE SIZE_NAME = '" + Line + "' ";
+                    SqlCommand cmd = new SqlCommand(StrQuery, conn);
+                    conn.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+
+                         textBox2.Text = dr["size_id"].ToString();
+
+                    }
+                    dr.Close();
+
+
+                    conn.Close();
+                    sK.AppendLine(textBox2.Text);
+                }
+            
+            }
+
+
+            
+            textBox1.Text = sK.ToString();
+            textBox2.Text = "";
         }
 
         private void btn_left_Click(object sender, EventArgs e)
@@ -235,11 +296,40 @@ namespace IMS
             StringBuilder sb = new StringBuilder(txt_left.Text);
             foreach (string line in selectedline)
             {
-                sb.AppendLine(line);
+                if (line != "")
+                {
+                    sb.AppendLine(line);
+                }
                 // sb.AppendLine("" + line);
             }
             txt_left.Text = sb.ToString();
-            txt_right.SelectedText = string.Empty;
+            txt_right.SelectedText = "";
+            string selectedText = txt_right.SelectedText;
+            int selectionStart = txt_right.SelectionStart;
+
+            if (selectionStart > 0)
+            {
+                // Find the index of the previous character
+               
+
+                txt_right.SelectedText = txt_right.SelectedText.Remove(selectedText.Length - selectedText.Length);
+                //if(selectedText == )
+                //{
+                //    int previousCharIndex = selectionStart - 1;
+
+                //    // Swap the selected text with the previous character
+                //    string previousChar = txt_right.Text.Substring(previousCharIndex, 1);
+                //    txt_right.Text = txt_right.Text.Remove(previousCharIndex, 1);
+                //    txt_right.Text = txt_right.Text.Insert(previousCharIndex + selectedText.Length, previousChar);
+
+                //    // Update the selection
+                //    txt_right.Select(previousCharIndex, selectedText.Length);
+                //}
+            }
+
+
+
+            txt_right.Focus();
         }
 
         private void btn_up_Click(object sender, EventArgs e)
@@ -265,7 +355,7 @@ namespace IMS
                 txt_right.Text = txt_right.Text.Insert(previousCharIndex + selectedText.Length, previousChar);
 
                 // Update the selection
-                txt_right.Select(previousCharIndex, selectedText.Length);
+                txt_right.Select(previousCharIndex, selectedText.Length );
             }
 
 
@@ -331,7 +421,15 @@ namespace IMS
             if (e.KeyCode == Keys.X && e.Alt)
             {
                 this.Close();
+                frm_item frm_Item = new frm_item();
+                frm_Item.MdiParent = frm_mid.ActiveForm;
+                frm_Item.Show();
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

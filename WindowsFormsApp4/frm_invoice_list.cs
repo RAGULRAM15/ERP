@@ -230,7 +230,7 @@ namespace IMS
                 if (STATUS == "ACTIVE")
                 {
                     frm_invoice detialform = new frm_invoice();
-                    detialform.mode = " VIEW INVOICE ";
+                    detialform.mode = "VIEW INVOICE ";
                     detialform.MdiParent = frm_mid.ActiveForm;
 
 
@@ -665,6 +665,21 @@ namespace IMS
             {
                 this.Close();
             }
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_to_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

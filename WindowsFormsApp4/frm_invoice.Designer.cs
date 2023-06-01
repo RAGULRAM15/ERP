@@ -117,8 +117,10 @@ namespace IMS
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.btn_customer = new System.Windows.Forms.Button();
-            this.txt_salesorder = new System.Windows.Forms.TextBox();
+            this.txt_salesorder = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.lbl_size = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -229,10 +231,11 @@ namespace IMS
             this.txtinvoice.Enabled = false;
             this.txtinvoice.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtinvoice.FormattingEnabled = true;
-            this.txtinvoice.Location = new System.Drawing.Point(863, 60);
+            this.txtinvoice.Location = new System.Drawing.Point(863, 55);
             this.txtinvoice.Name = "txtinvoice";
             this.txtinvoice.Size = new System.Drawing.Size(121, 25);
             this.txtinvoice.TabIndex = 151;
+            this.txtinvoice.SelectedIndexChanged += new System.EventHandler(this.txtinvoice_SelectedIndexChanged_1);
             this.txtinvoice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtinvoice_KeyDown);
             // 
             // user_box
@@ -243,7 +246,7 @@ namespace IMS
             this.user_box.Enabled = false;
             this.user_box.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.user_box.FormattingEnabled = true;
-            this.user_box.Location = new System.Drawing.Point(863, 108);
+            this.user_box.Location = new System.Drawing.Point(863, 119);
             this.user_box.Name = "user_box";
             this.user_box.Size = new System.Drawing.Size(121, 25);
             this.user_box.TabIndex = 150;
@@ -269,7 +272,7 @@ namespace IMS
             this.txt_datetime.Enabled = false;
             this.txt_datetime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_datetime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txt_datetime.Location = new System.Drawing.Point(873, 29);
+            this.txt_datetime.Location = new System.Drawing.Point(873, 24);
             this.txt_datetime.Name = "txt_datetime";
             this.txt_datetime.Size = new System.Drawing.Size(111, 22);
             this.txt_datetime.TabIndex = 148;
@@ -278,7 +281,7 @@ namespace IMS
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(785, 111);
+            this.label6.Location = new System.Drawing.Point(785, 126);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 18);
             this.label6.TabIndex = 145;
@@ -300,7 +303,7 @@ namespace IMS
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(739, 67);
+            this.label4.Location = new System.Drawing.Point(743, 62);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 18);
             this.label4.TabIndex = 143;
@@ -310,7 +313,7 @@ namespace IMS
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(788, 33);
+            this.label3.Location = new System.Drawing.Point(785, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 18);
             this.label3.TabIndex = 142;
@@ -404,7 +407,7 @@ namespace IMS
             this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btn_save.ForeColor = System.Drawing.Color.Green;
-            this.btn_save.Location = new System.Drawing.Point(608, 5);
+            this.btn_save.Location = new System.Drawing.Point(686, 3);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(70, 25);
             this.btn_save.TabIndex = 4;
@@ -431,7 +434,7 @@ namespace IMS
             // 
             // txt_quantity_sum
             // 
-            this.txt_quantity_sum.Location = new System.Drawing.Point(325, 10);
+            this.txt_quantity_sum.Location = new System.Drawing.Point(422, 8);
             this.txt_quantity_sum.Name = "txt_quantity_sum";
             this.txt_quantity_sum.ReadOnly = true;
             this.txt_quantity_sum.Size = new System.Drawing.Size(65, 20);
@@ -439,7 +442,7 @@ namespace IMS
             // 
             // txt_total_sum
             // 
-            this.txt_total_sum.Location = new System.Drawing.Point(485, 8);
+            this.txt_total_sum.Location = new System.Drawing.Point(593, 8);
             this.txt_total_sum.Name = "txt_total_sum";
             this.txt_total_sum.ReadOnly = true;
             this.txt_total_sum.Size = new System.Drawing.Size(64, 20);
@@ -459,11 +462,12 @@ namespace IMS
             // 
             // txt_sum_discount
             // 
-            this.txt_sum_discount.Location = new System.Drawing.Point(396, 8);
+            this.txt_sum_discount.Location = new System.Drawing.Point(505, 8);
             this.txt_sum_discount.Name = "txt_sum_discount";
             this.txt_sum_discount.ReadOnly = true;
             this.txt_sum_discount.Size = new System.Drawing.Size(72, 20);
             this.txt_sum_discount.TabIndex = 12;
+            this.txt_sum_discount.Visible = false;
             // 
             // stxtitem
             // 
@@ -1010,22 +1014,44 @@ namespace IMS
             // txt_salesorder
             // 
             this.txt_salesorder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(184)))), ((int)(((byte)(194)))));
-            this.txt_salesorder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_salesorder.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_salesorder.Location = new System.Drawing.Point(449, 52);
+            this.txt_salesorder.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_salesorder.FormattingEnabled = true;
+            this.txt_salesorder.Location = new System.Drawing.Point(863, 86);
             this.txt_salesorder.Name = "txt_salesorder";
-            this.txt_salesorder.Size = new System.Drawing.Size(124, 25);
-            this.txt_salesorder.TabIndex = 159;
+            this.txt_salesorder.Size = new System.Drawing.Size(121, 24);
+            this.txt_salesorder.TabIndex = 161;
+            this.txt_salesorder.SelectedIndexChanged += new System.EventHandler(this.txt_salesorder_SelectedIndexChanged);
             this.txt_salesorder.TextChanged += new System.EventHandler(this.txt_salesorder_TextChanged);
+            this.txt_salesorder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_salesorder_KeyDown);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(502, 120);
+            this.label8.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(693, 92);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 13);
-            this.label8.TabIndex = 160;
-            this.label8.Text = "ADD ITEM => F5";
+            this.label8.Size = new System.Drawing.Size(142, 18);
+            this.label8.TabIndex = 162;
+            this.label8.Text = "SALES ORDER.NO";
+            // 
+            // lbl_size
+            // 
+            this.lbl_size.AutoSize = true;
+            this.lbl_size.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_size.Location = new System.Drawing.Point(513, 119);
+            this.lbl_size.Name = "lbl_size";
+            this.lbl_size.Size = new System.Drawing.Size(0, 18);
+            this.lbl_size.TabIndex = 163;
+            this.lbl_size.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(471, 122);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(89, 13);
+            this.label9.TabIndex = 184;
+            this.label9.Text = "ADD ITEM => F5";
             // 
             // frm_invoice
             // 
@@ -1033,6 +1059,8 @@ namespace IMS
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(184)))), ((int)(((byte)(194)))));
             this.ClientSize = new System.Drawing.Size(1022, 514);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lbl_size);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txt_salesorder);
             this.Controls.Add(this.btn_customer);
@@ -1140,9 +1168,13 @@ namespace IMS
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_customer;
-        private System.Windows.Forms.TextBox txt_salesorder;
         private System.Windows.Forms.TextBox txt_saletotal;
         private System.Windows.Forms.TextBox txtsalequantity;
+        private System.Windows.Forms.TextBox txt_tag;
+        private System.Windows.Forms.ComboBox txt_salesorder;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbl_size;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridViewTextBoxColumn row_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn size_item;
@@ -1157,7 +1189,5 @@ namespace IMS
         private System.Windows.Forms.DataGridViewTextBoxColumn SALES_ORDER_TOTAL;
         private System.Windows.Forms.DataGridViewTextBoxColumn SALES_ORDER_BALANCE_QUANTITY;
         private System.Windows.Forms.DataGridViewTextBoxColumn SALES_ORDER_BALANCE_TOTAL;
-        private System.Windows.Forms.TextBox txt_tag;
-        private System.Windows.Forms.Label label8;
     }
 }

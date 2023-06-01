@@ -73,6 +73,7 @@ namespace IMS
             if (e.KeyCode == Keys.F2)
             {
                 frmf2 popup = new frmf2();
+                popup.MdiParent = frm_mid.ActiveForm;
                 string _query = "SELECT CUSTOMER_ID AS [ID], CUSTOMER_NAME, CUSTOMER_TITLE FROM M_CUSTOMER WHERE ACTIVE = 1";
                 popup.ShowF2(_query, "CUSTOMER_NAME", ((TextBox)sender).Text, "CUSTOMER_NAME", sender);
             }
@@ -122,7 +123,7 @@ namespace IMS
              "INNER JOIN M_ITEM ON M_ITEM.ITEM_ID = T_SALES_ORDER_ITEM.ITEM_ID " +
              "INNER JOIN  M_SIZE ON M_SIZE.SIZE_ID = T_SALES_ORDER_ITEM.SIZE_ID " +
              "WHERE SALES_ORDER_NO = '" + txtsalesorder.Text + "' ";
-            String sqlquery = "SELECT SALES_ORDER_DATE,DISCOUNT,QUANTITY,SUB_TOTAL,CUSTOMER_NAME,USER_NAME,CGST,SGST,IGST,NET_AMOUNT FROM T_SALES_ORDER" +
+            String sqlquery = "SELECT SALES_ORDER_DATE,DISCOUNT,QUANTITY,SUB_TOTAL,CUSTOMER_NAME,USER_NAME,CGST,SGST,IGST,NET_AMOUNT,T_SALES_ORDER.CUSTOMER_ID FROM T_SALES_ORDER" +
                 " INNER JOIN M_CUSTOMER ON M_CUSTOMER.CUSTOMER_ID = T_SALES_ORDER.CUSTOMER_ID " +
 
                 "WHERE SALES_ORDER_NO = '" + txtsalesorder.Text + "'";
@@ -145,7 +146,7 @@ namespace IMS
                 {
 
                     txtcustomer.Text = dr1["CUSTOMER_NAME"].ToString();
-
+                    txtcustomer.Tag = dr1["CUSTOMER_ID"].ToString();
                     txt_datetime.Value = Convert.ToDateTime(dr1["SALES_ORDER_DATE"].ToString()); /*(DateTime)dr.GetValue(2);*/
                     txt_discount.Text = dr1["DISCOUNT"].ToString();
                     txt_quantity_sum.Text = dr1["QUANTITY"].ToString();
@@ -201,13 +202,13 @@ namespace IMS
                         txt_datetime.Value = Convert.ToDateTime(dr1["SALES_ORDER_DATE"].ToString()); /*(DateTime)dr.GetValue(2);*/
                         txt_discount.Text = dr1["DISCOUNT"].ToString();
                         txt_quantity_sum.Text = dr1["QUANTITY"].ToString();
-                        txt_total_sum.Text = dr1["SUB_TOTAL"].ToString();
+                       
                         user_box.Text = dr1["USER_NAME"].ToString();
                         txtcgst.Text = dr1["CGST"].ToString();
                         txtsgst.Text = dr1["SGST"].ToString();
                         txtigst.Text = dr1["IGST"].ToString();
                         txtnet_amount.Text = dr1["NET_AMOUNT"].ToString();
-
+                        txt_total_sum.Text = dr1["SUB_TOTAL"].ToString();
                     }
                     dr1.Close();
                     conn.Close();
@@ -224,6 +225,18 @@ namespace IMS
             dgvitemform.Enabled = false;
             //btnadd.Enabled = false;
             btn_save.Enabled = false;
+            txttrans.ReadOnly = true;
+            txtl_charge.ReadOnly = true;
+            txt_quantity_sum.ReadOnly = true;
+            txt_discount.ReadOnly = true;
+            txt_total_sum.ReadOnly = true;
+            txtnet_amount.ReadOnly = true;
+            txtcgst.ReadOnly = true;
+            txtsgst.ReadOnly = true;
+            txtigst.ReadOnly = true;
+            txtsubtotal.ReadOnly = true;
+            txtnet_amountB.ReadOnly = true;
+            txtroundoff.ReadOnly = true;
         }
         public void DELETE_form()
         {
@@ -266,13 +279,13 @@ namespace IMS
                         txt_datetime.Value = Convert.ToDateTime(dr1["SALES_ORDER_DATE"].ToString()); /*(DateTime)dr.GetValue(2);*/
                         txt_discount.Text = dr1["DISCOUNT"].ToString();
                         txt_quantity_sum.Text = dr1["QUANTITY"].ToString();
-                        txt_total_sum.Text = dr1["SUB_TOTAL"].ToString();
+                       
                         user_box.Text = dr1["USER_NAME"].ToString();
                         txtcgst.Text = dr1["CGST"].ToString();
                         txtsgst.Text = dr1["SGST"].ToString();
                         txtigst.Text = dr1["IGST"].ToString();
                         txtnet_amount.Text = dr1["NET_AMOUNT"].ToString();
-
+                        txt_total_sum.Text = dr1["SUB_TOTAL"].ToString();
                     }
                     dr1.Close();
                     conn.Close();
@@ -288,7 +301,18 @@ namespace IMS
             user_box.Enabled = false;
             dgvitemform.Enabled = false;
             //btnadd.Enabled = false;
-
+            txttrans.ReadOnly = true;
+            txtl_charge.ReadOnly = true;
+            txt_quantity_sum.ReadOnly = true;
+            txt_discount.ReadOnly = true;
+            txt_total_sum.ReadOnly = true;
+            txtnet_amount.ReadOnly = true;
+            txtcgst.ReadOnly = true;
+            txtsgst.ReadOnly = true;
+            txtigst.ReadOnly = true;
+            txtsubtotal.ReadOnly = true;
+            txtnet_amountB.ReadOnly = true;
+            txtroundoff.ReadOnly = true;
         }
         public void print_form()
         {
@@ -332,9 +356,24 @@ namespace IMS
             txt_discount.Text = "0";
 
         }
-
+        public void FUNC()
+        {
+            if (txt_discount.Text == "")
+            {
+                txt_discount.Text = "0";
+            }
+            if (txttrans.Text == "")
+            {
+                txttrans.Text = "0";
+            }
+            if (txtl_charge.Text == "")
+            {
+                txtl_charge.Text = "0";
+            }
+        }
         private void btn_save_Click(object sender, EventArgs e)
         {
+            FUNC();
             if (dgvitemform.Rows.Count != 0 && txtcustomer.Text != "" && txtnet_amount.Text != "" && txt_total_sum.Text != "")
             {
                 if (mode == "ADD")
@@ -366,12 +405,15 @@ namespace IMS
                                 + "'" + textBox15.Text + "'    WHERE COMPANY_ID=" + lbl_comp.Tag + " AND ENTRY_ID = " + entry_name + "";
 
 
-                            Query = @"INSERT INTO [T_SALES_ORDER](SALES_ORDER_NO,SALES_ORDER_DATE,DISCOUNT,QUANTITY,SUB_TOTAL,CUSTOMER_ID,USER_NAME,CGST,SGST,IGST,NET_AMOUNT,COMPANY_ID,STATUS,ACTIVE) VALUES ("
+                            Query = @"INSERT INTO [T_SALES_ORDER](SALES_ORDER_NO,SALES_ORDER_DATE,DISCOUNT,QUANTITY,SUB_TOTAL,TRANSPORTS,LOADING,CUSTOMER_ID,USER_NAME,CGST,SGST,IGST,NET_AMOUNT,COMPANY_ID,STATUS,ACTIVE,SALES_ORDER_FILTER) VALUES ("
                                        + "'" + txtsalesorder.Text + "',"
                                        + "'" + txt_datetime.Value.Date + "',"
+                                       
                                        + "'" + txt_discount.Text + "',"
                                         + "'" + txt_quantity_sum.Text + "',"
                                        + "'" + txt_total_sum.Text + "',"
+                                          + "'" + txttrans.Text + "'," +
+                                        "'" + txtl_charge.Text + "',"
                                        + "'" + txtcustomer.Tag + "',"
 
                                        + "'" + user_box.Text + "',"
@@ -381,9 +423,10 @@ namespace IMS
                                        + "'" + txtnet_amount.Text + "',"
                                         + "'" + lbl_comp.Tag + "',"
                                        + "'" + "ACTIVE" + "',"
-                                       + "'" + "1" + "')";
+                                       + "'" + "1" + "',"
+                                       + "'" + "0" + "' )";
                             sb.Append(Query);
-                            //foreach (DataGridViewRow row in dgvitemform.Rows)
+                            //foreach (DataGridViewRow row in dgvitemform.Rows)SALES_ORDER_FILTER
                             for (int i = 0; i < dgvitemform.Rows.Count; i++)
                             {
                                 StrQuery = @"INSERT INTO [T_SALES_ORDER_ITEM](SALES_ORDER_NO,ROW_ID,ITEM_ID,SIZE_ID,STYLE_NAME,QUANTITY,RATE,TOTAL,ACTIVE) VALUES ("
@@ -431,7 +474,7 @@ namespace IMS
 
                             clear();
                             this.Close();
-                            frm_invoice_list frm_Invoice_ = new frm_invoice_list();
+                            frm_Order_list frm_Invoice_ = new frm_Order_list();
                             frm_Invoice_.MdiParent = frm_mid.ActiveForm;
                             frm_Invoice_.Show();
                         }
@@ -441,7 +484,7 @@ namespace IMS
                             MessageBox.Show(ex.Message);
                             clear();
                             this.Close();
-                            frm_invoice_list frm_Invoice_ = new frm_invoice_list();
+                            frm_Order_list frm_Invoice_ = new frm_Order_list();
                             frm_Invoice_.MdiParent = frm_mid.ActiveForm;
                             frm_Invoice_.Show();
                         }
@@ -473,7 +516,8 @@ namespace IMS
                            "QUANTITY ='" + txt_quantity_sum.Text + "'," +
                              "SUB_TOTAL = '" + txt_total_sum.Text + "'," +
                           "CUSTOMER_ID = '" + txtcustomer.Tag + "'," +
-
+                           "TRANSPORTS=" + txttrans.Text + "," +
+                         "LOADING=" + txtl_charge.Text + "," +
                         "[USER_NAME] = '" + user_box.Text + "'," +
                         "CGST = '" + txtcgst.Text + "'," +
                         "SGST = '" + txtsgst.Text + "'," +
@@ -498,7 +542,7 @@ namespace IMS
                                              "RATE='" + dgvitemform.Rows[i].Cells["rate_item"].Value + "'," +
 
                                               "TOTAL = '" + dgvitemform.Rows[i].Cells["netamount"].Value + "'," +
-                                              "" + "ACTIVE =" + "1" + " WHERE SALES_ORDER_NO ='" + txtsalesorder.Text + "'";
+                                              "" + "ACTIVE =" + "1" + " WHERE SALES_ORDER_NO ='" + txtsalesorder.Text + "' AND ROW_ID = '"+dgvitemform.Rows[i].Cells["row_id"].Value+"'";
 
                                 sb.Append(StrQuery);
                             }
@@ -525,7 +569,7 @@ namespace IMS
 
                             clear();
                             this.Close();
-                            frm_invoice_list frm_Invoice_ = new frm_invoice_list();
+                            frm_Order_list frm_Invoice_ = new frm_Order_list();
                             frm_Invoice_.MdiParent = frm_mid.ActiveForm;
                             frm_Invoice_.Show();
 
@@ -547,7 +591,7 @@ namespace IMS
                             MessageBox.Show(ex.Message);
                             clear();
                             this.Close();
-                            frm_invoice_list frm_Invoice_ = new frm_invoice_list();
+                            frm_Order_list frm_Invoice_ = new frm_Order_list();
                             frm_Invoice_.MdiParent = frm_mid.ActiveForm;
                             frm_Invoice_.Show();
                         }
@@ -599,7 +643,7 @@ namespace IMS
 
                                     clear();
                                     this.Close();
-                                    frm_invoice_list frm_Invoice_ = new frm_invoice_list();
+                                    frm_Order_list frm_Invoice_ = new frm_Order_list();
                                     frm_Invoice_.MdiParent = frm_mid.ActiveForm;
                                     frm_Invoice_.Show();
 
@@ -614,7 +658,7 @@ namespace IMS
                                     MessageBox.Show(ex.Message);
                                     clear();
                                     this.Close();
-                                    frm_invoice_list frm_Invoice_ = new frm_invoice_list();
+                                    frm_Order_list frm_Invoice_ = new frm_Order_list();
                                     frm_Invoice_.MdiParent = frm_mid.ActiveForm;
                                     frm_Invoice_.Show();
                                 }
@@ -924,7 +968,6 @@ namespace IMS
 
             }
 
-
         }
         public void SALES_ORDER_NO()
         {
@@ -1151,6 +1194,7 @@ namespace IMS
                         double result = Math.Round(input, 0);
                         txtnet_amount.Text = result.ToString();
                         txtnet_amountB.Text = txtnet_amount.Text;
+                        txtroundoff.Text = ((input - Convert.ToDouble(txtnet_amount.Text)) * -1).ToString();
                         // txtnet_amount.Text = Convert.ToString(Convert.ToDouble(txtgst_value.Text) + Convert.ToDouble(txttrans.Text) + Convert.ToDouble(txtl_charge.Text + Convert.ToDouble(txt_total_sum.Text)+Convert.ToDouble(txtroundoff.Text)));
 
 
@@ -1165,7 +1209,22 @@ namespace IMS
                 txtnet_amountB.Text = txtnet_amount.Text;
                 if (txtsgst.Text != "" || txtigst.Text != "" || txtcgst.Text != "")
                 {
-                    txtgst_value.Text = Convert.ToString(Convert.ToDouble(txtcgst.Text) + Convert.ToDouble(txtsgst.Text) + Convert.ToDouble(txtigst.Text));
+                    //txtgst_value.Text = Convert.ToString(Convert.ToDouble(txtcgst.Text) + Convert.ToDouble(txtsgst.Text) + Convert.ToDouble(txtigst.Text));
+
+                    if (txt_total_sum.Text != "")
+                    {
+                        //string txt_total = Convert.ToString(((Convert.ToDouble(txt_total_sum.Text)) * ((100 - Convert.ToDouble(txt_discount.Text)) / 100.00)));
+                        //double input = Convert.ToDouble(txtgst_value.Text) + Convert.ToDouble(txt_total);
+
+                        //txtroundoff.Text = ((input - Convert.ToDouble(txtnet_amount.Text)) * -1).ToString();
+
+                        txtgst_value.Text = Convert.ToString(Convert.ToDouble(txtcgst.Text) + Convert.ToDouble(txtsgst.Text) + Convert.ToDouble(txtigst.Text));
+                        string txt_total = Convert.ToString(((Convert.ToDouble(txt_total_sum.Text)) * ((100 - Convert.ToDouble(txt_discount.Text)) / 100.00)));
+                        double input = Convert.ToDouble(txtgst_value.Text) + Convert.ToDouble(txt_total);
+                        double result = Math.Round(input, 0);
+                        
+                        txtroundoff.Text = ((input - result) ).ToString();
+                    }
                 }
             }
         }
@@ -1265,6 +1324,7 @@ namespace IMS
             if (txt_total_sum.Text != "" && txttrans.Text != "")
             {
                 txtnet_amount.Text = Convert.ToString(Convert.ToDouble(txttrans.Text) + Convert.ToDouble(txtnet_amountB.Text));
+                txtnet_amountB.Text = txtnet_amount.Text;
             }
         }
 
@@ -1273,6 +1333,7 @@ namespace IMS
             if (txt_total_sum.Text != "" && txtl_charge.Text != "")
             {
                 txtnet_amount.Text = Convert.ToString(Convert.ToDouble(txtl_charge.Text) + Convert.ToDouble(txttrans.Text) + Convert.ToDouble(txtnet_amountB.Text));
+                txtnet_amountB.Text = txtnet_amount.Text;
             }
         }
         private void btn_clear_Click(object sender, EventArgs e)
@@ -1337,6 +1398,54 @@ namespace IMS
                 popup.ShowF2(_query, "ITEM_NAME", ((TextBox)sender).Text, "ITEM_NAME", sender);
             }
         }
+        private bool IsDuplicateValueadd(string value1, string value2, DataGridView dgv)
+        {
+            
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    if (row.Cells[1].Value?.ToString() == value1 &&
+                        row.Cells[2].Value?.ToString() == value2)
+                    {
+                        //if (value1 == "" && value2 == "")
+                        //{
+                        //    return true;
+                        //}
+                        //else
+                        //{
+                        return true;
+                        //}
+
+
+                    }
+                }
+
+                return false;
+            
+        }
+        private bool IsDuplicateValueedit(string value1, string value2, DataTable dgv)
+        {
+
+            foreach (DataRow row in dgv.Rows)
+            {
+                if (row["ITEM_NAME"].ToString() == value1 &&
+            row["SIZE_NAME"].ToString() == value2)
+                {
+                    //if (value1 == "" && value2 == "")
+                    //{
+                    //    return true;
+                    //}
+                    //else
+                    //{
+                    return true;
+                    //}
+
+
+                }
+            }
+
+            return false;
+
+        }
         public void ITEM_LOAD()
         {
             String Query = "SELECT ITEM_NAME, SIZE FROM  [M_ITEM] WHERE ITEM_ID = '" + item_text + "' ";
@@ -1355,67 +1464,100 @@ namespace IMS
             conn.Close();
 
 
-            string[] lines = txt_itemsize.Lines; // Get an array of all lines in the textbox
+            string[] lines = txt_itemsize.Lines; 
             foreach (string line in lines)
             {
                 if (mode == "ADD")
                 {
-                    DataGridViewRow newRow = new DataGridViewRow();
-                    newRow.CreateCells(dgvitemform);
+                    //DataGridViewRow newRow = new DataGridViewRow();
+                    //newRow.CreateCells(dgvitemform);
 
-                    //newRow.Cells["ROW_ID"].Value = txt_no.Text;
-                    newRow.Cells[1].Value = txt_itemadd.Text;
-                    newRow.Cells[2].Value = line;
-                    // newRow.Cells[3].Value = txt_style.Text;
+                    ////newRow.Cells["ROW_ID"].Value = txt_no.Text;
+                    //newRow.Cells[1].Value = txt_itemadd.Text;
+                    //newRow.Cells[2].Value = line;
+                    //// newRow.Cells[3].Value = txt_style.Text;
 
-                    //newRow.Cells[7].Value = txt_total.Text;
-                    newRow.Cells[8].Value = item_text;
-                    //newRow.Cells[11].Value = txt_size.Tag;
+                    ////newRow.Cells[7].Value = txt_total.Text;
+                    //newRow.Cells[8].Value = item_text;
+                    ////newRow.Cells[11].Value = txt_size.Tag;
 
 
-                    dgvitemform.Rows.Add(newRow); // Insert a new row into the DataGridView with the line from the TextBox
+                    //dgvitemform.Rows.Add(newRow);
+                    string value1 = txt_itemadd.Text;
+                    string value2 = line;
+                    string value3 = item_text;
+
+                    if (IsDuplicateValueadd(value1, value2, dgvitemform))
+                    {
+                        MessageBox.Show("Duplicate value! Insertion cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                      
+                        DataGridViewRow newRow = new DataGridViewRow();
+                        newRow.CreateCells(dgvitemform);
+
+                        
+                        newRow.Cells[1].Value = value1;
+                        newRow.Cells[2].Value = value2;
+                        newRow.Cells[8].Value = value3;
+
+                       
+                        dgvitemform.Rows.Add(newRow);
+                    }
+                    
                 }
                 if (mode == "EDIT SALES ORDER")
                 {
-
-                    DataRow row = dt.NewRow();
-
-
-
-                    row["ITEM_NAME"] = txt_itemadd.Text;
-                    row["SIZE_NAME"] = line;
-                    row["ITEM_ID"] = item_text;
-                    //row[4] = txt_quantity.Text; DR["QUANTITY"] = row.Cells["quantity_item"].Value;
-                    //DR["RATE"] = row.Cells["rate_item"].Value;
-                    //DR["TOTAL"] = row.Cells["netamount"].Value;
-                    //row[5] = txt_rate.Text;
-                    //row[6] = txt_discount.Text;
-                    //row[7] = txt_total.Text;
-                    //row[10] = txt_item.Tag;
-
-                    foreach (DataGridViewRow viewRow in dgvitemform.Rows)
+                    string value1 = txt_itemadd.Text;
+                    string value2 = line;
+                    string value3 = item_text;
+                    if (IsDuplicateValueedit(value1, value2, dt))
                     {
-                        SqlConnection con = new SqlConnection(ConnString);
-                        String StrQuery = "SELECT size_id FROM  [M_size] WHERE SIZE_NAME = '" + viewRow.Cells["size_item"].Value + "' ";
-                        SqlCommand cmd = new SqlCommand(StrQuery, con);
-                        con.Open();
-                        SqlDataReader dr1 = cmd.ExecuteReader();
-                        while (dr1.Read())
-                        {
-
-                            viewRow.Cells["SIZE_ID"].Value = dr1["size_id"].ToString();
-                            row["SIZE_ID"] = viewRow.Cells["SIZE_ID"].Value;
-                        }
-                        dr1.Close();
-
-
-                        con.Close();
-
+                        MessageBox.Show("Duplicate value! Insertion cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    else
+                    {
+                        DataRow row = dt.NewRow();
 
 
-                    dt.Rows.Add(row);
-                    dgvitemform.DataSource = dt;
+
+                        row["ITEM_NAME"] = value1;
+                        row["SIZE_NAME"] = value2;
+                        row["ITEM_ID"]   = value3;
+
+                        //row[4] = txt_quantity.Text; DR["QUANTITY"] = row.Cells["quantity_item"].Value;
+                        //DR["RATE"] = row.Cells["rate_item"].Value;
+                        //DR["TOTAL"] = row.Cells["netamount"].Value;
+                        //row[5] = txt_rate.Text;
+                        //row[6] = txt_discount.Text;
+                        //row[7] = txt_total.Text;
+                        //row[10] = txt_item.Tag;
+
+                        foreach (DataGridViewRow viewRow in dgvitemform.Rows)
+                        {
+                            SqlConnection con = new SqlConnection(ConnString);
+                            String StrQuery = "SELECT size_id FROM  [M_size] WHERE SIZE_NAME = '" + viewRow.Cells["size_item"].Value + "' ";
+                            SqlCommand cmd = new SqlCommand(StrQuery, con);
+                            con.Open();
+                            SqlDataReader dr1 = cmd.ExecuteReader();
+                            while (dr1.Read())
+                            {
+
+                                viewRow.Cells["SIZE_ID"].Value = dr1["size_id"].ToString();
+                                row["SIZE_ID"] = viewRow.Cells["SIZE_ID"].Value;
+                            }
+                            dr1.Close();
+
+
+                            con.Close();
+
+                        }
+
+
+                        dt.Rows.Add(row);
+                        dgvitemform.DataSource = dt;
+                    }
                 }
             }
             txt_itemadd.Text = "";
@@ -1429,10 +1571,10 @@ namespace IMS
 
         private void dgvitemform_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            //dgvitemform.Rows[e.RowIndex].ErrorText = string.Empty;
 
-          
-            
-                if (mode == "EDIT SALES ORDER")
+
+            if (mode == "EDIT SALES ORDER")
                 {
                     foreach (DataGridViewRow viewRow in dgvitemform.Rows)
                     {
@@ -1640,18 +1782,19 @@ namespace IMS
 
                 if (e.KeyCode == Keys.F5)
                 {
+                  
+                        //frmf3 popup = new frmf3();
+                        //popup.ShowF3("RETURN OF GOODS", valuetoadd, sender);
+                        ////popup.Show();
+                        frmf5 popup = new frmf5();
+                        popup.MdiParent = frm_mid.ActiveForm;
+                        popup.item_text = "SALES ORDER";
+                        string _query = "SELECT ITEM_ID AS [ID],  ITEM_NAME, HSN_CODE FROM M_ITEM WHERE ACTIVE = 1";
+                        popup.ShowF2(_query, "ITEM_NAME", (item_text), "ITEM_NAME", sender);
 
-                    //frmf3 popup = new frmf3();
-                    //popup.ShowF3("RETURN OF GOODS", valuetoadd, sender);
-                    ////popup.Show();
-                    frmf5 popup = new frmf5();
-                    popup.item_text = "SALES ORDER";
-                    string _query = "SELECT ITEM_ID AS [ID],  ITEM_NAME, HSN_CODE FROM M_ITEM WHERE ACTIVE = 1";
-                    popup.ShowF2(_query, "ITEM_NAME", (item_text), "ITEM_NAME", sender);
 
-
-                    //ITEM_LOAD();
-
+                        ITEM_LOAD();
+                    
 
                 }
 
@@ -1668,6 +1811,35 @@ namespace IMS
                 order_List.MdiParent = frm_mid.ActiveForm;
                 order_List.Show();
             }
+        }
+
+        private void dgvitemform_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            //if (e.ColumnIndex == 1) // Assuming the target column is at index 0
+            //{
+            //    string newValue = e.FormattedValue.ToString().Trim();
+
+            //    foreach (DataGridViewRow row in dgvitemform.Rows)
+            //    {
+            //        if (row.Index != e.RowIndex && row.Cells[1].Value != null && row.Cells[1].Value.ToString().Trim() == newValue)
+            //        {
+            //            e.Cancel = true;
+            //            dgvitemform.Rows[e.RowIndex].ErrorText = "Duplicate value!";
+            //            break;
+            //        }
+            //    }
+            //}
+        }
+
+        private void dgvitemform_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            //string valueToCheck = dgvitemform.Rows[e.RowIndex].Cells[1].Value?.ToString();
+            //string valueToCheck1 = dgvitemform.Rows[e.RowIndex].Cells[1].Value?.ToString();
+            //if (valueToCheck == "InvalidValue")
+            //{
+            //    e.Cancel = true;
+            //    MessageBox.Show("Invalid value! Insertion cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
     }
 }

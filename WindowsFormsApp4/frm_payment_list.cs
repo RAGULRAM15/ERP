@@ -60,10 +60,10 @@ namespace IMS
                 DataGridViewRow edit_row = dtg_qut.Rows[rowIndex];
                 value1 = edit_row.Cells["PAYMENT_NO"].Value.ToString();
                 // value2 = edit_row.Cells["INVOICE_ID"].Value.ToString();
-                //STATUS = edit_row.Cells["STATUS"].Value.ToString();
+                STATUS = edit_row.Cells["STATUS"].Value.ToString();
 
-                //if (STATUS == "ACTIVE")
-                //{
+                if (STATUS == "ACTIVE")
+                {
                     frm_payment detialform = new frm_payment();
                     detialform.mode = "EDIT PAYMENT";
                     detialform.MdiParent = frm_mid.ActiveForm;
@@ -72,11 +72,11 @@ namespace IMS
                     detialform.edit_form();
                     detialform.Show();
                     this.Hide();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("LIST IS CANCELED...\nPLEASE CHECK THE LIST ", "INVENTORY MANAGEMENT", MessageBoxButtons.OK);
-                //}
+                }
+                else
+                {
+                    MessageBox.Show("LIST IS CANCELED...\nPLEASE CHECK THE LIST ", "INVENTORY MANAGEMENT", MessageBoxButtons.OK);
+                }
             }
             else
             {
@@ -108,10 +108,10 @@ namespace IMS
                 int rowIndex = dtg_qut.CurrentCell.RowIndex;
                 DataGridViewRow edit_row = dtg_qut.Rows[rowIndex];
                 value1 = edit_row.Cells["PAYMENT_NO"].Value.ToString();
-              //  STATUS = edit_row.Cells["STATUS"].Value.ToString();
+                STATUS = edit_row.Cells["STATUS"].Value.ToString();
 
-                //if (STATUS == "ACTIVE")
-                //{
+                if (STATUS == "ACTIVE")
+                {
                     frm_payment detialform = new frm_payment();
                     detialform.mode = "DELETE PAYMENT";
                     detialform.MdiParent = frm_mid.ActiveForm;
@@ -123,11 +123,11 @@ namespace IMS
                     detialform.DELETE_form();
                     detialform.Show();
                     this.Hide();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("SORRY,LIST IS ALREADY CANCELED...\nPLEASE CHECK THE LIST ", "INVENTRY MANAGEMENT", MessageBoxButtons.OK);
-                //}
+                }
+                else
+                {
+                    MessageBox.Show("SORRY,LIST IS ALREADY CANCELED...\nPLEASE CHECK THE LIST ", "INVENTRY MANAGEMENT", MessageBoxButtons.OK);
+                }
             }
             else
             {
@@ -185,24 +185,24 @@ namespace IMS
                 int rowIndex = dtg_qut.CurrentCell.RowIndex;
                 DataGridViewRow edit_row = dtg_qut.Rows[rowIndex];
                 value1 = edit_row.Cells["PAYMENT_NO"].Value.ToString();
-                //STATUS = edit_row.Cells["STATUS"].Value.ToString();
+                STATUS = edit_row.Cells["STATUS"].Value.ToString();
 
-                //if (STATUS == "ACTIVE")
-                //{
+                if (STATUS == "ACTIVE")
+                {
                     frm_payment detialform = new frm_payment();
                     detialform.MdiParent = frm_mid.ActiveForm;
-                    detialform.mode = " VIEW PAYMENT";
+                    detialform.mode = "VIEW PAYMENT";
                    
                     //value2 = edit_row.Cells[0].Value.ToString();
                     //value2 = edit_row.Cells["CUSTOMER_ID"].Value.ToString();
                     detialform.view_form();
                     detialform.Show();
                     this.Hide();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("LIST IS CANCELED... \n PLEASE CHECK THE LIST ", "INVENTORY MANAGEMENT", MessageBoxButtons.OK);
-                //}
+                }
+                else
+                {
+                    MessageBox.Show("LIST IS CANCELED... \n PLEASE CHECK THE LIST ", "INVENTORY MANAGEMENT", MessageBoxButtons.OK);
+                }
             }
             else
             {
@@ -213,7 +213,7 @@ namespace IMS
         {
             txt_fillter.Text = "";
             from_date();
-            String str = "SELECT PAYMENT_ID , PAYMENT_NO,PAYMENT_DATE,CUSTOMER_NAME,RECEIVED_BY FROM T_PAYMENT_MAIN" +
+            String str = "SELECT PAYMENT_ID , PAYMENT_NO,PAYMENT_DATE,CUSTOMER_NAME,RECEIVED_BY,STATUS FROM T_PAYMENT_MAIN" +
                  "   INNER JOIN[M_CUSTOMER] ON [T_PAYMENT_MAIN].CUSTOMER_ID = [M_CUSTOMER].CUSTOMER_ID " +
                  " WHERE [T_PAYMENT_MAIN].COMPANY_ID =" + comp_id + "" +
                  " order by PAYMENT_ID desc";
@@ -567,7 +567,7 @@ namespace IMS
             //    column.HeaderCell.Style.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Pixel);
             //}
             ////dtg_inv.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dtg_inv.Width, dtg_inv.Height, 60, 70));
-            String str = "SELECT PAYMENT_ID , PAYMENT_NO,PAYMENT_DATE,CUSTOMER_NAME,RECEIVED_BY FROM T_PAYMENT_MAIN" +
+            String str = "SELECT PAYMENT_ID , PAYMENT_NO,PAYMENT_DATE,CUSTOMER_NAME,RECEIVED_BY,STATUS FROM T_PAYMENT_MAIN" +
                  "   INNER JOIN[M_CUSTOMER] ON [T_PAYMENT_MAIN].CUSTOMER_ID = [M_CUSTOMER].CUSTOMER_ID " +
                  " WHERE [T_PAYMENT_MAIN].COMPANY_ID =" + comp_id + "" +
                  " order by PAYMENT_ID desc";

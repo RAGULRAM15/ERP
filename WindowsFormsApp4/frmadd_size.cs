@@ -57,6 +57,9 @@ namespace IMS
             {
                 MessageBox.Show("PLEASE ENTER THE VALUE", "MESSAGE", MessageBoxButtons.OK);
             }
+            frmsize frm_District = new frmsize();
+            frm_District.MdiParent = frm_mid.ActiveForm;
+            frm_District.Show();
         }
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -71,9 +74,9 @@ namespace IMS
         private void frmadd_size_Load(object sender, EventArgs e)
         {
             this.Text = MODE;
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
-            btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
-            btnok.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnok.Width, btnok.Height, 20, 20));
+            //this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
+            //btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
+            //btnok.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnok.Width, btnok.Height, 20, 20));
             txt2.Text = frmsize.value1;
             txt1.Text = frmsize.value;
         }
@@ -81,6 +84,9 @@ namespace IMS
         private void btnclose_Click(object sender, EventArgs e)
         {
             this.Close();
+            frmsize frm_District = new frmsize();
+            frm_District.MdiParent = frm_mid.ActiveForm;
+            frm_District.Show();
         }
 
         private void frmadd_size_KeyDown(object sender, KeyEventArgs e)
@@ -88,6 +94,9 @@ namespace IMS
             if (e.KeyCode == Keys.X && e.Alt)
             {
                 this.Close();
+                frmsize frm_District = new frmsize();
+                frm_District.MdiParent = frm_mid.ActiveForm;
+                frm_District.Show();
             }
 
 
