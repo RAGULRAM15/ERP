@@ -49,6 +49,8 @@ namespace IMS
             this.btn_right = new System.Windows.Forms.Button();
             this.btn_up = new System.Windows.Forms.Button();
             this.DOWN = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -246,12 +248,36 @@ namespace IMS
             this.DOWN.UseVisualStyleBackColor = true;
             this.DOWN.Click += new System.EventHandler(this.DOWN_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(459, 538);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(10, 10);
+            this.textBox1.TabIndex = 64;
+            this.textBox1.Visible = false;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(459, 525);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(10, 25);
+            this.textBox2.TabIndex = 65;
+            this.textBox2.Visible = false;
+            // 
             // frmadd_item
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(479, 550);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.DOWN);
             this.Controls.Add(this.btn_up);
             this.Controls.Add(this.btn_right);
@@ -303,5 +329,7 @@ namespace IMS
         private System.Windows.Forms.Button btn_right;
         private System.Windows.Forms.Button btn_up;
         private System.Windows.Forms.Button DOWN;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

@@ -31,9 +31,9 @@ namespace IMS
         private void frmtax_add_Load(object sender, EventArgs e)
         {
             this.Text = MODE;
-            btnok.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnok.Width, btnok.Height, 20, 20));
-             btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
+            //btnok.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnok.Width, btnok.Height, 20, 20));
+            // btnclose.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btnclose.Width, btnclose.Height, 20, 20));
+            //this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
             txt3.Text = frmtax.value2;
             txt1.Text = frmtax.value;
             txt2.Text = frmtax.value1;
@@ -44,6 +44,9 @@ namespace IMS
             txt1.Text = "";
             txt2.Text = "";
             this.Close();
+            frmtax frm_District = new frmtax();
+            frm_District.MdiParent = frm_mid.ActiveForm;
+            frm_District.Show();
         }
 
         private void btnok_Click(object sender, EventArgs e)
@@ -81,6 +84,10 @@ namespace IMS
             {
                 MessageBox.Show("PLEASE ENTER THE VALUE", "MESSAGE", MessageBoxButtons.OK);
             }
+            this.Close();
+            frmtax frm_District = new frmtax();
+            frm_District.MdiParent = frm_mid.ActiveForm;
+            frm_District.Show();
         }
 
         private void frmtax_add_KeyDown(object sender, KeyEventArgs e)
@@ -88,6 +95,9 @@ namespace IMS
             if (e.KeyCode == Keys.X && e.Alt)
             {
                 this.Close();
+                frmtax frm_District = new frmtax();
+                frm_District.MdiParent = frm_mid.ActiveForm;
+                frm_District.Show();
             }
 
         }

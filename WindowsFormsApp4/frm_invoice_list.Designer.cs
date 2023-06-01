@@ -92,6 +92,7 @@ namespace IMS
             this.label9.TabIndex = 107;
             this.label9.Text = "LOAD";
             this.label9.Visible = false;
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // btn_load
             // 
@@ -115,6 +116,7 @@ namespace IMS
             this.txt_to.Size = new System.Drawing.Size(147, 21);
             this.txt_to.TabIndex = 105;
             this.txt_to.Value = new System.DateTime(2023, 3, 20, 0, 0, 0, 0);
+            this.txt_to.ValueChanged += new System.EventHandler(this.txt_to_ValueChanged);
             // 
             // txt_from
             // 
@@ -188,6 +190,7 @@ namespace IMS
             this.label6.Size = new System.Drawing.Size(24, 13);
             this.label6.TabIndex = 100;
             this.label6.Text = "TO";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // txt_fillter
             // 
@@ -303,7 +306,7 @@ namespace IMS
             this.btn_view.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_view.BackgroundImage")));
             this.btn_view.FlatAppearance.BorderSize = 0;
             this.btn_view.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_view.Location = new System.Drawing.Point(252, 0);
+            this.btn_view.Location = new System.Drawing.Point(240, 1);
             this.btn_view.Name = "btn_view";
             this.btn_view.Size = new System.Drawing.Size(48, 49);
             this.btn_view.TabIndex = 89;

@@ -261,7 +261,7 @@ namespace IMS
         {
             txt_fillter.Text = "";
             from_date();
-            String str = "SELECT  SALES_ORDER_NO,SALES_ORDER_DATE,CUSTOMER_NAME,TOTAL,STATUS FROM T_SALES_ORDER" +
+            String str = "SELECT  SALES_ORDER_NO,SALES_ORDER_DATE,CUSTOMER_NAME,NET_AMOUNT,STATUS FROM T_SALES_ORDER" +
                  "   INNER JOIN[M_CUSTOMER] ON [T_SALES_ORDER].CUSTOMER_ID = [M_CUSTOMER].CUSTOMER_ID " +
                  " WHERE [T_SALES_ORDER].COMPANY_ID =" + comp_id + "" +
                  " order by SALES_ORDER_ID desc";

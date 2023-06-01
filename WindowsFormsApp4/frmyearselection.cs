@@ -122,46 +122,48 @@ namespace IMS
         private void btnsubmit_Click(object sender, EventArgs e)
         {
             user_name = frm_login.USER_NAME;
-            String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
-            String Query;
+            //String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+            //String Query;
 
-            using (SqlConnection conn = new SqlConnection(ConnString))
+            //using (SqlConnection conn = new SqlConnection(ConnString))
+            //{
+
+            //    //comm.Connection = conn;
+
+            //    Query = @"INSERT INTO [F_YEAR] ([YEAR], [COMPANY], [ACTIVE], [CREATED_BY], [CREATED_ON]) VALUES ("
+
+            //                 + "'" + cmboname.Text + "',"
+            //                 + "'" + cmboyear.Text + "',"
+            //                 + "" + "1" + ","
+            //                + "" + "1" + ","
+            //                + "" + "GETDATE()" + " )";
+
+            //    //comm.CommandText = StrQuery;
+            //    //"INSERT INTO [T_QUOTATION](QUOTATION_NO,QUOTATION_DATE,DISCOUNT,TOTAL,CUSTOMER_NAME,CUSTOMER_ADDRESS,USER_NAME,ACTIVE) VALUES ("
+            //    //+ "'" + txtquotation.Text + "',"
+            //    //+ "'" + txt_datetime.Value.Date + "',"
+            //    //+ "'" + txt_sum_discount.Text + "',"
+            //    //+ "'" + txt_total_sum.Text + "',"
+            //    //+ "'" + txtcustomer.Text + "',"
+            //    //+ "'" + txtaddress.Text + "',"
+            //    //+ "'" + user_box.Text + "',"
+            //    //+ "'" + "1" + "')";
+
+
+            //    SqlCommand comm = new SqlCommand(Query, conn);
+            //    conn.Open();
+            //    comm.ExecuteNonQuery();
+            //}
+            if (cmboname.Text != "" && cmboyear.Text != "")
             {
-
-                //comm.Connection = conn;
-
-                Query = @"INSERT INTO [F_YEAR] ([YEAR], [COMPANY], [ACTIVE], [CREATED_BY], [CREATED_ON]) VALUES ("
-
-                             + "'" + cmboname.Text + "',"
-                             + "'" + cmboyear.Text + "',"
-                             + "" + "1" + ","
-                            + "" + "1" + ","
-                            + "" + "GETDATE()" + " )";
-
-                //comm.CommandText = StrQuery;
-                //"INSERT INTO [T_QUOTATION](QUOTATION_NO,QUOTATION_DATE,DISCOUNT,TOTAL,CUSTOMER_NAME,CUSTOMER_ADDRESS,USER_NAME,ACTIVE) VALUES ("
-                //+ "'" + txtquotation.Text + "',"
-                //+ "'" + txt_datetime.Value.Date + "',"
-                //+ "'" + txt_sum_discount.Text + "',"
-                //+ "'" + txt_total_sum.Text + "',"
-                //+ "'" + txtcustomer.Text + "',"
-                //+ "'" + txtaddress.Text + "',"
-                //+ "'" + user_box.Text + "',"
-                //+ "'" + "1" + "')";
-
-
-                SqlCommand comm = new SqlCommand(Query, conn);
-                conn.Open();
-                comm.ExecuteNonQuery();
+                frm_mid mdi = new frm_mid();
+                setcompanyname = cmboname.Text;
+                company_year = cmboyear.Text;
+                //mdi.ShowDialog();
+                mdi.Show();
+                this.Hide();
             }
-            frm_mid mdi = new frm_mid();
-            setcompanyname = cmboname.Text;
-            company_year = cmboyear.Text;
-            //mdi.ShowDialog();
-            mdi.Show();
-            this.Hide();
-
-            cleartxt();
+           // cleartxt();
         }
         public static int item1 { get; set; }
         public static int item2 { get; set; }
@@ -176,6 +178,11 @@ namespace IMS
         {
           item2 = cmboyear.SelectedIndex;
             cmboyear.Tag = item2;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

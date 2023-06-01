@@ -51,32 +51,25 @@ namespace IMS
 
                 //comm.Connection = conn;
 
-                Query = @"INSERT INTO [F_LOGIN] ([USER_NAME], [PASSWORD], [ACTIVE], [CREATED_BY]) VALUES ("
+                Query = @"SELECT  [USER_NAME], [PASSWORD] FROM [M_USER_MANAGEMENT] WHERE USER_NAME='" + txtuser.Text.ToUpper().Trim() + "' AND PASSWORD ='" + txtpassword.Text.Trim() + "'";
 
-                             + "'" + txtuser.Text + "',"
-                             + "'" + txtpassword.Text + "',"
-                             + "" + "1" + ","
-                            + "" + "1" + " )";
+                
 
-                //comm.CommandText = StrQuery;
-                //"INSERT INTO [T_QUOTATION](QUOTATION_NO,QUOTATION_DATE,DISCOUNT,TOTAL,CUSTOMER_NAME,CUSTOMER_ADDRESS,USER_NAME,ACTIVE) VALUES ("
-                //+ "'" + txtquotation.Text + "',"
-                //+ "'" + txt_datetime.Value.Date + "',"
-                //+ "'" + txt_sum_discount.Text + "',"
-                //+ "'" + txt_total_sum.Text + "',"
-                //+ "'" + txtcustomer.Text + "',"
-                //+ "'" + txtaddress.Text + "',"
-                //+ "'" + user_box.Text + "',"
-                //+ "'" + "1" + "')";
-
-
-                SqlCommand comm = new SqlCommand(Query, conn);
-                conn.Open();
-                comm.ExecuteNonQuery();
+                SqlDataAdapter comm = new SqlDataAdapter(Query, conn);
+                DataTable data = new DataTable();
+                comm.Fill(data);
+                if (data.Rows.Count == 1)
+                {
+                    frmyearselection fys = new frmyearselection();
+                    fys.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("INVALID USERNAME AND PASSWORD");
+                }
             }
-            frmyearselection fys = new frmyearselection();
-            fys.Show();
-            this.Hide();
+          
 
 
             //if (txtpassword.Text != string.Empty || txtuser.Text != string.Empty)

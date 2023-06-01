@@ -41,6 +41,7 @@ namespace IMS
             int nWidthEllipse,
             int nHeightEllipse
            );
+        public int COMPANY_ID { get; set; }
         private void frm_approval_Load(object sender, EventArgs e)
         {
             //drop_customer();
@@ -48,7 +49,8 @@ namespace IMS
             //btn_approve.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btn_approve.Width, btn_approve.Height, 30, 30));
             btn_unapprove.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btn_unapprove.Width, btn_unapprove.Height, 30, 30));
             //btn_close.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btn_close.Width, btn_close.Height, 30, 30));
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(3, 3, this.Width, this.Height, 20, 20));
+            //this.Region = Region.FromHrgn(CreateRoundRectRgn(3, 3, this.Width, this.Height, 20, 20));
+             COMPANY_ID = frm_mid.comp_id;
 
         }
         public void drop_customer()
@@ -93,6 +95,12 @@ namespace IMS
         {
             clear();
             this.Close();
+            frm_invoice_Approval newMDIChild = new frm_invoice_Approval();
+            // Set the Parent Form of the Child window.
+            newMDIChild.MdiParent = frm_mid.ActiveForm;
+
+            // Display the new form.
+            newMDIChild.Show();
         }
         String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
         private void btn_approve_Click(object sender, EventArgs e)
@@ -115,23 +123,26 @@ namespace IMS
                         //foreach (DataGridViewRow row in dgvitemform.Rows)
                         for (int i = 0; i < dtg_iapproval.Rows.Count; i++)
                         {
-                            String StrQuery = @"INSERT INTO [T_INVOICE_APPROVAL](APPROVAL,CUSTOMER_ID,INVOICE_NO,INVOICE_DATE,NET_AMOUNT,APPROVAL_CHECK,ACTIVE) VALUES ("
-                               + "'" + (rbtn_approve.Checked ? 1 : 0) + "',"
-                               + "'" + dtg_iapproval.Rows[i].Cells["CUSTOMER_ID"].Value + "',"
-                               + "'" + dtg_iapproval.Rows[i].Cells["INVOICE_NO"].Value + "', "
+                            if (dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value != DBNull.Value)
+                            {
+                                String StrQuery = @"INSERT INTO [T_INVOICE_APPROVAL](APPROVAL,CUSTOMER_ID,INVOICE_NO,INVOICE_DATE,NET_AMOUNT,APPROVAL_CHECK,ACTIVE,COMPANY_ID) VALUES ("
+                                   + "'" + (rbtn_approve.Checked ? 1 : 0) + "',"
+                                   + "'" + dtg_iapproval.Rows[i].Cells["CUSTOMER_ID"].Value + "',"
+                                   + "'" + dtg_iapproval.Rows[i].Cells["INVOICE_NO"].Value + "', "
 
-                               + "'" + dtg_iapproval.Rows[i].Cells["INVOICE_DATE"].Value + "' ,"
-                               + "'" + dtg_iapproval.Rows[i].Cells["NET_AMOUNT"].Value + "',"
-                               + "'" +((bool) dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value?1:0)+ "'," 
-                              +"'" + "1" + "')";
+                                   + "'" + dtg_iapproval.Rows[i].Cells["INVOICE_DATE"].Value + "' ,"
+                                   + "'" + dtg_iapproval.Rows[i].Cells["NET_AMOUNT"].Value + "',"
+                                   + "'" + ((bool)dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value ? 1 : 0) + "',"
+                                  + "'" + "1" + "',"
+                                  + "'" + COMPANY_ID + "')";
 
-                            builder.Append(StrQuery);
-
+                                builder.Append(StrQuery);
+                            }
                         }
                         foreach (DataGridViewRow row in dtg_iapproval.Rows)
                         {
                             int i = row.Cells["APPROVAL_CHECK"].RowIndex;
-                            if (row.Cells["APPROVAL_CHECK"].Value != null)
+                            if (row.Cells["APPROVAL_CHECK"].Value != DBNull.Value)
                             {
                                 String update = "UPDATE [T_INVOICE] SET APPROVAL_CHECK = '" + ((bool)dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value ? 1 : 0) + "'  WHERE CUSTOMER_ID ='" + txtcustomer.Tag + "' AND INVOICE_NO ='" + dtg_iapproval.Rows[i].Cells["INVOICE_NO"].Value + "'";
                                 builder.Append(update);
@@ -142,7 +153,7 @@ namespace IMS
                             }
                         }
                         MessageBox.Show("APPROVAL SUCESSFULLY", "Message", MessageBoxButtons.OK);
-
+                        
                     }
 
 
@@ -152,41 +163,46 @@ namespace IMS
 
 
                         //
+                        //for (int i = 0; i < dtg_iapproval.Rows.Count; i++)
+                        //{
+                        //    if (dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value != DBNull.Value)
+                        //    {
+                        //        String Query = @"INSERT INTO [T_INVOICE_UNAPPROVAL](UNAPPROVAL,CUSTOMER_ID,INVOICE_NO,INVOICE_DATE,NET_AMOUNT,ACTIVE,CREATED_BY) VALUES ("
+                        //       + "'" + (rbtn_unapprove.Checked ? 0 : 1) + "',"
+                        //       + "'" + dtg_iapproval.Rows[i].Cells["CUSTOMER_ID"].Value + "',"
+                        //       + "'" + dtg_iapproval.Rows[i].Cells["INVOICE_NO"].Value + "', "
+
+                        //       + "'" + dtg_iapproval.Rows[i].Cells["INVOICE_DATE"].Value + "' ,"
+                        //       + "'" + dtg_iapproval.Rows[i].Cells["NET_AMOUNT"].Value + "',"
+                        //       + "'" + ((bool)dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value ? 0 : 1) + "',"
+
+                        //       + "'" + "1" + "')";
+                        //        builder.Append(Query);
+                        //    }
+                        //}
+
                         for (int i = 0; i < dtg_iapproval.Rows.Count; i++)
                         {
-                            String Query = @"INSERT INTO [T_INVOICE_UNAPPROVAL](UNAPPROVAL,CUSTOMER_ID,INVOICE_NO,INVOICE_DATE,NET_AMOUNT,ACTIVE,CREATED_BY) VALUES ("
-                               + "'" + (rbtn_unapprove.Checked ? 0 : 1) + "',"
-                               + "'" + dtg_iapproval.Rows[i].Cells["CUSTOMER_ID"].Value + "',"
-                               + "'" + dtg_iapproval.Rows[i].Cells["INVOICE_NO"].Value + "', "
-
-                               + "'" + dtg_iapproval.Rows[i].Cells["INVOICE_DATE"].Value + "' ,"
-                               + "'" + dtg_iapproval.Rows[i].Cells["NET_AMOUNT"].Value + "',"
-                               + "'" + dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value + "',"
-
-                               + "'" + "1" + "')";
-                            builder.Append(Query);
-                        }
-
-                            foreach (DataGridViewRow row in dtg_iapproval.Rows)
+                            if (dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value != DBNull.Value)
                             {
-                            int i = row.Cells["APPROVAL_CHECK"].RowIndex;
-                                if (row.Cells["APPROVAL_CHECK"].Value != null)
-                                {
-                                    String update = "UPDATE [T_INVOICE_APPROVAL] SET APPROVAL_CHECK = '" + ((bool)dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value ? 0 : 1) + "'  WHERE CUSTOMER_ID ='" + txtcustomer.Tag + "' AND INVOICE_NO ='" + dtg_iapproval.Rows[i].Cells["INVOICE_NO"].Value + "'";
-                                    builder.Append(update);
-                                }
-                                else
-                                {
-                                    row.Cells["APPROVAL_CHECK"].Value = 0;
-                                }
+                                String update = "UPDATE [T_INVOICE] SET APPROVAL_CHECK = '" + ((bool)dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value ? 0 : 1) + "'  WHERE CUSTOMER_ID ='" + txtcustomer.Tag + "' AND INVOICE_NO ='" + dtg_iapproval.Rows[i].Cells["INVOICE_NO"].Value + "'";
+                                builder.Append(update);
+                                String update2 = "UPDATE [T_INVOICE_APPROVAL] SET APPROVAL_CHECK = '" + ((bool)dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value ? 0 : 1) + "'  WHERE CUSTOMER_ID ='" + txtcustomer.Tag + "' AND INVOICE_NO ='" + dtg_iapproval.Rows[i].Cells["INVOICE_NO"].Value + "'";
+                                builder.Append(update2);
                             }
+                            else
+                            {
+                                dtg_iapproval.Rows[i].Cells["APPROVAL_CHECK"].Value = 1;
+                            }
+                        } 
+                    
                         
                     
                 
                             
                         
                         MessageBox.Show("UNAPPROVAL SUCESSFULLY", "Message", MessageBoxButtons.OK);
-                        
+                      
                     }
                    
                     comm.CommandText = builder.ToString();
@@ -194,15 +210,30 @@ namespace IMS
                     comm.ExecuteNonQuery();
                     transaction.Commit();
                     clear();
+                   
+                    this.Close();
+                    frm_invoice_Approval newMDIChild = new frm_invoice_Approval();
+                    // Set the Parent Form of the Child window.
+                    newMDIChild.MdiParent = frm_mid.ActiveForm;
+
+                    // Display the new form.
+                    newMDIChild.Show();
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
                     MessageBox.Show(ex.Message);
+                    this.Close();
+                    frm_invoice_Approval newMDIChild = new frm_invoice_Approval();
+                    // Set the Parent Form of the Child window.
+                    newMDIChild.MdiParent = frm_mid.ActiveForm;
+
+                    // Display the new form.
+                    newMDIChild.Show();
                 }
 
             }
-            dtg_iapproval.Refresh();
+            
         }
 
         private void btn_unapprove_Click(object sender, EventArgs e)
@@ -237,7 +268,7 @@ namespace IMS
                 // String SQLQuery = "SELECT ROW_ID,ITEM_NAME,SIZE,STYLE_NAME,QUANTITY,RATE,DISCOUNT,TOTAL FROM T_INVOICE_ITEM WHERE INVOICE_NO = '" + txtinvoice.Text + "'";
                 String sqlquery = "SELECT INVOICE_NO,INVOICE_DATE,MC.CUSTOMER_NAME,NET_AMOUNT,TIA.CUSTOMER_ID,APPROVAL_CHECK  FROM T_INVOICE_APPROVAL  AS TIA " +
                     "INNER JOIN M_CUSTOMER AS MC ON TIA.CUSTOMER_ID = MC.CUSTOMER_ID " +
-                    "WHERE TIA.CUSTOMER_ID = '" + txtcustomer.Tag + "' AND TIA.APPROVAL_CHECK = 1";
+                    "WHERE TIA.CUSTOMER_ID = '" + txtcustomer.Tag + "'  AND TIA.COMPANY_ID=" + COMPANY_ID + " AND TIA.APPROVAL_CHECK = 1 ";
                 SqlDataAdapter da = new SqlDataAdapter(sqlquery, ConnString);
                 DataSet ds = new DataSet();
                 DataTable dt = new DataTable();
@@ -252,11 +283,11 @@ namespace IMS
                 String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
                 // String str = "Select * from T_QUOTATION_ITEM";
                 // String SQLQuery = "SELECT ROW_ID,ITEM_NAME,SIZE,STYLE_NAME,QUANTITY,RATE,DISCOUNT,TOTAL FROM T_INVOICE_ITEM WHERE INVOICE_NO = '" + txtinvoice.Text + "'";
-                
-                String sqlquery = "SELECT INVOICE_NO,INVOICE_DATE,[M_CUSTOMER].CUSTOMER_NAME,NET_AMOUNT," +
-                    "T_INVOICE.CUSTOMER_ID,T_INVOICE.APPROVAL_CHECK FROM T_INVOICE " +
+
+                String sqlquery = "SELECT INVOICE_NO,INVOICE_DATE,[M_CUSTOMER].CUSTOMER_NAME,NET_AMOUNT,T_INVOICE.CUSTOMER_ID,T_INVOICE.APPROVAL_CHECK FROM T_INVOICE  " +
                     "INNER JOIN[M_CUSTOMER]  ON T_INVOICE.CUSTOMER_ID = [M_CUSTOMER].CUSTOMER_ID " +
-                    "WHERE T_INVOICE.CUSTOMER_ID = '"+txtcustomer.Tag+ "' AND T_INVOICE.ACTIVE = " + "1"+"";
+                    "WHERE T_INVOICE.CUSTOMER_ID = '" + txtcustomer.Tag + "' AND T_INVOICE.ACTIVE = 1 AND T_INVOICE.COMPANY_ID=" + COMPANY_ID + " AND T_INVOICE.APPROVAL_CHECK IS NULL OR T_INVOICE.APPROVAL_CHECK = 0 ";
+                   
                 SqlDataAdapter da = new SqlDataAdapter(sqlquery, ConnString);
                 //SqlCommandBuilder CB = new SqlCommandBuilder(da);
                 DataSet ds = new DataSet();
@@ -291,6 +322,7 @@ namespace IMS
             if (e.KeyCode == Keys.F2)
             {
                 frmf2 popup = new frmf2();
+                popup.MdiParent = frm_mid.ActiveForm;
                 string _query = "SELECT CUSTOMER_ID AS [ID], CUSTOMER_NAME, CUSTOMER_TITLE FROM M_CUSTOMER WHERE ACTIVE = 1";
                 popup.ShowF2(_query, "CUSTOMER_NAME", ((TextBox)sender).Text, "CUSTOMER_NAME", sender);
             }
@@ -345,7 +377,23 @@ namespace IMS
             if (e.KeyCode == Keys.X && e.Alt)
             {
                 this.Close();
+                frm_invoice_Approval newMDIChild = new frm_invoice_Approval();
+                // Set the Parent Form of the Child window.
+                newMDIChild.MdiParent = frm_mid.ActiveForm;
+
+                // Display the new form.
+                newMDIChild.Show();
             }
+        }
+
+        private void txtcustomer_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnl_top_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

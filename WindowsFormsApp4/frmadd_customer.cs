@@ -241,13 +241,18 @@ namespace IMS
 
         private void btnclose_Click(object sender, EventArgs e)
         {
+            CLEAR();
             this.Close();
-            if(mode== "invoice customer")
+            if(mode != "invoice customer")
             {
-                this.Close();
-                frm_invoice invoice = new frm_invoice();
+               
+                frmcustomer invoice = new frmcustomer();
+                invoice.MdiParent = frm_mid.ActiveForm;
                 invoice.Show();
+                //frm_invoice invoice = new frm_invoice();
+                //invoice.Show();
             }
+            
         }
         public string mode { get; set; }
         private void btnok_Click(object sender, EventArgs e)
@@ -384,19 +389,29 @@ namespace IMS
                         }
                         MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
                         this.Close();
-                        frm_invoice invoice = new frm_invoice();
-                        invoice.Show();
+                        //frm_invoice invoice = new frm_invoice();
+                        //invoice.Show();
                     }
                 }
                 // conn.Close();
+               
 
-            
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             CLEAR();
+
+            if (mode != "invoice customer")
+            {
+                this.Close();
+                frmcustomer invoice = new frmcustomer();
+                invoice.MdiParent = frm_mid.ActiveForm;
+                invoice.Show();
+                //frm_invoice invoice = new frm_invoice();
+                //invoice.Show();
+            }
         }
         public void CLEAR()
         {
@@ -509,6 +524,15 @@ namespace IMS
             {
                 CLEAR();
                 this.Close();
+                if (mode != "invoice customer")
+                {
+                   
+                    frmcustomer invoice = new frmcustomer();
+                    invoice.MdiParent = frm_mid.ActiveForm;
+                    invoice.Show();
+                    //frm_invoice invoice = new frm_invoice();
+                    //invoice.Show();
+                }
             }
         }
     }

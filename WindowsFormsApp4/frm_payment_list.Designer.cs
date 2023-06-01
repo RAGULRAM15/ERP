@@ -66,6 +66,7 @@ namespace IMS
             this.PAYMENT_DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customer_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RECEIVED = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.txtquotation = new System.Windows.Forms.TextBox();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
@@ -286,7 +287,7 @@ namespace IMS
             this.btn_view.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_view.BackgroundImage")));
             this.btn_view.FlatAppearance.BorderSize = 0;
             this.btn_view.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_view.Location = new System.Drawing.Point(252, 0);
+            this.btn_view.Location = new System.Drawing.Point(240, 3);
             this.btn_view.Name = "btn_view";
             this.btn_view.Size = new System.Drawing.Size(48, 49);
             this.btn_view.TabIndex = 111;
@@ -315,7 +316,8 @@ namespace IMS
             this.PAYMENT_NO,
             this.PAYMENT_DATE,
             this.customer_name,
-            this.RECEIVED});
+            this.RECEIVED,
+            this.status});
             this.dtg_qut.Cursor = System.Windows.Forms.Cursors.Default;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
@@ -414,6 +416,14 @@ namespace IMS
             this.RECEIVED.Name = "RECEIVED";
             this.RECEIVED.ReadOnly = true;
             // 
+            // status
+            // 
+            this.status.DataPropertyName = "status";
+            this.status.HeaderText = "status";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Visible = false;
+            // 
             // printPreviewDialog
             // 
             this.printPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
@@ -503,5 +513,6 @@ namespace IMS
         private System.Windows.Forms.DataGridViewTextBoxColumn PAYMENT_DATE;
         private System.Windows.Forms.DataGridViewTextBoxColumn customer_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn RECEIVED;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
     }
 }

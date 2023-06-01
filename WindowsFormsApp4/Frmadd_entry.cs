@@ -31,7 +31,7 @@ namespace IMS
         private void Frmadd_entry_Load(object sender, EventArgs e)
         {
             this.Text = MODE;
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
+            //this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
             txt1.Text = frm_entry.value;
         }
 
@@ -51,18 +51,26 @@ namespace IMS
 
 
                 MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
-                txt1.Text = "";
+               
 
             }
             else
             {
                 MessageBox.Show("PLEASE ENTER THE VALUE", "MESSAGE", MessageBoxButtons.OK);
             }
+            txt1.Text = "";
+            frm_entry frm_Entry = new frm_entry();
+            frm_Entry.MdiParent = frm_mid.ActiveForm;
+            frm_Entry.Show();
         }
 
         private void btnclose_Click(object sender, EventArgs e)
         {
+            txt1.Text = "";
             this.Close();
+            frm_entry frm_Entry = new frm_entry();
+            frm_Entry.MdiParent = frm_mid.ActiveForm;
+            frm_Entry.Show();
         }
 
         private void Frmadd_entry_KeyDown(object sender, KeyEventArgs e)
@@ -70,6 +78,9 @@ namespace IMS
             if (e.KeyCode == Keys.X && e.Alt)
             {
                 this.Close();
+                frm_entry frm_Entry = new frm_entry();
+                frm_Entry.MdiParent = frm_mid.ActiveForm;
+                frm_Entry.Show();
             }
         }
     }

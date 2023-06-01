@@ -42,28 +42,34 @@ namespace IMS
             // 
             // btnclose
             // 
+            this.btnclose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.btnclose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnclose.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnclose.Location = new System.Drawing.Point(328, 382);
             this.btnclose.Name = "btnclose";
             this.btnclose.Size = new System.Drawing.Size(75, 23);
             this.btnclose.TabIndex = 17;
             this.btnclose.Text = "&CLOSE";
-            this.btnclose.UseVisualStyleBackColor = true;
+            this.btnclose.UseVisualStyleBackColor = false;
             this.btnclose.Click += new System.EventHandler(this.btnclose_Click);
             // 
             // btnok
             // 
+            this.btnok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(107)))), ((int)(((byte)(192)))));
+            this.btnok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnok.Font = new System.Drawing.Font("Arial Narrow", 9F);
             this.btnok.Location = new System.Drawing.Point(198, 382);
             this.btnok.Name = "btnok";
             this.btnok.Size = new System.Drawing.Size(75, 23);
             this.btnok.TabIndex = 16;
             this.btnok.Text = "&OK";
-            this.btnok.UseVisualStyleBackColor = true;
+            this.btnok.UseVisualStyleBackColor = false;
             this.btnok.Click += new System.EventHandler(this.btnok_Click);
             // 
             // dgvHelp
             // 
             this.dgvHelp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvHelp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(214)))), ((int)(((byte)(241)))));
+            this.dgvHelp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(230)))), ((int)(((byte)(241)))));
             this.dgvHelp.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvHelp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHelp.Location = new System.Drawing.Point(12, 94);
@@ -136,8 +142,7 @@ namespace IMS
             this.Controls.Add(this.txtSearch);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmf5";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmf5";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmf5_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHelp)).EndInit();
             this.ResumeLayout(false);

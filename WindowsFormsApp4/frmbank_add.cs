@@ -32,7 +32,7 @@ namespace IMS
         private void frmbank_add_Load(object sender, EventArgs e)
         {
             this.Text = MODE;
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
+            //this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
             txt1.Text = frm_bank.value;
             txt2.Text = frm_bank.value1;
             txt3.Text = frm_bank.value2;
@@ -78,18 +78,34 @@ namespace IMS
             {
                 MessageBox.Show("PLEASE ENTER THE VALUE", "MESSAGE", MessageBoxButtons.OK);
             }
+            this.Close();
+            frm_bank frm_District = new frm_bank();
+            frm_District.MdiParent = frm_mid.ActiveForm;
+            frm_District.Show();
         }
 
         private void btnclose_Click(object sender, EventArgs e)
         {
+            txt1.Text = "";
+            txt2.Text = "";
+            txt3.Text = "";
             this.Close();
+            frm_bank frm_District = new frm_bank();
+            frm_District.MdiParent = frm_mid.ActiveForm;
+            frm_District.Show();
         }
 
         private void frmbank_add_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.X && e.Alt)
             {
+                txt1.Text = "";
+                txt2.Text = "";
+                txt3.Text = "";
                 this.Close();
+                frm_bank frm_District = new frm_bank();
+                frm_District.MdiParent = frm_mid.ActiveForm;
+                frm_District.Show();
             }
         }
     }

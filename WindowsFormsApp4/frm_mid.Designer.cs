@@ -36,11 +36,10 @@ namespace IMS
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.tRANSACTIONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.qUOTATIONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sALESORDERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iNVOICEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iNVOICEAPPROVALToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pAYMENTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cRIDITNOTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sALESORDERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip3 = new System.Windows.Forms.MenuStrip();
             this.rEPORTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.qUOTATIONToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,17 +90,6 @@ namespace IMS
             this.pnltop = new System.Windows.Forms.Panel();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pnlright = new System.Windows.Forms.Panel();
-            this.pnlprofile_ = new System.Windows.Forms.Panel();
-            this.pnlclose = new System.Windows.Forms.Panel();
-            this.btn_close = new System.Windows.Forms.Button();
-            this.btn_forgot = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.btn_create_user = new System.Windows.Forms.Button();
-            this.txt_no = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txt_item = new System.Windows.Forms.TextBox();
             this.pnlleft.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.menuStrip2.SuspendLayout();
@@ -114,9 +102,6 @@ namespace IMS
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnltop.SuspendLayout();
-            this.pnlright.SuspendLayout();
-            this.pnlprofile_.SuspendLayout();
-            this.pnlclose.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlleft
@@ -126,7 +111,7 @@ namespace IMS
             this.pnlleft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlleft.Location = new System.Drawing.Point(0, 75);
             this.pnlleft.Name = "pnlleft";
-            this.pnlleft.Size = new System.Drawing.Size(114, 474);
+            this.pnlleft.Size = new System.Drawing.Size(102, 474);
             this.pnlleft.TabIndex = 9;
             // 
             // tableLayoutPanel2
@@ -151,7 +136,7 @@ namespace IMS
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(114, 474);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(102, 474);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // menuStrip2
@@ -162,7 +147,7 @@ namespace IMS
             this.tRANSACTIONToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 134);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(114, 67);
+            this.menuStrip2.Size = new System.Drawing.Size(102, 67);
             this.menuStrip2.TabIndex = 1;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -170,11 +155,10 @@ namespace IMS
             // 
             this.tRANSACTIONToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.qUOTATIONToolStripMenuItem,
+            this.sALESORDERToolStripMenuItem,
             this.iNVOICEToolStripMenuItem,
             this.iNVOICEAPPROVALToolStripMenuItem,
-            this.pAYMENTToolStripMenuItem,
-            this.cRIDITNOTEToolStripMenuItem,
-            this.sALESORDERToolStripMenuItem});
+            this.pAYMENTToolStripMenuItem});
             this.tRANSACTIONToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tRANSACTIONToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("tRANSACTIONToolStripMenuItem.Image")));
             this.tRANSACTIONToolStripMenuItem.Name = "tRANSACTIONToolStripMenuItem";
@@ -190,6 +174,13 @@ namespace IMS
             this.qUOTATIONToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.qUOTATIONToolStripMenuItem.Text = "QUOTATION";
             this.qUOTATIONToolStripMenuItem.Click += new System.EventHandler(this.mnuquotation_Click);
+            // 
+            // sALESORDERToolStripMenuItem
+            // 
+            this.sALESORDERToolStripMenuItem.Name = "sALESORDERToolStripMenuItem";
+            this.sALESORDERToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sALESORDERToolStripMenuItem.Text = "SALES ORDER";
+            this.sALESORDERToolStripMenuItem.Click += new System.EventHandler(this.mnuORDERLIST_Click);
             // 
             // iNVOICEToolStripMenuItem
             // 
@@ -214,20 +205,6 @@ namespace IMS
             this.pAYMENTToolStripMenuItem.Text = "PAYMENT";
             this.pAYMENTToolStripMenuItem.Click += new System.EventHandler(this.mnupayment_Click);
             // 
-            // cRIDITNOTEToolStripMenuItem
-            // 
-            this.cRIDITNOTEToolStripMenuItem.Name = "cRIDITNOTEToolStripMenuItem";
-            this.cRIDITNOTEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cRIDITNOTEToolStripMenuItem.Text = "CRIDIT NOTE";
-            this.cRIDITNOTEToolStripMenuItem.Click += new System.EventHandler(this.mnudebit_Click);
-            // 
-            // sALESORDERToolStripMenuItem
-            // 
-            this.sALESORDERToolStripMenuItem.Name = "sALESORDERToolStripMenuItem";
-            this.sALESORDERToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sALESORDERToolStripMenuItem.Text = "SALES ORDER";
-            this.sALESORDERToolStripMenuItem.Click += new System.EventHandler(this.mnuORDERLIST_Click);
-            // 
             // menuStrip3
             // 
             this.menuStrip3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(232)))), ((int)(((byte)(237)))));
@@ -236,7 +213,7 @@ namespace IMS
             this.rEPORTToolStripMenuItem});
             this.menuStrip3.Location = new System.Drawing.Point(0, 201);
             this.menuStrip3.Name = "menuStrip3";
-            this.menuStrip3.Size = new System.Drawing.Size(114, 67);
+            this.menuStrip3.Size = new System.Drawing.Size(102, 67);
             this.menuStrip3.TabIndex = 2;
             this.menuStrip3.Text = "menuStrip3";
             // 
@@ -289,7 +266,7 @@ namespace IMS
             this.sETUPToolStripMenuItem});
             this.menuStrip4.Location = new System.Drawing.Point(0, 268);
             this.menuStrip4.Name = "menuStrip4";
-            this.menuStrip4.Size = new System.Drawing.Size(114, 67);
+            this.menuStrip4.Size = new System.Drawing.Size(102, 67);
             this.menuStrip4.TabIndex = 3;
             this.menuStrip4.Text = "menuStrip4";
             // 
@@ -326,6 +303,7 @@ namespace IMS
             this.cHANGEPASSWORDToolStripMenuItem.Name = "cHANGEPASSWORDToolStripMenuItem";
             this.cHANGEPASSWORDToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.cHANGEPASSWORDToolStripMenuItem.Text = "CHANGE PASSWORD";
+            this.cHANGEPASSWORDToolStripMenuItem.Click += new System.EventHandler(this.cHANGEPASSWORDToolStripMenuItem_Click);
             // 
             // uSERToolStripMenuItem
             // 
@@ -347,7 +325,7 @@ namespace IMS
             this.tOOLSToolStripMenuItem});
             this.menuStrip5.Location = new System.Drawing.Point(0, 335);
             this.menuStrip5.Name = "menuStrip5";
-            this.menuStrip5.Size = new System.Drawing.Size(114, 67);
+            this.menuStrip5.Size = new System.Drawing.Size(102, 67);
             this.menuStrip5.TabIndex = 4;
             this.menuStrip5.Text = "menuStrip5";
             // 
@@ -392,7 +370,7 @@ namespace IMS
             this.eXITToolStripMenuItem});
             this.menuStrip6.Location = new System.Drawing.Point(0, 402);
             this.menuStrip6.Name = "menuStrip6";
-            this.menuStrip6.Size = new System.Drawing.Size(114, 72);
+            this.menuStrip6.Size = new System.Drawing.Size(102, 72);
             this.menuStrip6.TabIndex = 5;
             this.menuStrip6.Text = "menuStrip6";
             // 
@@ -415,7 +393,7 @@ namespace IMS
             this.hOMEToolStripMenuItem});
             this.menuStrip7.Location = new System.Drawing.Point(0, 0);
             this.menuStrip7.Name = "menuStrip7";
-            this.menuStrip7.Size = new System.Drawing.Size(114, 67);
+            this.menuStrip7.Size = new System.Drawing.Size(102, 67);
             this.menuStrip7.TabIndex = 6;
             this.menuStrip7.Text = "menuStrip7";
             // 
@@ -438,7 +416,7 @@ namespace IMS
             this.mASTERToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 67);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(114, 67);
+            this.menuStrip1.Size = new System.Drawing.Size(102, 67);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -553,15 +531,15 @@ namespace IMS
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(123)))), ((int)(((byte)(124)))));
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(232)))), ((int)(((byte)(237)))));
             this.tableLayoutPanel1.ColumnCount = 7;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.890173F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 97.10983F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 476F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 418F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 236F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 191F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtdate, 5, 1);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 1, 0);
@@ -580,9 +558,9 @@ namespace IMS
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.01961F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.98039F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1187, 75);
             this.tableLayoutPanel1.TabIndex = 2;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // label5
             // 
@@ -595,25 +573,25 @@ namespace IMS
             // 
             // txtdate
             // 
-            this.txtdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(123)))), ((int)(((byte)(124)))));
+            this.txtdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(232)))), ((int)(((byte)(237)))));
             this.txtdate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtdate.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdate.Location = new System.Drawing.Point(951, 39);
+            this.txtdate.Location = new System.Drawing.Point(942, 39);
             this.txtdate.Name = "txtdate";
             this.txtdate.ReadOnly = true;
             this.txtdate.Size = new System.Drawing.Size(112, 23);
             this.txtdate.TabIndex = 48;
             this.txtdate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtdate.TextChanged += new System.EventHandler(this.txtdate_TextChanged);
+            this.txtdate.Visible = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(4, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(5, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.tableLayoutPanel1.SetRowSpan(this.pictureBox1, 2);
-            this.pictureBox1.Size = new System.Drawing.Size(38, 69);
+            this.pictureBox1.Size = new System.Drawing.Size(86, 69);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -623,7 +601,7 @@ namespace IMS
             this.lbl_cname.AutoSize = true;
             this.lbl_cname.Dock = System.Windows.Forms.DockStyle.Right;
             this.lbl_cname.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_cname.Location = new System.Drawing.Point(945, 0);
+            this.lbl_cname.Location = new System.Drawing.Point(936, 0);
             this.lbl_cname.Name = "lbl_cname";
             this.lbl_cname.Size = new System.Drawing.Size(0, 36);
             this.lbl_cname.TabIndex = 2;
@@ -635,7 +613,7 @@ namespace IMS
             this.lbl_fyear.AutoSize = true;
             this.lbl_fyear.Dock = System.Windows.Forms.DockStyle.Right;
             this.lbl_fyear.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fyear.Location = new System.Drawing.Point(945, 36);
+            this.lbl_fyear.Location = new System.Drawing.Point(936, 36);
             this.lbl_fyear.Name = "lbl_fyear";
             this.lbl_fyear.Size = new System.Drawing.Size(0, 39);
             this.lbl_fyear.TabIndex = 3;
@@ -654,31 +632,30 @@ namespace IMS
             this.btnprofile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnprofile.FlatAppearance.BorderSize = 0;
             this.btnprofile.Image = ((System.Drawing.Image)(resources.GetObject("btnprofile.Image")));
-            this.btnprofile.Location = new System.Drawing.Point(1069, 3);
+            this.btnprofile.Location = new System.Drawing.Point(1060, 3);
             this.btnprofile.Name = "btnprofile";
-            this.btnprofile.Size = new System.Drawing.Size(115, 30);
+            this.btnprofile.Size = new System.Drawing.Size(124, 30);
             this.btnprofile.TabIndex = 2;
             this.btnprofile.UseVisualStyleBackColor = true;
             this.btnprofile.Click += new System.EventHandler(this.btnprofile_Click);
             // 
             // txttime
             // 
-            this.txttime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(123)))), ((int)(((byte)(124)))));
+            this.txttime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(232)))), ((int)(((byte)(237)))));
             this.txttime.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txttime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txttime.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttime.Location = new System.Drawing.Point(951, 3);
+            this.txttime.Location = new System.Drawing.Point(942, 3);
             this.txttime.Name = "txttime";
             this.txttime.ReadOnly = true;
             this.txttime.Size = new System.Drawing.Size(112, 23);
             this.txttime.TabIndex = 9;
             this.txttime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txttime.TextChanged += new System.EventHandler(this.txttime_TextChanged);
             // 
             // lbl_comp_tag
             // 
             this.lbl_comp_tag.AutoSize = true;
-            this.lbl_comp_tag.Location = new System.Drawing.Point(524, 0);
+            this.lbl_comp_tag.Location = new System.Drawing.Point(515, 0);
             this.lbl_comp_tag.Name = "lbl_comp_tag";
             this.lbl_comp_tag.Size = new System.Drawing.Size(35, 13);
             this.lbl_comp_tag.TabIndex = 49;
@@ -688,7 +665,7 @@ namespace IMS
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 0);
+            this.label2.Location = new System.Drawing.Point(97, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 10;
@@ -696,7 +673,7 @@ namespace IMS
             // lbl_year_tag
             // 
             this.lbl_year_tag.AutoSize = true;
-            this.lbl_year_tag.Location = new System.Drawing.Point(524, 36);
+            this.lbl_year_tag.Location = new System.Drawing.Point(515, 36);
             this.lbl_year_tag.Name = "lbl_year_tag";
             this.lbl_year_tag.Size = new System.Drawing.Size(35, 13);
             this.lbl_year_tag.TabIndex = 50;
@@ -715,144 +692,11 @@ namespace IMS
             // Timer
             // 
             this.Timer.Interval = 1000000;
-            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // timer1
             // 
             this.timer1.Interval = 1000000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // pnlright
-            // 
-            this.pnlright.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pnlright.Controls.Add(this.pnlprofile_);
-            this.pnlright.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlright.Enabled = false;
-            this.pnlright.Location = new System.Drawing.Point(939, 75);
-            this.pnlright.Name = "pnlright";
-            this.pnlright.Size = new System.Drawing.Size(248, 474);
-            this.pnlright.TabIndex = 11;
-            this.pnlright.Visible = false;
-            // 
-            // pnlprofile_
-            // 
-            this.pnlprofile_.Controls.Add(this.pnlclose);
-            this.pnlprofile_.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlprofile_.Location = new System.Drawing.Point(0, 0);
-            this.pnlprofile_.Name = "pnlprofile_";
-            this.pnlprofile_.Size = new System.Drawing.Size(248, 301);
-            this.pnlprofile_.TabIndex = 0;
-            // 
-            // pnlclose
-            // 
-            this.pnlclose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(246)))));
-            this.pnlclose.Controls.Add(this.btn_close);
-            this.pnlclose.Controls.Add(this.btn_forgot);
-            this.pnlclose.Controls.Add(this.label1);
-            this.pnlclose.Controls.Add(this.label13);
-            this.pnlclose.Controls.Add(this.btn_create_user);
-            this.pnlclose.Controls.Add(this.txt_no);
-            this.pnlclose.Controls.Add(this.label7);
-            this.pnlclose.Controls.Add(this.txt_item);
-            this.pnlclose.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlclose.Location = new System.Drawing.Point(0, 0);
-            this.pnlclose.Name = "pnlclose";
-            this.pnlclose.Size = new System.Drawing.Size(248, 301);
-            this.pnlclose.TabIndex = 2;
-            // 
-            // btn_close
-            // 
-            this.btn_close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btn_close.FlatAppearance.BorderSize = 0;
-            this.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_close.Font = new System.Drawing.Font("Century Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_close.ForeColor = System.Drawing.Color.Black;
-            this.btn_close.Location = new System.Drawing.Point(198, 6);
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(38, 37);
-            this.btn_close.TabIndex = 0;
-            this.btn_close.Text = "x";
-            this.btn_close.UseVisualStyleBackColor = false;
-            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
-            // btn_forgot
-            // 
-            this.btn_forgot.FlatAppearance.BorderSize = 0;
-            this.btn_forgot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_forgot.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_forgot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.btn_forgot.Location = new System.Drawing.Point(46, 260);
-            this.btn_forgot.Name = "btn_forgot";
-            this.btn_forgot.Size = new System.Drawing.Size(157, 27);
-            this.btn_forgot.TabIndex = 68;
-            this.btn_forgot.Text = "FORGOT PASSWORDS";
-            this.btn_forgot.UseVisualStyleBackColor = true;
-            this.btn_forgot.Click += new System.EventHandler(this.btn_forgot_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(106, 234);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 23);
-            this.label1.TabIndex = 67;
-            this.label1.Text = "OR";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Emoji", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(41, 58);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(32, 26);
-            this.label13.TabIndex = 62;
-            this.label13.Text = "ID";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btn_create_user
-            // 
-            this.btn_create_user.FlatAppearance.BorderSize = 0;
-            this.btn_create_user.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_create_user.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_create_user.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.btn_create_user.Location = new System.Drawing.Point(30, 204);
-            this.btn_create_user.Name = "btn_create_user";
-            this.btn_create_user.Size = new System.Drawing.Size(190, 27);
-            this.btn_create_user.TabIndex = 66;
-            this.btn_create_user.Text = "CREATE NEW ACCOUNT";
-            this.btn_create_user.UseVisualStyleBackColor = true;
-            this.btn_create_user.Click += new System.EventHandler(this.btn_create_user_Click);
-            // 
-            // txt_no
-            // 
-            this.txt_no.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_no.Location = new System.Drawing.Point(110, 62);
-            this.txt_no.Name = "txt_no";
-            this.txt_no.Size = new System.Drawing.Size(126, 25);
-            this.txt_no.TabIndex = 64;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Emoji", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(25, 108);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 26);
-            this.label7.TabIndex = 63;
-            this.label7.Text = "USER";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txt_item
-            // 
-            this.txt_item.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_item.Location = new System.Drawing.Point(110, 108);
-            this.txt_item.Name = "txt_item";
-            this.txt_item.Size = new System.Drawing.Size(126, 25);
-            this.txt_item.TabIndex = 65;
             // 
             // frm_mid
             // 
@@ -860,11 +704,10 @@ namespace IMS
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1187, 549);
-            this.Controls.Add(this.pnlright);
             this.Controls.Add(this.pnlleft);
             this.Controls.Add(this.pnltop);
+            this.IsMdiContainer = true;
             this.Name = "frm_mid";
-            this.Text = "frm_mid";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm_mid_Load);
             this.pnlleft.ResumeLayout(false);
@@ -888,10 +731,6 @@ namespace IMS
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnltop.ResumeLayout(false);
-            this.pnlright.ResumeLayout(false);
-            this.pnlprofile_.ResumeLayout(false);
-            this.pnlclose.ResumeLayout(false);
-            this.pnlclose.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -910,17 +749,6 @@ namespace IMS
         private System.Windows.Forms.Panel pnltop;
         private System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Panel pnlright;
-        private System.Windows.Forms.Panel pnlprofile_;
-        private System.Windows.Forms.Panel pnlclose;
-        private System.Windows.Forms.Button btn_close;
-        private System.Windows.Forms.Button btn_forgot;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button btn_create_user;
-        private System.Windows.Forms.TextBox txt_no;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txt_item;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbl_comp_tag;
         private System.Windows.Forms.Label lbl_year_tag;
@@ -966,7 +794,6 @@ namespace IMS
         private System.Windows.Forms.ToolStripMenuItem cUSTOMERToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cOMPANYToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eNTRYNAMEToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cRIDITNOTEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sALESORDERToolStripMenuItem;
     }
 }

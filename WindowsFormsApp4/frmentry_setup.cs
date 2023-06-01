@@ -29,8 +29,6 @@ namespace IMS
          );
         private void frmentry_setup_Load(object sender, EventArgs e)
         {
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(3, 3, this.Width, this.Height, 20, 20));
-            dtg_entrysetup.Region = Region.FromHrgn(CreateRoundRectRgn(3, 3, dtg_entrysetup.Width, dtg_entrysetup.Height, 20, 20));
 
             //String c;
             String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";

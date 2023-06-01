@@ -119,9 +119,9 @@ namespace IMS
             this.Controls.Add(this.dgvHelp);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txtSearch);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmf2";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmf2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmf2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHelp)).EndInit();
             this.ResumeLayout(false);

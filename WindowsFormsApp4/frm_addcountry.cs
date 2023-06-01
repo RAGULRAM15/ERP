@@ -55,10 +55,7 @@ namespace IMS
                 CONN.Close();
                 MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
 
-                txtcode.Text = "";
-                txtcountry.Text = "";
-                txt3.Text = "";
-
+               
             }
             else if (txt3.Text != "")
             {
@@ -71,19 +68,27 @@ namespace IMS
                 CONN.Close();
                 MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
 
-                txtcode.Text = "";
-                txtcountry.Text = "";
-                txt3.Text = "";
+               
             }
             else  
             {
                 MessageBox.Show("PLEASE ENTER THE VALUE", "MESSAGE", MessageBoxButtons.OK);
             }
+            txtcode.Text = "";
+            txtcountry.Text = "";
+            txt3.Text = "";
+            frm_country _Country = new frm_country();
+            _Country.Show();
+            this.Close();
         }
 
         private void btnclose_Click(object sender, EventArgs e)
         {
-
+            txtcode.Text = "";
+            txtcountry.Text = "";
+            txt3.Text = "";
+            frm_country _Country = new frm_country();
+            _Country.Show();
             this.Close();
         }
 

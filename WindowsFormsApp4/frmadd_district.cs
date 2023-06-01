@@ -31,7 +31,7 @@ namespace IMS
         private void frmadd_district_Load(object sender, EventArgs e)
         {
             this.Text = MODE;
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
+            //this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
             txt3.Text = frm_district.value2;
             txt1.Text = frm_district.value;
             txt2.Text = frm_district.value1;
@@ -91,9 +91,7 @@ namespace IMS
 
 
                 MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
-                txt1.Text = "";
-                txt2.Text = "";
-                txt3.Text = "";
+               
             }
             else if (txt3.Text!="")
             {
@@ -107,26 +105,43 @@ namespace IMS
 
 
                 MessageBox.Show("SAVED SUCESSFULLY", "Message", MessageBoxButtons.OK);
-                txt1.Text = "";
-                txt2.Text = "";
-                txt3.Text = "";
+                
             }
             else
             {
                 MessageBox.Show("PLEASE ENTER THE VALUE", "MESSAGE", MessageBoxButtons.OK);
             }
+            txt1.Text = "";
+            txt2.Text = "";
+            txt3.Text = "";
+            this.Close();
+            frm_district frm_District = new frm_district();
+            frm_District.MdiParent = frm_mid.ActiveForm;
+            frm_District.Show();
         }
 
         private void btnclose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            txt1.Text = "";
+            txt2.Text = "";
+            txt3.Text = "";
+            this.Close(); 
+            frm_district frm_District = new frm_district();
+            frm_District.MdiParent = frm_mid.ActiveForm;
+            frm_District.Show();
         }
 
         private void frmadd_district_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.X && e.Alt)
             {
+                txt1.Text = "";
+                txt2.Text = "";
+                txt3.Text = "";
                 this.Close();
+                frm_district frm_District = new frm_district();
+                frm_District.MdiParent = frm_mid.ActiveForm;
+                frm_District.Show();
             }
         }
     }

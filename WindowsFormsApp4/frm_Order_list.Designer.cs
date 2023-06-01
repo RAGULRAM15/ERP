@@ -192,7 +192,7 @@ namespace IMS
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(249, 56);
+            this.label5.Location = new System.Drawing.Point(249, 57);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 120;
@@ -281,7 +281,7 @@ namespace IMS
             this.btn_view.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_view.BackgroundImage")));
             this.btn_view.FlatAppearance.BorderSize = 0;
             this.btn_view.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_view.Location = new System.Drawing.Point(252, 0);
+            this.btn_view.Location = new System.Drawing.Point(240, 4);
             this.btn_view.Name = "btn_view";
             this.btn_view.Size = new System.Drawing.Size(48, 49);
             this.btn_view.TabIndex = 111;

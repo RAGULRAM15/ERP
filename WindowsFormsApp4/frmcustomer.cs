@@ -138,7 +138,7 @@ namespace IMS
        );
         private void frmcustomer_Load(object sender, EventArgs e)
         {
-            dtgF4.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dtgF4.Width, dtgF4.Height, 20, 20));
+            //dtgF4.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, dtgF4.Width, dtgF4.Height, 20, 20));
             refresh();
         }
 

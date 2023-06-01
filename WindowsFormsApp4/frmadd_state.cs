@@ -31,7 +31,7 @@ namespace IMS
         private void frmadd_state_Load(object sender, EventArgs e)
         {
             this.Text = MODE;
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
+           // this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
             txt3.Text = frm_state.value2;
             txt1.Text = frm_state.value;
             txt2.Text = frm_state.value1;
@@ -114,11 +114,17 @@ namespace IMS
             {
                 MessageBox.Show("PLEASE ENTER THE VALUE", "MESSAGE", MessageBoxButtons.OK);
             }
+            frm_state frm_District = new frm_state();
+            frm_District.MdiParent = frm_mid.ActiveForm;
+            frm_District.Show();
         }
 
         private void btnclose_Click(object sender, EventArgs e)
         {
             this.Close();
+            frm_state frm_District = new frm_state();
+            frm_District.MdiParent = frm_mid.ActiveForm;
+            frm_District.Show();
         }
 
         private void frmadd_state_KeyDown(object sender, KeyEventArgs e)
@@ -126,6 +132,9 @@ namespace IMS
             if (e.KeyCode == Keys.X && e.Alt)
             {
                 this.Close();
+                frm_state frm_District = new frm_state();
+                frm_District.MdiParent = frm_mid.ActiveForm;
+                frm_District.Show();
             }
         }
     }
