@@ -231,6 +231,7 @@ namespace IMS
             this.dtg_qut_report.Size = new System.Drawing.Size(963, 286);
             this.dtg_qut_report.TabIndex = 98;
             this.dtg_qut_report.Visible = false;
+            this.dtg_qut_report.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dtg_qut_report_DataBindingComplete);
             // 
             // quotation_no
             // 

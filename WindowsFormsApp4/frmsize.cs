@@ -158,5 +158,13 @@ namespace IMS
             }
 
         }
+
+        private void dgv_item_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dgv_item.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
     }
 }

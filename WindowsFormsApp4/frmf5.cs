@@ -84,6 +84,29 @@ namespace IMS
             dgvHelp.Columns["ID1"].Visible = false;
             this.Show();
         }
+        public void ShowF5e(string _sqlQuery, string _DispColName, string _DispColName1, string _txtValue, string _SearchName, object _Object)
+        {
+            txtSearch.Text = _txtValue;
+            // txtDataload.Text = _txtValue;
+            this.Name = "Help " + _SearchName; lblSearch.Text = _DispColName; lbl_2.Text = _DispColName1;
+            _ct = _Object;
+
+
+            //Grid data load from SQL database
+            con.Open(); //database connection open
+
+            SqlDataAdapter da = new SqlDataAdapter(_sqlQuery, con);
+            SqlCommandBuilder combuilder = new SqlCommandBuilder(da);
+
+            da.Fill(ds);
+            dgvHelp.DataSource = ds.Tables[0];
+
+            con.Close(); //database connection close
+            dgvHelp.Columns["ID"].Visible = false;
+            //dgvHelp.Columns["ID1"].Visible = false;
+            this.Show();
+        }
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
       (int nTop,
@@ -144,11 +167,10 @@ namespace IMS
                 _myText = txtSearch.Text;
                 //(()_ct).Text = txtDataload.Text;
                 //frm_invoice.item_tag = txtDataload.Text;
-                frm_invoice.item_text = (string)txtDataload.Tag;
-
-                //frm_payment.item_tag = (string)txtDataload.Tag;
+                frm_invoice.item_text = txtDataload.Text;
+                frm_invoice.item_tag = (string)txtDataload.Tag;
                 frm_invoice.size_text = txt_text.Text;
-                frm_invoice.size_tag = (string)txt_text.Tag;
+                //frm_invoice.size_tag = (string)txt_text.Tag;
                 // item_tag = (string)txt_text.Tag;
                 //item_text = txt_text.Text;
                 var instance = Application.OpenForms.OfType<frm_invoice>().FirstOrDefault();
@@ -178,6 +200,24 @@ namespace IMS
                 // action.Invoke();
                 // //((TextBox)_ct).Tag = txtDataload.Tag;
                 //((TextBox)_ct).Text = txtDataload.Text;
+                this.Close();
+            }
+            if (item_text == "SALES ORDER_EDIT")
+            {
+                _myText = txtSearch.Text;
+                //(()_ct).Text = txtDataload.Text;
+                frm_sales_order.item_text = txtDataload.Text;
+                frm_sales_order.item_tag = (string)txtDataload.Tag;
+                frm_sales_order.size_text = txt_text.Text;
+                //frm_sales_order.size_tag = (string)txt_text.Tag;
+                // item_tag = (string)txt_text.Tag;
+                //item_text = txt_text.Text;
+                var instance = Application.OpenForms.OfType<frm_sales_order>().FirstOrDefault();
+                instance.ITEM_LOAD();
+                // instance.GST_CALCULATION();
+                frm_sales_order invoice = new frm_sales_order();
+                invoice.ITEM_LOAD();
+
                 this.Close();
             }
             if (item_text == "PAYMENT")
@@ -223,7 +263,7 @@ namespace IMS
 
         private void dgvHelp_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (item_text == "PAYMENT"|| item_text == "INVOICE")
+            if (item_text == "PAYMENT")
             {
                 if (dgvHelp.Rows.Count > 0 && e.RowIndex >= 0)
                 {
@@ -242,6 +282,25 @@ namespace IMS
                     }
                 }
             }
+            else if (item_text == "SALES ORDER_EDIT" || item_text == "INVOICE")
+            {
+                if (dgvHelp.Rows.Count > 0 && e.RowIndex >= 0)
+                {
+                    try
+                    {
+                        int selectedrowindex = e.RowIndex;
+                        DataGridViewRow selectedRow = dgvHelp.Rows[selectedrowindex];
+                        txtDataload.Tag = Convert.ToString(selectedRow.Cells["ID"].Value);
+                        txtDataload.Text = Convert.ToString(selectedRow.Cells[lblSearch.Text.ToUpper()].Value);
+                        //txt_text.Tag = Convert.ToString(selectedRow.Cells["ID1"].Value);
+                        txt_text.Text = Convert.ToString(selectedRow.Cells[lbl_2.Text.ToUpper()].Value);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
             else
             {
                 if (dgvHelp.Rows.Count > 0 && e.RowIndex >= 0)
@@ -251,6 +310,14 @@ namespace IMS
                     txtDataload.Tag = Convert.ToString(selectedRow.Cells["ID"].Value);
                     txtDataload.Text = Convert.ToString(selectedRow.Cells[lblSearch.Text].Value);
                 }
+            }
+        }
+
+        private void dgvHelp_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dgvHelp.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
     }

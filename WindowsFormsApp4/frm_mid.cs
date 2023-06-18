@@ -210,8 +210,10 @@ namespace IMS
 
             //txtcompany.Text = Frmyearselection.setcompanyname;
 
+            //frm_main_graph create = new frm_main_graph();
+            //create.MdiParent = this;
+            //create.Show();
 
-          
         }
         private void btnexit_Click(object sender, EventArgs e)
         {
@@ -334,6 +336,13 @@ namespace IMS
         private void cHANGEPASSWORDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_forgot create = new frm_forgot();
+            create.MdiParent = this;
+            create.Show();
+        }
+
+        private void hOMEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_main_graph create = new frm_main_graph();
             create.MdiParent = this;
             create.Show();
         }

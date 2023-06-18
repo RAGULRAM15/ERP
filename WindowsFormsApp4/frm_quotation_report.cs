@@ -402,5 +402,13 @@ namespace IMS
             }
            
         }
+
+        private void dtg_qut_report_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dtg_qut_report.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
     }
 }

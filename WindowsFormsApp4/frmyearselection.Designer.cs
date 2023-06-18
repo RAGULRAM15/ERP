@@ -67,6 +67,7 @@ namespace IMS
             this.cmboyear.Size = new System.Drawing.Size(155, 23);
             this.cmboyear.TabIndex = 18;
             this.cmboyear.SelectedIndexChanged += new System.EventHandler(this.cmboyear_SelectedIndexChanged);
+            this.cmboyear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmboyear_KeyDown);
             // 
             // cmboname
             // 

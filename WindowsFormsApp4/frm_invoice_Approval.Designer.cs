@@ -106,6 +106,7 @@ namespace IMS
             this.dtg_iapproval.ShowRowErrors = false;
             this.dtg_iapproval.Size = new System.Drawing.Size(800, 321);
             this.dtg_iapproval.TabIndex = 97;
+            this.dtg_iapproval.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dtg_iapproval_DataBindingComplete);
             // 
             // INVOICE_NO
             // 
@@ -217,10 +218,14 @@ namespace IMS
             // txt_fillter
             // 
             this.txt_fillter.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_fillter.ForeColor = System.Drawing.SystemColors.GrayText;
             this.txt_fillter.Location = new System.Drawing.Point(361, 47);
             this.txt_fillter.Name = "txt_fillter";
             this.txt_fillter.Size = new System.Drawing.Size(386, 25);
             this.txt_fillter.TabIndex = 108;
+            this.txt_fillter.Text = "Customer Name";
+            this.txt_fillter.Enter += new System.EventHandler(this.txt_fillter_Enter);
+            this.txt_fillter.Leave += new System.EventHandler(this.txt_fillter_Leave);
             // 
             // frm_invoice_Approval
             // 
@@ -238,7 +243,6 @@ namespace IMS
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txt_add);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.KeyPreview = true;
             this.Name = "frm_invoice_Approval";
             this.Text = "Approval_List";

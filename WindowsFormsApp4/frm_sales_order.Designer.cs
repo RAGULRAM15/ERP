@@ -838,15 +838,20 @@ namespace IMS
             this.dgvitemform.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvitemform.Location = new System.Drawing.Point(0, 0);
             this.dgvitemform.Name = "dgvitemform";
-            this.dgvitemform.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvitemform.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvitemform.Size = new System.Drawing.Size(759, 336);
             this.dgvitemform.TabIndex = 5;
             this.dgvitemform.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvitemform_CellContentClick);
             this.dgvitemform.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvitemform_CellEndEdit);
+            this.dgvitemform.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvitemform_CellEnter_1);
+            this.dgvitemform.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvitemform_CellLeave);
             this.dgvitemform.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvitemform_CellValidated);
             this.dgvitemform.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvitemform_CellValidating);
+            this.dgvitemform.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvitemform_DataBindingComplete);
             this.dgvitemform.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvitemform_RowPostPaint);
             this.dgvitemform.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvitemform_RowValidating);
+            this.dgvitemform.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvitemform_KeyDown);
+            this.dgvitemform.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.dgvitemform_PreviewKeyDown);
             // 
             // row_id
             // 

@@ -177,11 +177,15 @@ namespace IMS
             // txt_fillter
             // 
             this.txt_fillter.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_fillter.ForeColor = System.Drawing.SystemColors.GrayText;
             this.txt_fillter.Location = new System.Drawing.Point(678, 36);
             this.txt_fillter.Name = "txt_fillter";
             this.txt_fillter.Size = new System.Drawing.Size(386, 25);
             this.txt_fillter.TabIndex = 8;
+            this.txt_fillter.Text = "Customer Name";
             this.txt_fillter.TextChanged += new System.EventHandler(this.txt_fillter_TextChanged);
+            this.txt_fillter.Enter += new System.EventHandler(this.txt_fillter_Enter);
+            this.txt_fillter.Leave += new System.EventHandler(this.txt_fillter_Leave);
             // 
             // label6
             // 

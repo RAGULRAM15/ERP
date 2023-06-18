@@ -97,7 +97,7 @@ namespace IMS
         }
         public static string value1 { get; set; }
         public static string value2 { get; set; }
-
+        public static string value3 { get; set; }
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
@@ -108,10 +108,31 @@ namespace IMS
                 value1 = edit_row.Cells["SALES_ORDER_NO"].Value.ToString();
                 // value2 = edit_row.Cells["INVOICE_ID"].Value.ToString();
                 STATUS = edit_row.Cells["STATUS"].Value.ToString();
+                String sqlquery = "SELECT SALES_ORDER_FILTER FROM T_SALES_ORDER" +
 
+             " WHERE SALES_ORDER_NO = '" + value1 + "'";
+                //try
+                //{
+                using (SqlConnection conn1 = new SqlConnection(ConnString))
+                {
+
+                    SqlCommand comm1 = new SqlCommand(sqlquery, conn1);
+                    conn1.Open();
+                    SqlDataReader dr2 = comm1.ExecuteReader();
+                    SqlDataAdapter dr3 = new SqlDataAdapter(comm1);
+                    while (dr2.Read())
+                    {
+                        value3 = dr2["SALES_ORDER_FILTER"].ToString();
+
+                    }
+                    dr2.Close();
+                    conn1.Close();
+                }
                 if (STATUS == "ACTIVE")
                 {
-                    frm_sales_order detialform = new frm_sales_order();
+                    if (value3 != "1")
+                    {
+                        frm_sales_order detialform = new frm_sales_order();
                     detialform.mode = "EDIT SALES ORDER";
                     detialform.MdiParent = frm_mid.ActiveForm;
 
@@ -119,6 +140,11 @@ namespace IMS
                     detialform.edit_form();
                     detialform.Show();
                     this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("INVOICE ALREADY APPROVED...\nPLEASE CHECK THE INVOICE LIST ", "INVENTORY MANAGEMENT", MessageBoxButtons.OK);
+                    }
                 }
                 else
                 {
@@ -664,6 +690,32 @@ namespace IMS
             if (e.KeyCode == Keys.X && e.Alt)
             {
                 this.Close();
+            }
+        }
+
+        private void txt_fillter_Enter(object sender, EventArgs e)
+        {
+            if(txt_fillter.Text == "Customer Name")
+            {
+                txt_fillter.Text = "";
+                txt_fillter.ForeColor = SystemColors.WindowText;
+            }
+        }
+
+        private void txt_fillter_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txt_fillter.Text))
+            {
+                txt_fillter.Text = "Customer Name";
+                txt_fillter.ForeColor = SystemColors.GrayText;
+            }
+        }
+
+        private void dtg_qut_DataBindingComplete_1(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dtg_qut.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
     }

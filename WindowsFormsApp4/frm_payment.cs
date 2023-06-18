@@ -52,6 +52,19 @@ namespace IMS
                     gridView.Rows[r.Index].HeaderCell.Value = (r.Index + 1).ToString();
                 }
             }
+
+            foreach (DataGridViewColumn column in dtg_paymain.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            foreach (DataGridViewColumn column in dtg_credit.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            foreach (DataGridViewColumn column in dtg_pay_bank.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
         public void last_no()
         {
@@ -1713,27 +1726,30 @@ namespace IMS
 
         private void txtcustomer_TextChanged(object sender, EventArgs e)
         {
-            if (mode == "ADD")
+            if (txtcustomer.Tag != null)
             {
-                String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
-            //String str = "Select * from T_QUOTATION_ITEM";
-
-            String sqlquery = "SELECT INVOICE_NO,INVOICE_DATE,NET_AMOUNT  FROM T_INVOICE_APPROVAL WHERE CUSTOMER_ID = '" + txtcustomer.Tag + "' AND APPROVAL_CHECK =" + "1" + " AND COMPANY_ID ="+ lbl_comp.Tag + "";
-            SqlDataAdapter da = new SqlDataAdapter(sqlquery, ConnString);
-            DataSet ds = new DataSet();
-            da.Fill(ds, "INVOICE");
-            dtg_paymain.DataSource = ds.Tables["INVOICE"].DefaultView;
-            
-                for (int i = 0; i < dtg_paymain.Rows.Count; i++)
+                if (mode == "ADD")
                 {
-                    paid_value = "0";
-                    dtg_paymain.Rows[i].Cells["paid"].Value = paid_value;
-                    decimal sum2 = decimal.Parse(dtg_paymain.Rows[i].Cells["paid"].Value.ToString());
-                    decimal sum3 = decimal.Parse(dtg_paymain.Rows[i].Cells["total"].Value.ToString());
-                    sum3 -= sum2;
-                    dtg_paymain.Rows[i].Cells["balance"].Value = sum3.ToString();
+                    String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
+                    //String str = "Select * from T_QUOTATION_ITEM";
+
+                    String sqlquery = "SELECT INVOICE_NO,INVOICE_DATE,NET_AMOUNT  FROM T_INVOICE_APPROVAL WHERE CUSTOMER_ID = '" + txtcustomer.Tag + "' AND APPROVAL_CHECK =" + "1" + " AND COMPANY_ID =" + lbl_comp.Tag + "";
+                    SqlDataAdapter da = new SqlDataAdapter(sqlquery, ConnString);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "INVOICE");
+                    dtg_paymain.DataSource = ds.Tables["INVOICE"].DefaultView;
+
+                    for (int i = 0; i < dtg_paymain.Rows.Count; i++)
+                    {
+                        paid_value = "0";
+                        dtg_paymain.Rows[i].Cells["paid"].Value = paid_value;
+                        decimal sum2 = decimal.Parse(dtg_paymain.Rows[i].Cells["paid"].Value.ToString());
+                        decimal sum3 = decimal.Parse(dtg_paymain.Rows[i].Cells["total"].Value.ToString());
+                        sum3 -= sum2;
+                        dtg_paymain.Rows[i].Cells["balance"].Value = sum3.ToString();
+                    }
+                    amount_add();
                 }
-                amount_add();
             }
         }
         public void ITEM_LOAD()

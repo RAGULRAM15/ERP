@@ -171,10 +171,14 @@ namespace IMS
             // txt_fillter
             // 
             this.txt_fillter.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_fillter.ForeColor = System.Drawing.SystemColors.GrayText;
             this.txt_fillter.Location = new System.Drawing.Point(678, 35);
             this.txt_fillter.Name = "txt_fillter";
             this.txt_fillter.Size = new System.Drawing.Size(386, 25);
             this.txt_fillter.TabIndex = 121;
+            this.txt_fillter.Text = "Customer Name";
+            this.txt_fillter.Enter += new System.EventHandler(this.txt_fillter_Enter);
+            this.txt_fillter.Leave += new System.EventHandler(this.txt_fillter_Leave);
             // 
             // txt_refresh
             // 
@@ -363,6 +367,7 @@ namespace IMS
             this.dtg_qut.Size = new System.Drawing.Size(1164, 411);
             this.dtg_qut.TabIndex = 109;
             this.dtg_qut.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_qut_CellEnter);
+            this.dtg_qut.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dtg_qut_DataBindingComplete_1);
             // 
             // SALES_ORDER_ID
             // 

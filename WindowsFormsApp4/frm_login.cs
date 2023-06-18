@@ -156,5 +156,39 @@ namespace IMS
         {
 
         }
+
+        private void txtpassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                USER_NAME = txtuser.Text;
+                String Query;
+
+                using (SqlConnection conn = new SqlConnection(ConnString))
+                {
+
+                    //comm.Connection = conn;
+
+                    Query = @"SELECT  [USER_NAME], [PASSWORD] FROM [M_USER_MANAGEMENT] WHERE USER_NAME='" + txtuser.Text.ToUpper().Trim() + "' AND PASSWORD ='" + txtpassword.Text.Trim() + "'";
+
+
+
+                    SqlDataAdapter comm = new SqlDataAdapter(Query, conn);
+                    DataTable data = new DataTable();
+                    comm.Fill(data);
+                    if (data.Rows.Count == 1)
+                    {
+                        frmyearselection fys = new frmyearselection();
+                        fys.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("INVALID USERNAME AND PASSWORD");
+                    }
+                }
+            }
+
+        }
     }
 }

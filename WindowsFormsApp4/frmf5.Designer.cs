@@ -79,6 +79,7 @@ namespace IMS
             this.dgvHelp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHelp_CellClick);
             this.dgvHelp.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHelp_CellContentClick);
             this.dgvHelp.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHelp_CellEnter);
+            this.dgvHelp.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvHelp_DataBindingComplete);
             // 
             // lblSearch
             // 

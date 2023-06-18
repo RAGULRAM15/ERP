@@ -2063,8 +2063,9 @@ namespace IMS
 
         private void txtcustomer_TextChanged(object sender, EventArgs e)
         {
-
-            string _query1 = "SELECT CONCAT(ADDRESS_1,' '," +
+            if (txtcustomer.Tag != null)
+            {
+                string _query1 = "SELECT CONCAT(ADDRESS_1,' '," +
                 "[M_CITY].CITY,'  ,',[M_DISTRICT] .DISTRICT,'  ,'," +
                 "[M_STATE].STATE,' ,',[M_COUNTRY].COUNTRY,'  ,'," +
                 "POSTAL_CODE,' ,',PHONE_NO ) AS [ADDRESS] FROM [M_CUSTOMER]" +
@@ -2074,18 +2075,18 @@ namespace IMS
                 " INNER JOIN[dbo].[M_COUNTRY] ON[M_CUSTOMER].COUNTRY_ID = [M_COUNTRY].COUNTRY_ID " +
                 " WHERE [M_CUSTOMER]. CUSTOMER_NAME = '" + txtcustomer.Text + "'";
 
-            SqlConnection conn = new SqlConnection(ConnString);
-            SqlCommand cmd = new SqlCommand(_query1, conn);
-            conn.Open();
-            SqlDataReader dataReader = cmd.ExecuteReader();
-            if (dataReader.Read())
-            {
-                txtaddress.Text = dataReader["ADDRESS"].ToString();
+                SqlConnection conn = new SqlConnection(ConnString);
+                SqlCommand cmd = new SqlCommand(_query1, conn);
+                conn.Open();
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.Read())
+                {
+                    txtaddress.Text = dataReader["ADDRESS"].ToString();
+                }
+
+                conn.Close();
+
             }
-
-            conn.Close();
-
-
 
         }
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -2191,6 +2192,17 @@ namespace IMS
 
         private void frmQuotation_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.KeyCode == Keys.F5)
+            {
+                Timer.Start();
+                pnlright.Visible = true;
+                pnlclose.Visible = true;
+                btn_update.Visible = false;
+                btnok.Visible = true;
+                btn_save.Visible = false;
+                btn_cancel.Visible = false;
+
+            }
             if (e.KeyCode == Keys.X && e.Alt)
             {
                 txt_clear();
@@ -2201,6 +2213,11 @@ namespace IMS
                 list.MdiParent = frm_mid.ActiveForm;
                 list.Show();
             }
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

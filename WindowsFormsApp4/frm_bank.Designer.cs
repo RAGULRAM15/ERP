@@ -134,6 +134,7 @@ namespace IMS
             this.dtgF4.Size = new System.Drawing.Size(516, 345);
             this.dtgF4.TabIndex = 38;
             this.dtgF4.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgF4_CellDoubleClick);
+            this.dtgF4.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dtgF4_DataBindingComplete);
             // 
             // txtbank
             // 

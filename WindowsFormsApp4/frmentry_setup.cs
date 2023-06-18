@@ -75,5 +75,13 @@ namespace IMS
 
 
         }
+
+        private void dtg_entrysetup_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dtg_entrysetup.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
     }
 }

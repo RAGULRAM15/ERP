@@ -132,5 +132,13 @@ namespace IMS
                 txtDataload.Text = Convert.ToString(selectedRow.Cells[lblSearch.Text].Value);
             }
         }
+
+        private void dgvHelp_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dgvHelp.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
     }
 }

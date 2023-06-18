@@ -75,6 +75,7 @@ namespace IMS
             this.dtgF4.TabIndex = 23;
             this.dtgF4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgF4_CellContentClick);
             this.dtgF4.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgF4_CellDoubleClick);
+            this.dtgF4.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dtgF4_DataBindingComplete);
             // 
             // txtstate
             // 

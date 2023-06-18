@@ -235,7 +235,6 @@ namespace IMS
             this.txtinvoice.Name = "txtinvoice";
             this.txtinvoice.Size = new System.Drawing.Size(121, 25);
             this.txtinvoice.TabIndex = 151;
-            this.txtinvoice.SelectedIndexChanged += new System.EventHandler(this.txtinvoice_SelectedIndexChanged_1);
             this.txtinvoice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtinvoice_KeyDown);
             // 
             // user_box
@@ -430,7 +429,6 @@ namespace IMS
             this.txtsalequantity.Size = new System.Drawing.Size(19, 20);
             this.txtsalequantity.TabIndex = 161;
             this.txtsalequantity.Visible = false;
-            this.txtsalequantity.TextChanged += new System.EventHandler(this.txtsalequantity_TextChanged);
             // 
             // txt_quantity_sum
             // 
@@ -533,9 +531,12 @@ namespace IMS
             this.dgvitemform.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvitemform_CellContentClick);
             this.dgvitemform.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvitemform_CellEndEdit);
             this.dgvitemform.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvitemform_CellEnter);
+            this.dgvitemform.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvitemform_CellLeave);
             this.dgvitemform.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvitemform_CellValidated);
             this.dgvitemform.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvitemform_CellValueChanged);
+            this.dgvitemform.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvitemform_DataBindingComplete);
             this.dgvitemform.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvitemform_RowPostPaint);
+            this.dgvitemform.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvitemform_KeyDown);
             // 
             // row_id
             // 
@@ -612,12 +613,14 @@ namespace IMS
             this.item_id.DataPropertyName = "ITEM_ID";
             this.item_id.HeaderText = "ITEM_ID";
             this.item_id.Name = "item_id";
+            this.item_id.Visible = false;
             // 
             // size_id
             // 
             this.size_id.DataPropertyName = "size_id";
             this.size_id.HeaderText = "SIZE_ID";
             this.size_id.Name = "size_id";
+            this.size_id.Visible = false;
             // 
             // SALES_ORDER_QUANTITY
             // 
@@ -1021,7 +1024,6 @@ namespace IMS
             this.txt_salesorder.Size = new System.Drawing.Size(121, 24);
             this.txt_salesorder.TabIndex = 161;
             this.txt_salesorder.SelectedIndexChanged += new System.EventHandler(this.txt_salesorder_SelectedIndexChanged);
-            this.txt_salesorder.TextChanged += new System.EventHandler(this.txt_salesorder_TextChanged);
             this.txt_salesorder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_salesorder_KeyDown);
             // 
             // label8
@@ -1087,14 +1089,7 @@ namespace IMS
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Invoice";
             this.Load += new System.EventHandler(this.Frm_invoice_Load);
-            this.InputLanguageChanging += new System.Windows.Forms.InputLanguageChangingEventHandler(this.frm_invoice_InputLanguageChanging);
-            this.TextChanged += new System.EventHandler(this.frm_invoice_TextChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_invoice_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frm_invoice_KeyUp);
-            this.Leave += new System.EventHandler(this.frm_invoice_Leave);
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frm_invoice_PreviewKeyDown);
-            this.Validating += new System.ComponentModel.CancelEventHandler(this.frm_invoice_Validating);
-            this.Validated += new System.EventHandler(this.frm_invoice_Validated);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

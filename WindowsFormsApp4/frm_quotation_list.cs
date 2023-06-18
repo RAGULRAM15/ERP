@@ -32,6 +32,7 @@ namespace IMS
         public static string NAME_ID { get; set; }
         public static string STATUS { get; set; }
         public static string user_name { get; set; }
+        public static int count_qut { get; set; }
         String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
         private void frm_qut_Load(object sender, EventArgs e)
         {
@@ -43,6 +44,8 @@ namespace IMS
             name();
            
             this.Font = null;
+
+            count_qut = dtg_qut.Rows.Count;
            // dtg_qut.RowHeadersWidth = 50;
             //dtg_qut.Rows[0].Selected = false;
             //foreach (DataGridViewColumn column in dtg_qut.Rows)
@@ -609,6 +612,10 @@ namespace IMS
             //        gridView.Rows[r.Index].HeaderCell.Value = (r.Index + 1).ToString();
             //    }
             //}
+            foreach (DataGridViewColumn column in dtg_qut.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
 
         private void frm_quotation_list_KeyDown(object sender, KeyEventArgs e)
@@ -616,6 +623,24 @@ namespace IMS
             if (e.KeyCode == Keys.X && e.Alt)
             {
                 this.Close();
+            }
+        }
+
+        private void txt_fillter_Enter(object sender, EventArgs e)
+        {
+            if (txt_fillter.Text == "Customer Name")
+            {
+                txt_fillter.Text = "";
+                txt_fillter.ForeColor = SystemColors.WindowText;
+            }
+        }
+
+        private void txt_fillter_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txt_fillter.Text))
+            {
+                txt_fillter.Text = "Customer Name";
+                txt_fillter.ForeColor = SystemColors.GrayText;
             }
         }
     }

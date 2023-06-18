@@ -90,28 +90,58 @@ namespace IMS
         }
         public static string value1 { get; set; }
         public static string value2 { get; set; }
-
+        public string value3 { get; set; }
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
             if (dtg_inv.Rows.Count != 0)
             {
+               
                 int rowIndex = dtg_inv.CurrentCell.RowIndex;
                 DataGridViewRow edit_row = dtg_inv.Rows[rowIndex];
                 value1 = edit_row.Cells["INVOICE_NO"].Value.ToString();
                // value2 = edit_row.Cells["INVOICE_ID"].Value.ToString();
                 STATUS = edit_row.Cells["STATUS"].Value.ToString();
+                String sqlquery = "SELECT APPROVAL_CHECK FROM T_INVOICE" +
+
+              " WHERE INVOICE_NO = '" + value1 + "'";
+                //try
+                //{
+                using (SqlConnection conn1 = new SqlConnection(ConnString))
+                {
+
+                    SqlCommand comm1 = new SqlCommand(sqlquery, conn1);
+                    conn1.Open();
+                    SqlDataReader dr2 = comm1.ExecuteReader();
+                    SqlDataAdapter dr3 = new SqlDataAdapter(comm1);
+                    while (dr2.Read())
+                    {
+                        value3 = dr2["APPROVAL_CHECK"].ToString();
+
+                    }
+                    dr2.Close();
+                    conn1.Close();
+                }
 
                 if (STATUS == "ACTIVE")
                 {
-                    frm_invoice detialform = new frm_invoice();
-                    detialform.mode = "EDIT INVOICE";
-                    detialform.MdiParent = frm_mid.ActiveForm;
+                    if (value3 != true.ToString())
+                    {
 
-                    //value2 = edit_row.Cells["CUSTOMER_NAME"].Value.ToString();
-                    detialform.edit_form();
-                    detialform.Show();
-                    this.Hide();
+
+                        frm_invoice detialform = new frm_invoice();
+                        detialform.mode = "EDIT INVOICE";
+                        detialform.MdiParent = frm_mid.ActiveForm;
+
+                        //value2 = edit_row.Cells["CUSTOMER_NAME"].Value.ToString();
+                        detialform.edit_form();
+                        detialform.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("INVOICE ALREADY APPROVED...\nPLEASE CHECK THE APPROVAL LIST ", "INVENTORY MANAGEMENT", MessageBoxButtons.OK);
+                    }
                 }
                 else
                 {
@@ -642,6 +672,11 @@ namespace IMS
             //        gridView.Rows[r.Index].HeaderCell.Value = (r.Index + 1).ToString();
             //    }
             //}
+
+            foreach (DataGridViewColumn column in dtg_inv.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
 
         private void dtg_qut_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -681,5 +716,25 @@ namespace IMS
         {
 
         }
+
+        private void txt_fillter_Enter(object sender, EventArgs e)
+        {
+            if (txt_fillter.Text == "Customer Name")
+            {
+                txt_fillter.Text = "";
+                txt_fillter.ForeColor = SystemColors.WindowText;
+            }
+        }
+
+        private void txt_fillter_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txt_fillter.Text))
+            {
+                txt_fillter.Text = "Customer Name";
+                txt_fillter.ForeColor = SystemColors.GrayText;
+            }
+        }
+
+      
     }
 }

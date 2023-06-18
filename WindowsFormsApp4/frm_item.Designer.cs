@@ -65,6 +65,7 @@ namespace IMS
             this.dgv_item.TabIndex = 3;
             this.dgv_item.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_item_CellContentClick);
             this.dgv_item.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_item_CellDoubleClick);
+            this.dgv_item.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgv_item_DataBindingComplete);
             // 
             // txt_item
             // 

@@ -177,10 +177,14 @@ namespace IMS
             // txt_fillter
             // 
             this.txt_fillter.Font = new System.Drawing.Font("Segoe UI Emoji", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_fillter.ForeColor = System.Drawing.SystemColors.GrayText;
             this.txt_fillter.Location = new System.Drawing.Point(678, 35);
             this.txt_fillter.Name = "txt_fillter";
             this.txt_fillter.Size = new System.Drawing.Size(386, 25);
             this.txt_fillter.TabIndex = 121;
+            this.txt_fillter.Text = "Customer Name";
+            this.txt_fillter.Enter += new System.EventHandler(this.txt_fillter_Enter);
+            this.txt_fillter.Leave += new System.EventHandler(this.txt_fillter_Leave);
             // 
             // txt_refresh
             // 
@@ -471,6 +475,7 @@ namespace IMS
             this.Controls.Add(this.btn_view);
             this.Controls.Add(this.dtg_qut);
             this.Controls.Add(this.txtquotation);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "frm_payment_list";
             this.Text = "Payment List";
             this.Load += new System.EventHandler(this.frm_payment_list_Load);

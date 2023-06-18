@@ -410,5 +410,13 @@ namespace IMS
                 this.Close();
             }
         }
+
+        private void dtg_inv_report_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dtg_inv_report.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
     }
 }

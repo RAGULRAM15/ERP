@@ -124,5 +124,31 @@ namespace IMS
                 }
             }
         }
+
+        private void txt_fillter_Enter(object sender, EventArgs e)
+        {
+            if (txt_fillter.Text == "Customer Name")
+            {
+                txt_fillter.Text = "";
+                txt_fillter.ForeColor = SystemColors.WindowText;
+            }
+        }
+
+        private void txt_fillter_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txt_fillter.Text))
+            {
+                txt_fillter.Text = "Customer Name";
+                txt_fillter.ForeColor = SystemColors.GrayText;
+            }
+        }
+
+        private void dtg_iapproval_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dtg_iapproval.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
     }
 }

@@ -315,6 +315,11 @@ namespace IMS
                     gridView.Rows[r.Index].HeaderCell.Value = (r.Index + 1).ToString();
                 }
             }
+
+            foreach (DataGridViewColumn column in dtg_iapproval.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
 
         private void txtcustomer_KeyDown(object sender, KeyEventArgs e)

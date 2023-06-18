@@ -624,6 +624,10 @@ namespace IMS
             //        gridView.Rows[r.Index].HeaderCell.Value = (r.Index + 1).ToString();
             //    }
             //}
+            foreach (DataGridViewColumn column in dtg_qut.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
 
         private void dtg_qut_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -636,6 +640,24 @@ namespace IMS
             if (e.KeyCode == Keys.X && e.Alt)
             {
                 this.Close();
+            }
+        }
+
+        private void txt_fillter_Enter(object sender, EventArgs e)
+        {
+            if (txt_fillter.Text == "Customer Name")
+            {
+                txt_fillter.Text = "";
+                txt_fillter.ForeColor = SystemColors.WindowText;
+            }
+        }
+
+        private void txt_fillter_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txt_fillter.Text))
+            {
+                txt_fillter.Text = "Customer Name";
+                txt_fillter.ForeColor = SystemColors.GrayText;
             }
         }
     }

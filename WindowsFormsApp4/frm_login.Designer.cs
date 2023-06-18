@@ -31,6 +31,7 @@ namespace IMS
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_login));
             this.panel_login = new System.Windows.Forms.Panel();
+            this.txtuser = new System.Windows.Forms.TextBox();
             this.picuser = new System.Windows.Forms.PictureBox();
             this.btnshow = new System.Windows.Forms.Button();
             this.txtpassword = new System.Windows.Forms.TextBox();
@@ -40,7 +41,6 @@ namespace IMS
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.picBox = new System.Windows.Forms.PictureBox();
-            this.txtuser = new System.Windows.Forms.TextBox();
             this.panel_login.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picuser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -65,6 +65,15 @@ namespace IMS
             this.panel_login.Name = "panel_login";
             this.panel_login.Size = new System.Drawing.Size(369, 275);
             this.panel_login.TabIndex = 4;
+            // 
+            // txtuser
+            // 
+            this.txtuser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtuser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtuser.Location = new System.Drawing.Point(82, 155);
+            this.txtuser.Name = "txtuser";
+            this.txtuser.Size = new System.Drawing.Size(182, 22);
+            this.txtuser.TabIndex = 1;
             // 
             // picuser
             // 
@@ -102,6 +111,7 @@ namespace IMS
             this.txtpassword.Size = new System.Drawing.Size(182, 24);
             this.txtpassword.TabIndex = 2;
             this.txtpassword.TextChanged += new System.EventHandler(this.txt_password_TextChanged);
+            this.txtpassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtpassword_KeyDown);
             // 
             // btnclose
             // 
@@ -171,15 +181,6 @@ namespace IMS
             this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBox.TabIndex = 17;
             this.picBox.TabStop = false;
-            // 
-            // txtuser
-            // 
-            this.txtuser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtuser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtuser.Location = new System.Drawing.Point(82, 155);
-            this.txtuser.Name = "txtuser";
-            this.txtuser.Size = new System.Drawing.Size(182, 22);
-            this.txtuser.TabIndex = 1;
             // 
             // frm_login
             // 

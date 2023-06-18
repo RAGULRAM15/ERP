@@ -86,6 +86,7 @@ namespace IMS
             this.dgvHelp.TabIndex = 8;
             this.dgvHelp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHelp_CellClick);
             this.dgvHelp.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHelp_CellEnter);
+            this.dgvHelp.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvHelp_DataBindingComplete);
             this.dgvHelp.SelectionChanged += new System.EventHandler(this.dgvHelp_SelectionChanged);
             // 
             // lblSearch

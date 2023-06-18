@@ -171,14 +171,14 @@ namespace IMS
             // qUOTATIONToolStripMenuItem
             // 
             this.qUOTATIONToolStripMenuItem.Name = "qUOTATIONToolStripMenuItem";
-            this.qUOTATIONToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.qUOTATIONToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.qUOTATIONToolStripMenuItem.Text = "QUOTATION";
             this.qUOTATIONToolStripMenuItem.Click += new System.EventHandler(this.mnuquotation_Click);
             // 
             // sALESORDERToolStripMenuItem
             // 
             this.sALESORDERToolStripMenuItem.Name = "sALESORDERToolStripMenuItem";
-            this.sALESORDERToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sALESORDERToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.sALESORDERToolStripMenuItem.Text = "SALES ORDER";
             this.sALESORDERToolStripMenuItem.Click += new System.EventHandler(this.mnuORDERLIST_Click);
             // 
@@ -186,7 +186,7 @@ namespace IMS
             // 
             this.iNVOICEToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("iNVOICEToolStripMenuItem.Image")));
             this.iNVOICEToolStripMenuItem.Name = "iNVOICEToolStripMenuItem";
-            this.iNVOICEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iNVOICEToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.iNVOICEToolStripMenuItem.Text = "INVOICE";
             this.iNVOICEToolStripMenuItem.Click += new System.EventHandler(this.mnuINVOICE_Click);
             // 
@@ -194,14 +194,14 @@ namespace IMS
             // 
             this.iNVOICEAPPROVALToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("iNVOICEAPPROVALToolStripMenuItem.Image")));
             this.iNVOICEAPPROVALToolStripMenuItem.Name = "iNVOICEAPPROVALToolStripMenuItem";
-            this.iNVOICEAPPROVALToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iNVOICEAPPROVALToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.iNVOICEAPPROVALToolStripMenuItem.Text = "INVOICE APPROVAL";
             this.iNVOICEAPPROVALToolStripMenuItem.Click += new System.EventHandler(this.mnuapproval_Click);
             // 
             // pAYMENTToolStripMenuItem
             // 
             this.pAYMENTToolStripMenuItem.Name = "pAYMENTToolStripMenuItem";
-            this.pAYMENTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pAYMENTToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.pAYMENTToolStripMenuItem.Text = "PAYMENT";
             this.pAYMENTToolStripMenuItem.Click += new System.EventHandler(this.mnupayment_Click);
             // 
@@ -406,6 +406,7 @@ namespace IMS
             this.hOMEToolStripMenuItem.Text = "HOME";
             this.hOMEToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.hOMEToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.hOMEToolStripMenuItem.Click += new System.EventHandler(this.hOMEToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -539,7 +540,7 @@ namespace IMS
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 236F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 191F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtdate, 5, 1);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 1, 0);
@@ -577,7 +578,7 @@ namespace IMS
             this.txtdate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtdate.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdate.Location = new System.Drawing.Point(942, 39);
+            this.txtdate.Location = new System.Drawing.Point(941, 39);
             this.txtdate.Name = "txtdate";
             this.txtdate.ReadOnly = true;
             this.txtdate.Size = new System.Drawing.Size(112, 23);
@@ -591,7 +592,7 @@ namespace IMS
             this.pictureBox1.Location = new System.Drawing.Point(5, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.tableLayoutPanel1.SetRowSpan(this.pictureBox1, 2);
-            this.pictureBox1.Size = new System.Drawing.Size(86, 69);
+            this.pictureBox1.Size = new System.Drawing.Size(85, 69);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -601,7 +602,7 @@ namespace IMS
             this.lbl_cname.AutoSize = true;
             this.lbl_cname.Dock = System.Windows.Forms.DockStyle.Right;
             this.lbl_cname.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_cname.Location = new System.Drawing.Point(936, 0);
+            this.lbl_cname.Location = new System.Drawing.Point(935, 0);
             this.lbl_cname.Name = "lbl_cname";
             this.lbl_cname.Size = new System.Drawing.Size(0, 36);
             this.lbl_cname.TabIndex = 2;
@@ -613,7 +614,7 @@ namespace IMS
             this.lbl_fyear.AutoSize = true;
             this.lbl_fyear.Dock = System.Windows.Forms.DockStyle.Right;
             this.lbl_fyear.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fyear.Location = new System.Drawing.Point(936, 36);
+            this.lbl_fyear.Location = new System.Drawing.Point(935, 36);
             this.lbl_fyear.Name = "lbl_fyear";
             this.lbl_fyear.Size = new System.Drawing.Size(0, 39);
             this.lbl_fyear.TabIndex = 3;
@@ -632,9 +633,9 @@ namespace IMS
             this.btnprofile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnprofile.FlatAppearance.BorderSize = 0;
             this.btnprofile.Image = ((System.Drawing.Image)(resources.GetObject("btnprofile.Image")));
-            this.btnprofile.Location = new System.Drawing.Point(1060, 3);
+            this.btnprofile.Location = new System.Drawing.Point(1059, 3);
             this.btnprofile.Name = "btnprofile";
-            this.btnprofile.Size = new System.Drawing.Size(124, 30);
+            this.btnprofile.Size = new System.Drawing.Size(125, 30);
             this.btnprofile.TabIndex = 2;
             this.btnprofile.UseVisualStyleBackColor = true;
             this.btnprofile.Click += new System.EventHandler(this.btnprofile_Click);
@@ -645,7 +646,7 @@ namespace IMS
             this.txttime.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txttime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txttime.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttime.Location = new System.Drawing.Point(942, 3);
+            this.txttime.Location = new System.Drawing.Point(941, 3);
             this.txttime.Name = "txttime";
             this.txttime.ReadOnly = true;
             this.txttime.Size = new System.Drawing.Size(112, 23);
@@ -655,7 +656,7 @@ namespace IMS
             // lbl_comp_tag
             // 
             this.lbl_comp_tag.AutoSize = true;
-            this.lbl_comp_tag.Location = new System.Drawing.Point(515, 0);
+            this.lbl_comp_tag.Location = new System.Drawing.Point(514, 0);
             this.lbl_comp_tag.Name = "lbl_comp_tag";
             this.lbl_comp_tag.Size = new System.Drawing.Size(35, 13);
             this.lbl_comp_tag.TabIndex = 49;
@@ -665,7 +666,7 @@ namespace IMS
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(97, 0);
+            this.label2.Location = new System.Drawing.Point(96, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 10;
@@ -673,7 +674,7 @@ namespace IMS
             // lbl_year_tag
             // 
             this.lbl_year_tag.AutoSize = true;
-            this.lbl_year_tag.Location = new System.Drawing.Point(515, 36);
+            this.lbl_year_tag.Location = new System.Drawing.Point(514, 36);
             this.lbl_year_tag.Name = "lbl_year_tag";
             this.lbl_year_tag.Size = new System.Drawing.Size(35, 13);
             this.lbl_year_tag.TabIndex = 50;

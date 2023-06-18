@@ -73,6 +73,7 @@ namespace IMS
             this.dgv_item.Size = new System.Drawing.Size(332, 311);
             this.dgv_item.TabIndex = 38;
             this.dgv_item.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_item_CellDoubleClick);
+            this.dgv_item.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgv_item_DataBindingComplete);
             // 
             // txt_item
             // 

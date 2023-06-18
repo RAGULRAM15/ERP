@@ -55,6 +55,7 @@ namespace IMS
             this.dtg_entrysetup.Size = new System.Drawing.Size(657, 347);
             this.dtg_entrysetup.TabIndex = 1;
             this.dtg_entrysetup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_entrysetup_CellContentClick);
+            this.dtg_entrysetup.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dtg_entrysetup_DataBindingComplete);
             // 
             // frmentry_setup
             // 

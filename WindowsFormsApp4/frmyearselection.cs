@@ -122,6 +122,15 @@ namespace IMS
         private void btnsubmit_Click(object sender, EventArgs e)
         {
             user_name = frm_login.USER_NAME;
+            if (cmboname.Text != "" && cmboyear.Text != "")
+            {
+                frm_mid mdi = new frm_mid();
+                setcompanyname = cmboname.Text;
+                company_year = cmboyear.Text;
+                //mdi.ShowDialog();
+                mdi.Show();
+                this.Hide();
+            }
             //String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
             //String Query;
 
@@ -154,16 +163,8 @@ namespace IMS
             //    conn.Open();
             //    comm.ExecuteNonQuery();
             //}
-            if (cmboname.Text != "" && cmboyear.Text != "")
-            {
-                frm_mid mdi = new frm_mid();
-                setcompanyname = cmboname.Text;
-                company_year = cmboyear.Text;
-                //mdi.ShowDialog();
-                mdi.Show();
-                this.Hide();
-            }
-           // cleartxt();
+
+            // cleartxt();
         }
         public static int item1 { get; set; }
         public static int item2 { get; set; }
@@ -183,6 +184,23 @@ namespace IMS
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void cmboyear_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                user_name = frm_login.USER_NAME;
+                if (cmboname.Text != "" && cmboyear.Text != "")
+                {
+                    frm_mid mdi = new frm_mid();
+                    setcompanyname = cmboname.Text;
+                    company_year = cmboyear.Text;
+                    //mdi.ShowDialog();
+                    mdi.Show();
+                    this.Hide();
+                }
+            }
         }
     }
 }

@@ -602,7 +602,7 @@ namespace IMS
 
                 else
                 {
-                    if (mode == "INVOICE DELETE")
+                    if (mode == "SALES ORDER DELETE")
                     {
                         using (SqlConnection conn = new SqlConnection(ConnString))
                         {
@@ -828,7 +828,8 @@ namespace IMS
                             //int selectedRowIndex = dgvitemform.SelectedRows[0].Index;
                             DataRow row = dt.Rows[selectedRowIndex];
                             dt.Rows.Remove(row);
-                            dgvitemform.Rows.RemoveAt(selectedRowIndex);
+                            dgvitemform.DataSource = dt;
+                           // dgvitemform.Rows.RemoveAt(selectedRowIndex);
 
 
                             MessageBox.Show("DELETED SUCCESSFULLY");
@@ -848,15 +849,15 @@ namespace IMS
                             double total2 = 0;
                             foreach (DataGridViewRow row in dgvitemform.Rows)
                             {
-                                if (row.Index != e.RowIndex && row.Cells["rate_item"].Value != null && row.Cells["netamount"].Value.ToString() != string.Empty)
+                                if ( row.Cells["rate_item"].Value != null && row.Cells["netamount"].Value.ToString() != string.Empty)
                                 {
                                     total1 += Convert.ToDouble(row.Cells["netamount"].Value);
-                                    txt_total_sum.Text = total1.ToString();
+                                   
                                 }
-                                if (row.Index != e.RowIndex && row.Cells["rate_item"].Value != null && row.Cells["QUANTITY_ITEM"].Value.ToString() != string.Empty)
+                                if ( row.Cells["rate_item"].Value != null && row.Cells["QUANTITY_ITEM"].Value.ToString() != string.Empty)
                                 {
                                     total2 += Convert.ToDouble(row.Cells["QUANTITY_ITEM"].Value);
-                                    txt_quantity_sum.Text = total2.ToString();
+                                   
                                 }
                                 //if (row.Index == e.RowIndex && e. != null && e.FormattedValue.ToString() != string.Empty)
                                 //{
@@ -865,8 +866,14 @@ namespace IMS
 
 
                             }
+                            txt_total_sum.Text = total1.ToString();
+                            txt_quantity_sum.Text = total2.ToString();
                             // Update the total in a label or textbox
-
+                            if (dgvitemform.Rows.Count == 0)
+                            {
+                                cal_del_value = true;
+                            }
+                            calculation();
 
                         }
                         if (mode == "EDIT SALES ORDER")
@@ -874,32 +881,42 @@ namespace IMS
 
                             double total1 = 0;
                             double total2 = 0;
-                            Double priveous1 = Convert.ToDouble(txt_total_sum.Text);
-                            Double priveous2 = Convert.ToDouble(txt_quantity_sum.Text);
+                            Double priveous1 = 0;
+                            Double priveous2 = 0;
+                          
+                           
                             foreach (DataGridViewRow row in dgvitemform.Rows)
                             {
-                                if (row.Index != e.RowIndex && row.Cells["rate_item"].Value != null && row.Cells["netamount"].Value.ToString() != string.Empty)
+                                if ( row.Cells["rate_item"].Value != null && row.Cells["netamount"].Value.ToString() != string.Empty)
                                 {
+                                     priveous1 = Convert.ToDouble(txt_total_sum.Text);
                                     total1 += Convert.ToDouble(row.Cells["netamount"].Value);
-                                    txt_total_sum.Text = (total1 + priveous1 - priveous1).ToString();
+                                   
 
                                 }
-                                if (row.Index != e.RowIndex && row.Cells["rate_item"].Value != null && row.Cells["QUANTITY_ITEM"].Value.ToString() != string.Empty)
+                                if ( row.Cells["rate_item"].Value != null && row.Cells["QUANTITY_ITEM"].Value.ToString() != string.Empty)
                                 {
+                                     priveous2 = Convert.ToDouble(txt_quantity_sum.Text);
                                     total2 += Convert.ToDouble(row.Cells["QUANTITY_ITEM"].Value);
-                                    txt_quantity_sum.Text = (total2 + priveous2 - priveous2).ToString();
+                                   
                                 }
                                 //if (row.Index == e.RowIndex && e. != null && e.FormattedValue.ToString() != string.Empty)
                                 //{
                                 //    total += Convert.ToInt32(e.FormattedValue);
                                 //}
-
-
+                                txt_total_sum.Text = (total1 + priveous1 - priveous1).ToString();
+                                txt_quantity_sum.Text = (total2 + priveous2 - priveous2).ToString();
+                                if (dgvitemform.Rows.Count == 0)
+                                {
+                                    cal_del_value = true;
+                                }
+                                calculation();
                             }
                             // Update the total in a label or textbox
 
 
                         }
+                       
 
                     }
 
@@ -1152,7 +1169,7 @@ namespace IMS
                 popup.ShowF2(_query, "ADDRESS", ((TextBox)sender).Text, "ADDRESS", sender);
             }
         }
-
+        public bool cal_del_value { get; set; } = false;
         public void calculation()
         {
             if (mode == "EDIT SALES ORDER" || mode == "ADD")
@@ -1160,8 +1177,7 @@ namespace IMS
                 txtsubtotal.Text = txt_total_sum.Text;
                 foreach (DataGridViewRow gridViewRow in dgvitemform.Rows)
                 {
-                    if (gridViewRow.Cells["rate_item"].Value != null)
-                    {
+                  
                         stxtitem.Text = gridViewRow.Cells["ITEM_ID"].Value.ToString();
                         String ConnString = @"Data Source=DESKTOP-4DTMDPH;Initial Catalog=QUOTATION;Integrated Security=True";
                         String query = "select cgst,igst,sgst from m_item where ITEM_ID='" + stxtitem.Text + "'";
@@ -1200,8 +1216,32 @@ namespace IMS
 
 
                         stxtitem.Text = "";
-                    }
+                    
                 }
+                //if (cal_del_value == true)
+                //{
+                //    if (dgvitemform.Rows.Count == 0)
+                //    {
+                //        stxtsgst.Text = "0";
+                //        stxtcgst.Text = "0";
+                //        stxtigst.Text = "0";
+
+                //        double Sgst = Convert.ToDouble(stxtsgst.Text);
+                //        double Cgst = Convert.ToDouble(stxtcgst.Text);
+                //        double Igst = Convert.ToDouble(stxtigst.Text);
+
+
+
+                //        txtgst_value.Text = Convert.ToString(Convert.ToDouble(txtcgst.Text) + Convert.ToDouble(txtsgst.Text) + Convert.ToDouble(txtigst.Text));
+                //        string txt_total = Convert.ToString(((Convert.ToDouble(txt_total_sum.Text)) * ((100 - Convert.ToDouble(txt_discount.Text)) / 100.00)));
+                //        double input = Convert.ToDouble(txtgst_value.Text) + Convert.ToDouble(txt_total);
+                //        double result = Math.Round(input, 0);
+                //        txtnet_amount.Text = result.ToString();
+                //        txtnet_amountB.Text = txtnet_amount.Text;
+                //        txtroundoff.Text = ((input - Convert.ToDouble(txtnet_amount.Text)) * -1).ToString();
+                //    }
+                //}
+
             }
             else
             {
@@ -1364,7 +1404,9 @@ namespace IMS
 
         private void txtcustomer_TextChanged(object sender, EventArgs e)
         {
-            string _query1 = "SELECT CONCAT(ADDRESS_1,' '," +
+            if (txtcustomer.Tag != null)
+            {
+                string _query1 = "SELECT CONCAT(ADDRESS_1,' '," +
                 "[M_CITY].CITY,'  ,',[M_DISTRICT] .DISTRICT,'  ,'," +
                 "[M_STATE].STATE,' ,',[M_COUNTRY].COUNTRY,'  ,'," +
                 "POSTAL_CODE,' ,',PHONE_NO ) AS [ADDRESS] FROM [M_CUSTOMER]" +
@@ -1374,16 +1416,18 @@ namespace IMS
                 " INNER JOIN[dbo].[M_COUNTRY] ON[M_CUSTOMER].COUNTRY_ID = [M_COUNTRY].COUNTRY_ID " +
                 " WHERE [M_CUSTOMER]. CUSTOMER_NAME = '" + txtcustomer.Text + "'";
 
-            SqlConnection conn = new SqlConnection(ConnString);
-            SqlCommand cmd = new SqlCommand(_query1, conn);
-            conn.Open();
-            SqlDataReader dataReader = cmd.ExecuteReader();
-            if (dataReader.Read())
-            {
-                txtaddress.Text = dataReader["ADDRESS"].ToString();
-            }
+                SqlConnection conn = new SqlConnection(ConnString);
+                SqlCommand cmd = new SqlCommand(_query1, conn);
+                conn.Open();
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.Read())
+                {
+                    txtaddress.Text = dataReader["ADDRESS"].ToString();
+                }
 
-            conn.Close();
+                conn.Close();
+               
+            }
         }
 
         private void txt_itemadd_KeyDown(object sender, KeyEventArgs e)
@@ -1406,7 +1450,7 @@ namespace IMS
                     if (row.Cells[1].Value?.ToString() == value1 &&
                         row.Cells[2].Value?.ToString() == value2)
                     {
-                        //if (value1 == "" && value2 == "")
+                        //if (value1 == " " && value2 == "")
                         //{
                         //    return true;
                         //}
@@ -1448,121 +1492,185 @@ namespace IMS
         }
         public void ITEM_LOAD()
         {
-            String Query = "SELECT ITEM_NAME, SIZE FROM  [M_ITEM] WHERE ITEM_ID = '" + item_text + "' ";
-            SqlConnection conn = new SqlConnection(ConnString);
-
-            SqlCommand comm = new SqlCommand(Query, conn);
-            conn.Open();
-            SqlDataReader dr = comm.ExecuteReader();
-            while (dr.Read())
+            if (item_text != "")
+            
             {
-                txt_itemadd.Text = dr["ITEM_NAME"].ToString();
-                txt_itemsize.Text = dr["size"].ToString();
+                //DataGridViewRow newRow = new DataGridViewRow();
+                //newRow.CreateCells(dgvitemform);
 
-            }
-            dr.Close();
-            conn.Close();
+                ////newRow.Cells["ROW_ID"].Value = txt_no.Text;
+                //newRow.Cells[1].Value = txt_itemadd.Text;
+                //newRow.Cells[2].Value = line;
+                //// newRow.Cells[3].Value = txt_style.Text;
+
+                ////newRow.Cells[7].Value = txt_total.Text;
+                //newRow.Cells[8].Value = item_text;
+                ////newRow.Cells[11].Value = txt_size.Tag;
 
 
-            string[] lines = txt_itemsize.Lines; 
-            foreach (string line in lines)
-            {
+                //dgvitemform.Rows.Add(newRow);
+                //string value1 = txt_itemadd.Text;
+                //string value2 = line;
+                //string value3 = item_text;
+                //if (value1 != " " && value2 != " ")
+                //{
+                //    if (IsDuplicateValueadd(value1, value2, dgvitemform))
+                //    {
+                //        MessageBox.Show("Duplicate value! Insertion cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    }
+                //    else
+                //    {
+                //String Query = "SELECT ITEM_NAME, SIZE FROM  [M_ITEM] WHERE ITEM_ID = '" + item_text + "' AND SIZE <> '' ";
                 if (mode == "ADD")
                 {
-                    //DataGridViewRow newRow = new DataGridViewRow();
-                    //newRow.CreateCells(dgvitemform);
+                    String Query = "SELECT t1.[ITEM_ID], t1.[ITEM_NAME],  LTRIM(RTRIM(value)) AS SIZE_NAME, t1.[HSN_CODE] FROM M_ITEM t1" +
+                                " CROSS APPLY STRING_SPLIT(t1.[SIZE], CHAR(10)) WHERE ITEM_ID = '" + item_text + "' AND value <> ''";
 
-                    ////newRow.Cells["ROW_ID"].Value = txt_no.Text;
-                    //newRow.Cells[1].Value = txt_itemadd.Text;
-                    //newRow.Cells[2].Value = line;
-                    //// newRow.Cells[3].Value = txt_style.Text;
+                    SqlConnection conn = new SqlConnection(ConnString);
 
-                    ////newRow.Cells[7].Value = txt_total.Text;
-                    //newRow.Cells[8].Value = item_text;
-                    ////newRow.Cells[11].Value = txt_size.Tag;
-
-
-                    //dgvitemform.Rows.Add(newRow);
-                    string value1 = txt_itemadd.Text;
-                    string value2 = line;
-                    string value3 = item_text;
-
-                    if (IsDuplicateValueadd(value1, value2, dgvitemform))
+                    SqlCommand comm = new SqlCommand(Query, conn);
+                    conn.Open();
+                    SqlDataReader dr = comm.ExecuteReader();
+                    while (dr.Read())
                     {
-                        MessageBox.Show("Duplicate value! Insertion cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                      
                         DataGridViewRow newRow = new DataGridViewRow();
                         newRow.CreateCells(dgvitemform);
 
-                        
-                        newRow.Cells[1].Value = value1;
-                        newRow.Cells[2].Value = value2;
-                        newRow.Cells[8].Value = value3;
 
-                       
-                        dgvitemform.Rows.Add(newRow);
+                        newRow.Cells[1].Value = dr["ITEM_NAME"].ToString();
+                        newRow.Cells[2].Value = dr["SIZE_NAME"].ToString();
+                        newRow.Cells[8].Value = dr["ITEM_ID"].ToString();
+                        String value1 = dr["ITEM_NAME"].ToString();
+                        txt_itemsize.Text = dr["SIZE_NAME"].ToString();
+                        String value2 = txt_itemsize.Text.Trim();
+                        SqlConnection con = new SqlConnection(ConnString);
+                        String StrQuery = "SELECT size_id FROM  [M_size] WHERE SIZE_NAME = '" + value2 + "' ";
+                        SqlCommand cmd = new SqlCommand(StrQuery, con);
+                        con.Open();
+                        SqlDataReader dr1 = cmd.ExecuteReader();
+                        while (dr1.Read())
+                        {
+
+                            newRow.Cells[9].Value = dr1["size_id"].ToString();
+
+                        }
+                        dr1.Close();
+
+
+                        con.Close();
+                        if (IsDuplicateValueadd(value1, value2, dgvitemform))
+                        {
+                            MessageBox.Show("Duplicate value! Insertion cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+
+                            dgvitemform.Rows.Add(newRow);
+                        }
+                        value1 = "";
+                        value2 = "";
+                        txt_itemsize.Text = "";
                     }
-                    
+                    dr.Close();
+                    conn.Close();
+
+
+                    //    }
+                    //}
                 }
                 if (mode == "EDIT SALES ORDER")
                 {
-                    string value1 = txt_itemadd.Text;
-                    string value2 = line;
-                    string value3 = item_text;
-                    if (IsDuplicateValueedit(value1, value2, dt))
-                    {
-                        MessageBox.Show("Duplicate value! Insertion cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        DataRow row = dt.NewRow();
+
+                    //String Query = "SELECT ITEM_NAME, SIZE FROM  [M_ITEM] WHERE ITEM_ID = '" + item_text + "' AND SIZE <> '' ";
+
+                    
+                    //SqlConnection conn = new SqlConnection(ConnString);
+
+                    //SqlCommand comm = new SqlCommand(Query, conn);
+                    //conn.Open();
+                    //SqlDataReader dr = comm.ExecuteReader();
+                    //while (dr.Read())
+                    //{
+                    //    txt_itemadd.Text = dr["ITEM_NAME"].ToString();
+                    //    txt_itemsize.Text = dr["SIZE"].ToString();
+
+                    //}
+                    //dr.Close();
+                    //conn.Close();
 
 
+                    //string[] lines = txt_itemsize.Lines;
+                    //foreach (string line in lines)
+                    //{
 
-                        row["ITEM_NAME"] = value1;
-                        row["SIZE_NAME"] = value2;
-                        row["ITEM_ID"]   = value3;
-
-                        //row[4] = txt_quantity.Text; DR["QUANTITY"] = row.Cells["quantity_item"].Value;
-                        //DR["RATE"] = row.Cells["rate_item"].Value;
-                        //DR["TOTAL"] = row.Cells["netamount"].Value;
-                        //row[5] = txt_rate.Text;
-                        //row[6] = txt_discount.Text;
-                        //row[7] = txt_total.Text;
-                        //row[10] = txt_item.Tag;
-
-                        foreach (DataGridViewRow viewRow in dgvitemform.Rows)
+                        string value1 = item_text;
+                        txt_itemsize.Text =  size_text;
+                    string value2 = txt_itemsize.Text.Trim();
+                        string value3 = item_tag;
+                        if (IsDuplicateValueedit(value1, value2, dt))
                         {
-                            SqlConnection con = new SqlConnection(ConnString);
-                            String StrQuery = "SELECT size_id FROM  [M_size] WHERE SIZE_NAME = '" + viewRow.Cells["size_item"].Value + "' ";
-                            SqlCommand cmd = new SqlCommand(StrQuery, con);
-                            con.Open();
-                            SqlDataReader dr1 = cmd.ExecuteReader();
-                            while (dr1.Read())
-                            {
-
-                                viewRow.Cells["SIZE_ID"].Value = dr1["size_id"].ToString();
-                                row["SIZE_ID"] = viewRow.Cells["SIZE_ID"].Value;
-                            }
-                            dr1.Close();
-
-
-                            con.Close();
-
+                            MessageBox.Show("Duplicate value! Insertion cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                        else
+                        {
+                            DataRow row = dt.NewRow();
 
 
-                        dt.Rows.Add(row);
-                        dgvitemform.DataSource = dt;
-                    }
+                        if (value2 != null)
+                        {
+                            row["ITEM_NAME"] = value1;
+                            row["SIZE_NAME"] = value2;
+                            row["ITEM_ID"] = value3;
+
+                            //row[4] = txt_quantity.Text; DR["QUANTITY"] = row.Cells["quantity_item"].Value;
+                            //DR["RATE"] = row.Cells["rate_item"].Value;
+                            //DR["TOTAL"] = row.Cells["netamount"].Value;
+                            //row[5] = txt_rate.Text;
+                            //row[6] = txt_discount.Text;
+                            //row[7] = txt_total.Text;
+                            //row[10] = txt_item.Tag;
+
+                                SqlConnection con = new SqlConnection(ConnString);
+                                String StrQuery = "SELECT size_id FROM  [M_size] WHERE SIZE_NAME = '" + value2 + "' ";
+                                SqlCommand cmd = new SqlCommand(StrQuery, con);
+                                con.Open();
+                                SqlDataReader dr1 = cmd.ExecuteReader();
+                                while (dr1.Read())
+                                {
+
+                                row["SIZE_ID"] = dr1["size_id"].ToString();
+                                    
+                                }
+                                dr1.Close();
+
+
+                                con.Close();
+
+                            
+
+
+                            dt.Rows.Add(row);
+                            dgvitemform.DataSource = dt;
+                            value1 = "";
+                            value2 = "";
+                            value3 = "";
+                            txt_itemsize.Text = "";
+                        }
+                        }
+                    
                 }
+                txt_itemadd.Text = "";
+                txt_itemadd.Tag = "";
+                txt_itemsize.Text = "";
+                
             }
-            txt_itemadd.Text = "";
-            txt_itemadd.Tag = "";
-            txt_itemsize.Text = "";
+            item_text = "";
+            int columnIndex = 4;
+            if (dgvitemform.Rows.Count > 0 && columnIndex < dgvitemform.Columns.Count)
+            {
+                dgvitemform.CurrentCell = dgvitemform.Rows[0].Cells[columnIndex];
+                dgvitemform.CurrentCell.Selected = true;
+            }
         }
         private void txt_itemadd_TextChanged(object sender, EventArgs e)
         {
@@ -1593,7 +1701,7 @@ namespace IMS
                     //totalsum();
 
                 }
-            
+           
 
         }
 
@@ -1624,7 +1732,7 @@ namespace IMS
                 if (mode == "ADD")
                 {
                     SqlConnection conn = new SqlConnection(ConnString);
-                    String StrQuery = "SELECT size_id FROM  [M_size] WHERE SIZE_NAME = '" + viewRow.Cells["size_item"].Value + "' ";
+                     String StrQuery = "SELECT size_id FROM  [M_size] WHERE SIZE_NAME = '" + viewRow.Cells["size_item"].Value + "' ";
                     SqlCommand cmd = new SqlCommand(StrQuery, conn);
                     conn.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -1723,7 +1831,7 @@ namespace IMS
         }
         private void txt_discount_TextChanged_1(object sender, EventArgs e)
         {
-            if (mode == "EDIT SALES_ORDER")
+            if (mode == "EDIT SALES ORDER")
             {
                 if (txt_total_sum.Text != "" && txt_discount.Text != "")
                 {
@@ -1774,18 +1882,25 @@ namespace IMS
             conn.Close();
 
         }
-        public static String item_text { get; set; }
-        private void frm_sales_order_KeyDown(object sender, KeyEventArgs e)
+    public static string item_tag { get; set; }
+    public static string item_text { get; set; }
+    public static string size_tag { get; set; }
+    public static string size_text { get; set; }
+    private void frm_sales_order_KeyDown(object sender, KeyEventArgs e)
         {
             if (mode == "ADD"|| mode == "EDIT SALES ORDER")
             {
 
                 if (e.KeyCode == Keys.F5)
                 {
-                  
-                        //frmf3 popup = new frmf3();
-                        //popup.ShowF3("RETURN OF GOODS", valuetoadd, sender);
-                        ////popup.Show();
+
+                    //frmf3 popup = new frmf3();
+                    //popup.ShowF3("RETURN OF GOODS", valuetoadd, sender);
+                    ////popup.Show();
+                    if (mode == "ADD")
+                    {
+
+
                         frmf5 popup = new frmf5();
                         popup.MdiParent = frm_mid.ActiveForm;
                         popup.item_text = "SALES ORDER";
@@ -1793,8 +1908,21 @@ namespace IMS
                         popup.ShowF2(_query, "ITEM_NAME", (item_text), "ITEM_NAME", sender);
 
 
+                        //
                         ITEM_LOAD();
-                    
+                    }
+                    if(mode== "EDIT SALES ORDER")
+                    {
+                        frmf5 popup = new frmf5();
+                        popup.MdiParent = frm_mid.ActiveForm;
+                        popup.item_text = "SALES ORDER_EDIT";
+                        //string _query = "SELECT ITEM_ID AS [ID],  ITEM_NAME, HSN_CODE FROM M_ITEM WHERE ACTIVE = 1";
+                        String Query = "SELECT t1.[ITEM_ID] AS [ID], t1.[ITEM_NAME],  LTRIM(RTRIM(value)) AS SIZE_NAME, t1.[HSN_CODE] FROM M_ITEM t1" +
+                                " CROSS APPLY STRING_SPLIT(t1.[SIZE], CHAR(10)) WHERE  value <> ''";
+
+                        popup.ShowF5e(Query, "ITEM_NAME","SIZE_NAME", (item_text), "ITEM_NAME", sender);
+
+                    }
 
                 }
 
@@ -1840,6 +1968,86 @@ namespace IMS
             //    e.Cancel = true;
             //    MessageBox.Show("Invalid value! Insertion cancelled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
+        }
+
+        private void dgvitemform_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //if (!iskeyclick)
+                //{
+
+                e.Handled = true;
+                int currentrowindex = dgvitemform.CurrentCell.RowIndex;
+                int currentcolumnindex = dgvitemform.CurrentCell.ColumnIndex;
+
+                if (currentrowindex < dgvitemform.Rows.Count - 1)
+                {
+                    dgvitemform.CurrentCell = dgvitemform.Rows[currentrowindex + 1].Cells[4];
+                    dgvitemform.CurrentCell.Selected = true;
+                }
+
+                // iskeyclick = true;
+
+
+                //}
+
+            }
+        }
+
+        private void dgvitemform_CellEnter_1(object sender, DataGridViewCellEventArgs e)
+        {
+           
+
+
+
+        }
+
+        private void dgvitemform_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+            {
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    //if (!iskeyclick)
+            //    //{
+
+            //        e.IsInputKey = true;
+            //        int currentrowindex = dgvitemform.CurrentCell.RowIndex;
+            //        int currentcolumnindex = dgvitemform.CurrentCell.ColumnIndex;
+
+            //        if (currentrowindex < dgvitemform.Rows.Count - 1)
+            //        {
+            //            dgvitemform.CurrentCell = dgvitemform.Rows[currentrowindex + 1].Cells[4];
+            //        }
+
+            //       // iskeyclick = true;
+
+
+            //    //}
+
+            //}
+        }
+        //private bool iskeyclick = false;
+        private void dgvitemform_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (iskeyclick)
+            //{
+            //    int currentrowindex = dgvitemform.CurrentCell.RowIndex;
+            //    int currentcolumnindex = dgvitemform.CurrentCell.ColumnIndex;
+
+            //    if (currentrowindex < dgvitemform.Rows.Count - 1 && currentcolumnindex != 4)
+            //    {
+            //        dgvitemform.CurrentCell = dgvitemform.Rows[currentrowindex + 1].Cells[4];
+            //    }
+            //    iskeyclick = false;
+            //}
+        }
+
+        private void dgvitemform_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dgvitemform.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
     }
 }

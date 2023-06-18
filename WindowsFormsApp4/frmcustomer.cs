@@ -163,6 +163,12 @@ namespace IMS
             dtgF4.DataSource = dv;
         }
 
-      
+        private void dtgF4_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dtgF4.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
     }
 }
